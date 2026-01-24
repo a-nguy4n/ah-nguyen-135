@@ -17,12 +17,12 @@ body{
 
 @font-face {
     font-family: "Archivo Black";
-    src: url("/home/fonts/Archivo_Black/ArchivoBlack-Regular.ttf");
+    src: url("/fonts/Archivo_Black/ArchivoBlack-Regular.ttf");
 }
 
 @font-face {
     font-family: "Space Mono";
-    src: url("/home/fonts/Space_Mono/SpaceMono-Regular.ttf");
+    src: url("/fonts/Space_Mono/SpaceMono-Regular.ttf");
 }
 
 .home-container{
