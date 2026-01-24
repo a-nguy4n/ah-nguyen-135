@@ -8,7 +8,7 @@
 - iLuvGr@ding135
 
 ## Domain site link
-- https://www.ah-nguyen.site
+- ah-nguyen.site
 
 # Part 2
 ## Github deployment setup
