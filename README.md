@@ -12,6 +12,9 @@
 
 # Part 2
 ## Github deployment setup
+The first thing we did was clone the repo onto our Apache server. We then created and updated our deployment script. We then created a deploy.php file under our root directory. After
+creating the repo, we went into our Github account and then added a webhook. At one point we needed to set up a personal authentication token so that the auto-deployment could 
+correctly auto-deploy without needed a password, as well. Our deployment script kept getting deleted every time we would push to our repo so we had to add the file to our actual repo so that our deployment script wouldn't keep deleting it. We also had a problem with auto-deployment not working for both users, so we had to edit the script a little to allow users allison and haley to make pushes to the repo. 
 
 # Part 3
 ## Usernames and passwords
