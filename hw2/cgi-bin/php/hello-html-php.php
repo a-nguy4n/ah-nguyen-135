@@ -1,5 +1,3 @@
-#!/usr/bin/php
-
 <?php
 header("Cache-Control: no-cache");
 header("Content-Type: text/html; charset=UTF-8");
