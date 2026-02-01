@@ -25,6 +25,11 @@ body{
     src: url("/fonts/Space_Mono/SpaceMono-Regular.ttf");
 }
 
+@font-face {
+  font-family: "Archivo";
+  src: url("/fonts/Archivo/Archivo-VariableFont_wdth,wght.ttf");
+}
+
 .home-container{
   padding: 4%;
   box-sizing: border-box;
@@ -92,8 +97,10 @@ header p{
   margin: 5% 0;
 }
 
-.homework-block a:hover{
+.homework-block a:hover,
+.dropdown button:hover{
   text-decoration: underline;
+  cursor: pointer;
 }
 
 #team-section{
@@ -125,3 +132,39 @@ header p{
     color: rgb(224, 0, 0);
 }
 
+
+.dropdown{
+  position: relative;
+}
+
+.dropdown-menu{
+  display: none;
+}
+
+.dropdown.open .dropdown-menu{
+  display: block;
+}
+
+.dropdown button{
+  background: none;
+  border: none;
+  color: black;
+  font-size: 1.1rem;
+  font-family: "Space Mono"; 
+  padding-left: 12%; 
+  margin: 5% 0;
+  cursor: pointer
+}
+
+.dropdown-menu a{
+  display: block; 
+  font-size: 0.8rem;
+  font-family: "Archivo"; 
+  font-weight: 400;
+  padding-left: 15%; 
+  cursor: pointer
+}
+
+.dropdown-menu a:hover{
+  color: red;
+}
