@@ -145,7 +145,7 @@ header p{
   display: block;
 }
 
-.dropdown button{
+.homework-block .dropdown button{
   background: none;
   border: none;
   color: black;
@@ -156,7 +156,7 @@ header p{
   cursor: pointer
 }
 
-.dropdown-menu a{
+.homework-block .dropdown-menu a{
   display: block; 
   font-size: 0.8rem;
   font-family: "Archivo"; 
@@ -165,6 +165,6 @@ header p{
   cursor: pointer
 }
 
-.dropdown-menu a:hover{
+.homework-block .dropdown-menu a:hover{
   color: red;
 }
