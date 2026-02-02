@@ -24,9 +24,9 @@
     $output .= htmlentities(trim($deploy_output)) . "\n<br /><br />";
 
     // Rebuild C CGI files
-    $build_output = shell_exec('sudo bash -c "cd /var/www/ah-nguyen.site/public_html/hw2/cgi-bin/c && ./build.sh" 2>&1');
-    $output .= "<span style=\"color: #6BE234;\">\$</span><span style=\"color: #729FCF;\">cd /var/www/ah-nguyen.site/public_html/hw2/cgi-bin/c && ./build.sh\n</span><br />";
-    $output .= htmlentities(trim($build_output)) . "\n<br /><br />";
+    // $build_output = shell_exec('sudo bash -c "cd /var/www/ah-nguyen.site/public_html/hw2/cgi-bin/c && ./build.sh" 2>&1');
+    // $output .= "<span style=\"color: #6BE234;\">\$</span><span style=\"color: #729FCF;\">cd /var/www/ah-nguyen.site/public_html/hw2/cgi-bin/c && ./build.sh\n</span><br />";
+    // $output .= htmlentities(trim($build_output)) . "\n<br /><br />";
 
 ?>
 
