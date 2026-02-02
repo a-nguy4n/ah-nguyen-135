@@ -4,9 +4,10 @@ import os
 import sys
 import json
 import urllib.parse
+import datetime
 
 print("Cache-Control: no-cache")
-print("Content-Type: application/json\n")
+print("Content-Type: text/html\n")
 
 env = os.environ
 
@@ -31,11 +32,14 @@ if content_length:
 parsed_body = urllib.parse.parse_qs(raw_body)
 
 client_ip = (
-    env.get("HTTP_X_FORWARDED_FOR")
-    or env.get("HTTP_X_REAL_IP")
-    or env.get("REMOTE_ADDR")
+    env.get("REMOTE_ADDR")
     or "Unknown"
 )
+
+hostname = env.get("HTTP_HOST", "Unknown")
+user_agent_header = env.get("HTTP_USER_AGENT", "Unknown")
+current_datetime = datetime.datetime.now()
+
 
 data = {
     "Server Protocol": protocol,
@@ -47,7 +51,34 @@ data = {
     "Raw Message Body": raw_body,
     "Parsed Message Body": parsed_body,
 
-    "Client IP": client_ip
+    "Client IP": client_ip,
+    "Hostname": hostname,
+    "User-Agent": user_agent_header,
+    "Current Date and Time": current_datetime.isoformat()
 }
 
-print(json.dumps(data, indent=2))
+print("""<!DOCTYPE html>
+<html>
+<head>
+  <title>Python Echo Form(no JS)</title>
+</head>
+<body>
+    <h1 align="center">Python Echo Form (no JS)</h1>
+    <hr>
+    <p> Name: </p>
+"""
+)
+if data["HTTP Method"] == "GET":
+    print(f"<p> {data['Parsed Query']['username'][0]}</p>")
+else:
+    print(f"<p> {data['Parsed Message Body']['username'][0]}</p>")
+
+print(f""" <p> Client IP: {data['Client IP']}</p>""")
+print(f""" <p> Hostname: {data['Hostname']}</p>""")
+print(f""" <p> User-Agent: {data['User-Agent']}</p>""")
+print(f""" <p> Current Date and Time: {data['Current Date and Time']}</p>""")
+
+print("""
+</body>
+</html>
+""")
