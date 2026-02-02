@@ -70,10 +70,10 @@ data = {
 print("""<!DOCTYPE html>
 <html>
 <head>
-  <title>Python Echo Form(no JS)</title>
+  <title>Python Echo Form</title>
 </head>
 <body>
-    <h1 align="center">Python Echo Form (no JS)</h1>
+    <h1 align="center">Python Echo Form </h1>
     <hr>
     <p> Name: 
 """)
