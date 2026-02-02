@@ -37,6 +37,32 @@ void get_username(char *src, char *dest, int max) {
     dest[i] = '\0';
 }
 
+// Getting username from JSON
+void get_json_username(char *src, char *dest, int max) {
+    char *p = strstr(src, "\"username\":\"");
+
+    if (!p) {
+        dest[0] = '\0';
+        return;
+    }
+    p = strchr(p, ':');
+    if (!p) {
+        dest[0] = '\0';
+        return;
+    }
+    p++;
+    while (*p == ' ' || *p == '\t') {
+        p++;
+    }
+    if (*p == '"') p++;
+    int i = 0;
+    while (*p && *p != '"' && i < max - 1) {
+        dest[i++] = *p++;
+    }
+    dest[i] = '\0';
+}
+    
+
 int main(void) {
 
     printf("Cache-Control: no-cache\n");
@@ -46,6 +72,7 @@ int main(void) {
     char *method   = getenv("REQUEST_METHOD");
     char *protocol = getenv("SERVER_PROTOCOL");
     char *query    = getenv("QUERY_STRING");
+    char *content_type = getenv("CONTENT_TYPE");
 
     char *ip   = getenv("REMOTE_ADDR");
     char *host = getenv("HTTP_HOST");
@@ -54,6 +81,7 @@ int main(void) {
     if (!method)   method = "Unknown";
     if (!protocol)protocol = "Unknown";
     if (!query)    query = "";
+    if (!content_type) content_type = "";
     if (!ip)       ip = "Unknown";
     if (!host)     host = "Unknown";
     if (!ua)       ua = "Unknown";
@@ -69,7 +97,12 @@ int main(void) {
         get_username(query, name, sizeof(name));
     }
     else {
-        get_username(body, name, sizeof(name));
+        // Check if JSON or form data
+        if (strstr(content_type, "application/json")) {
+            get_json_username(body, name, sizeof(name));
+        } else {
+            get_username(body, name, sizeof(name));
+        }
     }
 
     time_t now = time(NULL);
