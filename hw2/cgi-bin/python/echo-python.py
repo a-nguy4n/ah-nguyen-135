@@ -77,13 +77,13 @@ print("""<!DOCTYPE html>
     <hr>
     <p> Name: 
 """)
-if data["HTTP Method"] == "GET":
+if data["HTTP Method"] == "Get":
     print(f" {data['Parsed Query']['username'][0]}</p>")
-elif data["HTTP Method"] == "POST":
+elif data["HTTP Method"] == "Post":
     print(f" {data['Parsed Message Body']['username'][0]}</p>")
-elif data["HTTP Method"] == "PUT":
+elif data["HTTP Method"] == "Put":
     print(f" {data['Parsed Message Body']['username'][0]}</p>")
-elif data["HTTP Method"] == "DELETE":
+elif data["HTTP Method"] == "Delete":
     print(f" {data['Parsed Message Body']['username'][0]}</p>")
 print(f""" <p> Client IP: {data['Client IP']}</p>""")
 print(f""" <p> Hostname: {data['Hostname']}</p>""")
