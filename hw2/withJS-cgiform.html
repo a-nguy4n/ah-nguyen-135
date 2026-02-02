@@ -39,6 +39,8 @@
       <input type="submit" value="Test Sessioning">
     </form>
 
+    <div id="result"> </div>
+
     <script>
         form = document.getElementById('form');
         form.addEventListener('submit', function(event) {
@@ -70,7 +72,8 @@
             }
             if (method == 'Get') {
                 fetch(actionURL, {method: method,})
-                .then(response => response.text());
+                .then(response =>  response.text())
+                .then(text => document.getElementById('result').innerHTML = text);
             }
             else {
                 fetch(actionURL, {
@@ -79,7 +82,9 @@
                         'Content-Type': encoding
                     },
                     body: body
-                });
+                })
+                .then(response =>  response.text())
+                .then(text => document.getElementById('result').innerHTML = text);  
             }
         });
     </script>
