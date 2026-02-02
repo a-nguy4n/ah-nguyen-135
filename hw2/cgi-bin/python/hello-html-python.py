@@ -7,11 +7,11 @@ print("Content-Type: text/html\n\n")
 print("<!DOCTYPE html>")
 print("<html>")
 print("<head>")
-print("<title>Hello From Allison & Haley (python)!</title>")
+print("<title>Hello From Allison & Haley (Python Version)!</title>")
 print("</head>")
 
 print("<body>")
-print("<h1 align='center'>Hello From Allison & Haley (python)!</h1><hr/>")
+print("<h1 align='center'>Hello From Allison & Haley (Python Version)!</h1><hr/>")
 print("<p> Welcome, Bienvenido, Willkommen </p>")
 print("<p>This page was generated with the Python programming language</p>")
 

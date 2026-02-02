@@ -13,7 +13,7 @@ $ip = $_SERVER["REMOTE_ADDR"] ?? "Unknown";
   <title>Hello From Allison & Haley! (PHP Version)</title>
 </head>
 <body>
-  <h1 style="text-align:center;">Hello! This is our PHP HTML</h1><hr/>
+  <h1 style="text-align:center;">Hello! PHP is cool :D </h1><hr/>
   <p>Salutations!</p>
   <p>This page was generated with the PHP programming language</p>
 
