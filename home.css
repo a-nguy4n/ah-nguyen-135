@@ -167,4 +167,6 @@ header p{
 
 .homework-block .dropdown-menu a:hover{
   color: rgb(224, 0, 0);
+  text-decoration: none;
+  font-weight: 500;
 }
