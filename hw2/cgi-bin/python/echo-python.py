@@ -77,14 +77,6 @@ print("""<!DOCTYPE html>
     <hr>
     <p> Name: 
 """)
-# if data["HTTP Method"] == "GET":
-#     print(f" {data['Parsed Query'].get('username', '')}</p>")
-# elif data["HTTP Method"] == "POST":
-#     print(f" {data['Parsed Message Body']['username'][0]}</p>")
-# elif data["HTTP Method"] == "PUT":
-#     print(f" {data['Parsed Message Body']['username'][0]}</p>")
-# elif data["HTTP Method"] == "DELETE":
-#     print(f" {data['Parsed Message Body']['username'][0]}</p>")
 
 if data["HTTP Method"] == "GET":
     val = data["Parsed Query"].get("username", "")
