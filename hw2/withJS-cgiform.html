@@ -11,23 +11,23 @@
     <form id="form">
         <label for="method-select">Select Method:</label>
         <select id="method-select" name="method">
-            <option value="Get">GET</option>
-            <option value="Post">POST</option>
-            <option value="Put">PUT</option>
-            <option value="Delete">DELETE</option>
+            <option value="GET">GET</option>
+            <option value="POST">POST</option>
+            <option value="PUT">PUT</option>
+            <option value="DELETE">DELETE</option>
         </select>
         <br>
         <label for="language-type">Select Language:</label>
         <select id="language-type" name="language">
             <option value="python">Python</option>
             <option value="perl">Perl</option>
-            <option value="C">C</option>
-            <option value="PHP">PHP</option>
+            <option value="c">C</option>
+            <option value="php">PHP</option>
         </select>
         <br>
         <label for="encoding-type">Select Encoding Type:</label>
         <select id="encoding-type" name="encoding">
-            <option value="x-www-form-urlencoded">x-www-form-urlencoded</option>
+            <option value="application/x-www-form-urlencoded">application/x-www-form-urlencoded</option>
             <option value="application/json">application/json</option>
         </select>
         <br>
@@ -42,27 +42,30 @@
     <div id="result"> </div>
 
     <script>
-        form = document.getElementById('form');
-        form.addEventListener('submit', function(event) {
+        const form = document.getElementById('form');
+
+        form.addEventListener('submit', async (event) => {
+            
             event.preventDefault();
-            var method = document.getElementById('method-select').value;
-            var language = document.getElementById('language-type').value;
-            var encoding = document.getElementById('encoding-type').value;
+            
+            const method = document.getElementById('method-select').value;
+            const language = document.getElementById('language-type').value;
+            const encoding = document.getElementById('encoding-type').value;
 
             if (language == 'python') {
                 var actionURL = `cgi-bin/${language}/echo-${language}.py`;
             } else if (language == 'perl') {
                 var actionURL = `cgi-bin/${language}/echo-${language}.pl`;
-            } else if (language == 'C') {
+            } else if (language == 'c') {
                 var actionURL = `cgi-bin/${language}/echo-${language}.cgi`;
-            } else if (language == 'PHP') {
+            } else if (language == 'php') {
                 var actionURL = `cgi-bin/${language}/echo-${language}.php`;
             }
 
-            if (method == 'Get') {
+            if (method == 'GET') {
                 actionURL += `?username=${encodeURIComponent(form.username.value)}`;
             }
-            if (encoding == 'application/json' && method != 'Get') {
+            if (encoding == 'application/json' && method != 'GET') {
                 var body = JSON.stringify({
                     username: form.username.value
                 });
@@ -70,7 +73,7 @@
             else {
                 var body = `username=${encodeURIComponent(form.username.value)}`;
             }
-            if (method == 'Get') {
+            if (method == 'GET') {
                 fetch(actionURL, {method: method})
                 .then(response =>  response.text())
                 .then(text => document.getElementById('result').innerHTML = text);
