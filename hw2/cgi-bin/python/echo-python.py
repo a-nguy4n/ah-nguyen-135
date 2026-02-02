@@ -73,18 +73,37 @@ print("""<!DOCTYPE html>
   <title>Python Echo Form</title>
 </head>
 <body>
-    <h1 align="center">Python Echo Form </h1>
+    <h1 align="center"> Python Echo Form </h1>
     <hr>
     <p> Name: 
 """)
+# if data["HTTP Method"] == "GET":
+#     print(f" {data['Parsed Query'].get('username', '')}</p>")
+# elif data["HTTP Method"] == "POST":
+#     print(f" {data['Parsed Message Body']['username'][0]}</p>")
+# elif data["HTTP Method"] == "PUT":
+#     print(f" {data['Parsed Message Body']['username'][0]}</p>")
+# elif data["HTTP Method"] == "DELETE":
+#     print(f" {data['Parsed Message Body']['username'][0]}</p>")
+
 if data["HTTP Method"] == "GET":
-    print(f" {data['Parsed Query']['username'][0]}</p>")
+    val = data["Parsed Query"].get("username", "")
+
 elif data["HTTP Method"] == "POST":
-    print(f" {data['Parsed Message Body']['username'][0]}</p>")
+    val = data["Parsed Message Body"].get("username", "")
+
 elif data["HTTP Method"] == "PUT":
-    print(f" {data['Parsed Message Body']['username'][0]}</p>")
+    val = data["Parsed Message Body"].get("username", "")
+
 elif data["HTTP Method"] == "DELETE":
-    print(f" {data['Parsed Message Body']['username'][0]}</p>")
+    val = data["Parsed Message Body"].get("username", "")
+
+# Handle list vs string
+if isinstance(val, list):
+    val = val[0]
+
+print(f" {val}</p>")
+
 print(f""" <p> Client IP: {data['Client IP']}</p>""")
 print(f""" <p> Hostname: {data['Hostname']}</p>""")
 print(f""" <p> User-Agent: {data['User-Agent']}</p>""")
