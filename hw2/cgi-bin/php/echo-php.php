@@ -12,7 +12,6 @@
 
     // Body
     $raw_body = file_get_contents("php://input");
-    $parsed_body = $_POST;
 
     // Client Info
     $ip   = $_SERVER['REMOTE_ADDR'] ?? "Unknown";
@@ -24,11 +23,29 @@
     $name = "";
 
     if ($method === "GET" && isset($parsed_query['username'])) {
-    $name = $parsed_query['username'];
+      $name = $parsed_query['username'];
     }
-    elseif (($method === "POST" || $method === "PUT" || $method === "DELETE")
-    && isset($parsed_body['username'])) {
-    $name = $parsed_body['username'];
+    elseif ($method === "POST" || $method === "PUT" || $method === "DELETE") {
+      $content_type = $_SERVER['CONTENT_TYPE'] ?? '';
+
+      // Check if it's JSON
+      if (strpos($content_type, 'application/json') !== false) {
+        $json_data = json_decode($raw_body, true);
+        if (isset($json_data['username'])) {
+          $name = $json_data['username'];
+        }
+      }
+      else {
+        if ($method === "POST" && isset($_POST['username'])) {
+          $name = $_POST['username'];
+        } else {
+            // Manually parse form data from raw body
+            parse_str($raw_body, $parsed_data);
+            if (isset($parsed_data['username'])) {
+                $name = $parsed_data['username'];
+            }
+        }
+      }
     }
 ?>
 
