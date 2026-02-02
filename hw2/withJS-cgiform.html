@@ -50,13 +50,13 @@
             var encoding = document.getElementById('encoding-type').value;
 
             if (language == 'Python') {
-                var actionURL = `hw2/cgi-bin/${language}/echo-${language}.py`;
+                var actionURL = `cgi-bin/${language}/echo-${language}.py`;
             } else if (language == 'Perl') {
-                var actionURL = `hw2/cgi-bin/${language}/echo-${language}.pl`;
+                var actionURL = `cgi-bin/${language}/echo-${language}.pl`;
             } else if (language == 'C') {
-                var actionURL = `hw2/cgi-bin/${language}/echo-${language}.cgi`;
+                var actionURL = `cgi-bin/${language}/echo-${language}.cgi`;
             } else if (language == 'PHP') {
-                var actionURL = `hw2/cgi-bin/${language}/echo-${language}.php`;
+                var actionURL = `cgi-bin/${language}/echo-${language}.php`;
             }
 
             if (method == 'Get') {
