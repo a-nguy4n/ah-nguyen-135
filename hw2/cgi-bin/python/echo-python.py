@@ -65,19 +65,16 @@ print("""<!DOCTYPE html>
 <body>
     <h1 align="center">Python Echo Form (no JS)</h1>
     <hr>
-    <p> Name: </p>
-"""
-)
+    <p> Name: 
+""")
 if data["HTTP Method"] == "GET":
-    print(f"<p> {data['Parsed Query']['username'][0]}</p>")
+    print(f" {data['Parsed Query']['username'][0]}</p>")
 else:
-    print(f"<p> {data['Parsed Message Body']['username'][0]}</p>")
-
+    print(f" {data['Parsed Message Body']['username'][0]}</p>")
 print(f""" <p> Client IP: {data['Client IP']}</p>""")
 print(f""" <p> Hostname: {data['Hostname']}</p>""")
 print(f""" <p> User-Agent: {data['User-Agent']}</p>""")
 print(f""" <p> Current Date and Time: {data['Current Date and Time']}</p>""")
-
 print("""
 </body>
 </html>

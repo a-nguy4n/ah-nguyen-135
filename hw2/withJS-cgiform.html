@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>With JS CGI Form</title>
+</head>
+<body>
+    <h1>Session Test Form (with JS)</h1>
+    <label for="cgi-lang">CGI Test Form </label>
+    <form action="cgi-bin/python/echo-python.py" id="form">
+        <label for="method-select">Select Method:</label>
+        <select id="method-select" name="method">
+            <option value="Get">GET</option>
+            <option value="Post">POST</option>
+            <option value="Put">PUT</option>
+            <option value="Delete">DELETE</option>
+        </select>
+        <label for="language-type">Select Language:</label>
+        <select id="language-type" name="language">
+            <option value="Python">Python</option>
+            <option value="Perl">Perl</option>
+            <option value="C">C</option>
+            <option value="PHP">PHP</option>
+        </select>
+        <label for="encoding-type">Select Encoding Type:</label>
+        <select id="encoding-type" name="encoding">
+            <option value="x-www-form-urlencoded">x-www-form-urlencoded</option>
+            <option value="application/json">application/json</option>
+        </select>
+        <label> 
+        What is your name? 
+        <input type="text" name="username" autocomplete="off">
+      </label>
+      <br>
+      <input type="submit" value="Test Sessioning">
+    </form>
+</body>
+</html>
