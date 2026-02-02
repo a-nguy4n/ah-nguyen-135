@@ -1,0 +1,16 @@
+# ===== Compiled C / CGI files =====
+*.cgi
+*.o
+a.out
+
+# ===== Editor / OS junk =====
+.DS_Store
+*.swp
+*.swo
+*.tmp
+
+# ===== Logs (if any) =====
+*.log
+
+# ===== Node / misc (safe to ignore) =====
+node_modules/
