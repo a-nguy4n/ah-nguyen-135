@@ -19,8 +19,8 @@
         <br>
         <label for="language-type">Select Language:</label>
         <select id="language-type" name="language">
-            <option value="Python">Python</option>
-            <option value="Perl">Perl</option>
+            <option value="python">Python</option>
+            <option value="perl">Perl</option>
             <option value="C">C</option>
             <option value="PHP">PHP</option>
         </select>
@@ -49,9 +49,9 @@
             var language = document.getElementById('language-type').value;
             var encoding = document.getElementById('encoding-type').value;
 
-            if (language == 'Python') {
+            if (language == 'python') {
                 var actionURL = `cgi-bin/${language}/echo-${language}.py`;
-            } else if (language == 'Perl') {
+            } else if (language == 'perl') {
                 var actionURL = `cgi-bin/${language}/echo-${language}.pl`;
             } else if (language == 'C') {
                 var actionURL = `cgi-bin/${language}/echo-${language}.cgi`;
