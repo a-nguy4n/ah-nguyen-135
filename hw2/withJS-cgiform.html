@@ -8,7 +8,7 @@
 <body>
     <h1>Session Test Form (with JS)</h1>
     <label for="cgi-lang">CGI Test Form </label>
-    <form action="cgi-bin/python/echo-python.py" id="form">
+    <form id="form">
         <label for="method-select">Select Method:</label>
         <select id="method-select" name="method">
             <option value="Get">GET</option>
@@ -16,6 +16,7 @@
             <option value="Put">PUT</option>
             <option value="Delete">DELETE</option>
         </select>
+        <br>
         <label for="language-type">Select Language:</label>
         <select id="language-type" name="language">
             <option value="Python">Python</option>
@@ -23,11 +24,13 @@
             <option value="C">C</option>
             <option value="PHP">PHP</option>
         </select>
+        <br>
         <label for="encoding-type">Select Encoding Type:</label>
         <select id="encoding-type" name="encoding">
             <option value="x-www-form-urlencoded">x-www-form-urlencoded</option>
             <option value="application/json">application/json</option>
         </select>
+        <br>
         <label> 
         What is your name? 
         <input type="text" name="username" autocomplete="off">
@@ -35,5 +38,51 @@
       <br>
       <input type="submit" value="Test Sessioning">
     </form>
+
+    <script>
+        form = document.getElementById('form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            var method = document.getElementById('method-select').value;
+            var language = document.getElementById('language-type').value;
+            var encoding = document.getElementById('encoding-type').value;
+
+            if (language == 'Python') {
+                var actionURL = `cgi-bin/${language}/echo-${language}.py`;
+            } else if (language == 'Perl') {
+                var actionURL = `cgi-bin/${language}/echo-${language}.pl`;
+            } else if (language == 'C') {
+                var actionURL = `cgi-bin/${language}/echo-${language}.cgi`;
+            } else if (language == 'PHP') {
+                var actionURL = `cgi-bin/${language}/echo-${language}.php`;
+            }
+
+            if (method == 'Get') {
+                actionURL += `?username=${encodeURIComponent(form.username.value)}`;
+            }
+            if (encoding == 'application/json' && method != 'Get') {
+                var body = JSON.stringify({
+                    username: form.username.value
+                });
+            }
+            else {
+                var body = `username=${encodeURIComponent(form.username.value)}`;
+            }
+            if (method == 'Get') {
+                fetch(actionURL, {method: method,})
+                .then(response => response.text());
+            }
+            else {
+                fetch(actionURL, {
+                    method: method,
+                    headers: {
+                        'Content-Type': encoding
+                    },
+                    body: body
+                });
+            }
+        });
+    </script>
+
 </body>
 </html>

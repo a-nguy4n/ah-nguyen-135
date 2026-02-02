@@ -11,6 +11,9 @@ print("Content-Type: text/html\n")
 
 env = os.environ
 
+# Checking between JS and no JS form
+content_type = env.get("CONTENT_TYPE", "")
+
 # Request 
 protocol = env.get("SERVER_PROTOCOL", "Unknown")
 method = env.get("REQUEST_METHOD", "Unknown")
@@ -19,7 +22,7 @@ method = env.get("REQUEST_METHOD", "Unknown")
 raw_query = env.get("QUERY_STRING", "")
 parsed_query = urllib.parse.parse_qs(raw_query)
 
-# POST 
+# POST, PUT, DELETE 
 raw_body = ""
 content_length = env.get("CONTENT_LENGTH")
 
@@ -29,7 +32,13 @@ if content_length:
     except:
         raw_body = ""
 
-parsed_body = urllib.parse.parse_qs(raw_body)
+if content_type == "application/json":
+    try:
+        parsed_body = json.loads(raw_body)
+    except:
+        parsed_body = {}
+else:
+    parsed_body = urllib.parse.parse_qs(raw_body)
 
 client_ip = (
     env.get("REMOTE_ADDR")
@@ -57,6 +66,7 @@ data = {
     "Current Date and Time": current_datetime.isoformat()
 }
 
+
 print("""<!DOCTYPE html>
 <html>
 <head>
@@ -69,7 +79,11 @@ print("""<!DOCTYPE html>
 """)
 if data["HTTP Method"] == "GET":
     print(f" {data['Parsed Query']['username'][0]}</p>")
-else:
+elif data["HTTP Method"] == "POST":
+    print(f" {data['Parsed Message Body']['username'][0]}</p>")
+elif data["HTTP Method"] == "PUT":
+    print(f" {data['Parsed Message Body']['username'][0]}</p>")
+elif data["HTTP Method"] == "DELETE":
     print(f" {data['Parsed Message Body']['username'][0]}</p>")
 print(f""" <p> Client IP: {data['Client IP']}</p>""")
 print(f""" <p> Hostname: {data['Hostname']}</p>""")
