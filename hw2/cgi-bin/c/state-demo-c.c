@@ -160,21 +160,21 @@ int main(void) {
       }
     }
 
-    redirect_with_cookie("/hw2/cgi-bin/c/state_demo.cgi?action=info", sid, set_cookie);
+    redirect_with_cookie("/hw2/cgi-bin/c/state-demo-c.cgi?action=info", sid, set_cookie);
     return 0;
   }
 
   // CLEAR
   if (strcmp(action, "clear") == 0) {
     unlink(path);
-    redirect_with_cookie("/hw2/cgi-bin/c/state_demo.cgi?action=info", sid, set_cookie);
+    redirect_with_cookie("/hw2/cgi-bin/c/state-demo-c.cgi?action=info", sid, set_cookie);
     return 0;
   }
 
   // INFO
   print_header_with_cookie(sid, set_cookie);
 
-  printf("<!DOCTYPE html><html><head><meta charset='UTF-8'><title>C State Demo</title></head><body>");
+  printf("<!DOCTYPE html><html><head><meta charset='UTF-8'><title>State Demo (C) </title></head><body>");
   printf("<h1>Saved Messages (C CGI + Server-side Session)</h1>");
   printf("<p><b>Session ID:</b> %s</p>", sid);
 
@@ -204,7 +204,7 @@ int main(void) {
   }
 
   printf("<hr>");
-  printf("<a href='/hw2/cgi-bin/c/state_demo.cgi?action=clear'>Clear Messages</a><br>");
+  printf("<a href='/hw2/cgi-bin/c/state-demo-c.cgi?action=clear'>Clear Messages</a><br>");
   printf("<a href='/hw2/stateDemoForms/state-form-c.html'>Back to Form</a>");
   printf("</body></html>");
 
