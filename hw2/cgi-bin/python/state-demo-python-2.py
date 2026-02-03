@@ -35,7 +35,7 @@ print("""<!DOCTYPE html>
 
 print(f"<pre>{message}</pre>") 
 
-print('<p><a href="/hw2/cgi-bin/python/state-demo-python-1.py">Python Session Page 1</a></p>')
+print('<a href="/hw2/cgi-bin/python/state-demo-python-1.py">Python Session Page 1</a>')
 print(f"<a href=\"/hw2/stateDemoForms/state-form-python.html\"> Python CGI Form </a>")
 print("<br>")
 print('<form action="python-destroy-session.py" method="GET">')

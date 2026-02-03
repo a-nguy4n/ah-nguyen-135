@@ -69,7 +69,6 @@ print("""<!DOCTYPE html>
     <hr>
 """)
 print(f"<pre>{message}</pre>")
-print(f"<p> session ID: {session_id} </p>")
 
 print(f"<a href=\"/hw2/cgi-bin/python/state-demo-python-2.py\">Python Session Page 2</a>")
 print("<br>")
