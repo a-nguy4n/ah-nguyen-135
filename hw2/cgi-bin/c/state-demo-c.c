@@ -6,7 +6,7 @@
 #include <unistd.h>
 
 // #define SESSION_DIR "/tmp/cse135_sessions"
-#define SESSION_DIR "/var/www/ah-nguyen.site/public_html/hw2/demo-data"
+#define SESSION_DIR "/var/www/ah-nguyen.site/tmp"
 #define SID_COOKIE_NAME "SID"
 #define SID_LEN 32
 
