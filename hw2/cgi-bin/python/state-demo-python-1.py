@@ -6,7 +6,7 @@ import string
 import random
 import urllib.parse
 
-DATA_DIR = "/var/www/ah-nguyen.site/public_html/hw2/tmp"
+DATA_DIR = "/var/www/ah-nguyen.site/tmp"
 
 env = os.environ
 
