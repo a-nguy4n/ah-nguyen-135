@@ -67,15 +67,12 @@ print("""<!DOCTYPE html>
 <body>
     <h1 align="center"> Python Sessions Page 1 </h1>
     <hr>
-    <p> <b> Message: </b> 
 """)
 
-print(f" {message} </p>")
-print(f"<p> Session ID: {session_id} </p>")
-
 print(f"<a href=\"/hw2/cgi-bin/python/state-demo-python-2.py\">Python Session Page 2</a>")
+print("<br>")
 print(f"<a href=\"/hw2/stateDemoForms/state-form-python.html\"> Python CGI Form </a>")
-
+print("<br>")
 print('<form action="python-destroy-session.py" method="GET">')
 print('<button type="submit">Destroy Session</button>')
 print('</form>')
