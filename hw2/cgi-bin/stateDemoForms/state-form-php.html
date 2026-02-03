@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> State Form (PHP) </title>
 </head>
+
+<style>
+    body{
+        margin: 0;
+        width: 100%;
+        height: 100vh;
+
+        background: white;
+        background-image:
+            radial-gradient(
+                circle at top right,
+                rgb(140, 33, 247) 0%,
+                rgb(211, 130, 255) 15%,
+                rgb(232, 190, 255) 25%,
+                white 60%
+            );
+        color: black;
+    }
+</style>
 <body>
     
     <h1>Send a Message!</h1>
@@ -16,7 +35,7 @@
     
     <hr>
 
-    <form action="/hw2/cgi-bin/python/state-python.py?action=save" method="POST">
+    <form action="hw2/cgi-bin/php/state-demo-php.php" method="POST">
         <label>
             Your Message
             <input type="text" name="message" required>
@@ -32,8 +51,8 @@
     <hr>
 
     <p>
-    <a href="/hw2/cgi-bin/python/state-python.py?action=info">
-        View Saved Data
+    <a href="state-demo-php.php?action=info">
+        View Saved Message
     </a>
     </p>
 
