@@ -175,7 +175,7 @@ int main(void) {
   print_header_with_cookie(sid, set_cookie);
 
   printf("<!DOCTYPE html><html><head><meta charset='UTF-8'><title>State Demo (C) </title></head><body>");
-  printf("<h1>Saved Messages (C CGI + Server-side Session)</h1>");
+  printf("<h1>Saved Messages (C)</h1>");
   printf("<p><b>Session ID:</b> %s</p>", sid);
 
   FILE *fp = fopen(path, "r");
@@ -185,13 +185,13 @@ int main(void) {
     printf("<ol>");
     char line[1200];
     int any = 0;
+    
     while (fgets(line, sizeof(line), fp)) {
-      // very simple HTML escaping: replace < and > (enough for a demo)
       for (char *p = line; *p; p++) {
         if (*p == '<') *p = '(';
         if (*p == '>') *p = ')';
       }
-      // strip newline
+
       line[strcspn(line, "\r\n")] = 0;
       if (line[0]) {
         any = 1;
@@ -202,9 +202,9 @@ int main(void) {
     fclose(fp);
     if (!any) printf("<p>No messages yet.</p>");
   }
-
-  printf("<hr>");
+  
   printf("<a href='/hw2/cgi-bin/c/state-demo-c.cgi?action=clear'>Clear Messages</a><br>");
+  printf("<hr>");
   printf("<a href='/hw2/stateDemoForms/state-form-c.html'>Back to Form</a>");
   printf("</body></html>");
 
