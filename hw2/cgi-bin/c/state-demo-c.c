@@ -5,7 +5,8 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-#define SESSION_DIR "/tmp/cse135_sessions"
+// #define SESSION_DIR "/tmp/cse135_sessions"
+#define SESSION_DIR "/var/www/ah-nguyen.site/public_html/hw2/demo-data"
 #define SID_COOKIE_NAME "SID"
 #define SID_LEN 32
 
@@ -262,7 +263,7 @@ int main(void) {
 
   // clears out both 
   printf("<hr>");
-  printf("<a href='/hw2/cgi-bin/c/state-demo-c.cgi?action=clear&sid=%d'>Clear Messages (clears BOTH)</a><br>", bucket);
+  printf("<a href='/hw2/cgi-bin/c/state-demo-c.cgi?action=clear&sid=%d'>Clear Messages (clears in Session 1 & 2)</a><br>", bucket);
   printf("<a href='/hw2/stateDemoForms/state-form-c.html'>Back to Form</a>");
 
   printf("</body></html>");
