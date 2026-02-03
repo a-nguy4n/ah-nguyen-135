@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# hi
 import os
 
 DATA_DIR = "/var/www/ah-nguyen.site/tmp"
