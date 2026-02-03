@@ -17,7 +17,13 @@ for cookie in cookie_header.split(";"):
 
 # Delete the file
 file_path = os.path.join(DATA_DIR, f"session_{session_id}.txt")
-os.remove(file_path)
+# os.remove(file_path)
+
+# Instead of os.remove(file_path), do this:
+placeholder_message = f"message: You do not have a message set\nsession ID: {session_id}"
+with open(file_path, "w") as f:
+    f.write(placeholder_message)
+
 
 print("Content-Type: text/html")
 print("Cache-Control: no-cache")
