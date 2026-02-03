@@ -31,6 +31,7 @@ print("""<!DOCTYPE html>
     <hr>
     <p> Session Destroyed. </p> 
 """)
+print(f"<a href=\"/hw2/stateDemoForms/state-form-python.html\"> Python CGI Form </a>")
 print("""
 </body>
 </html>
