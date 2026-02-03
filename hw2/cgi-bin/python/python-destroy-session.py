@@ -14,7 +14,7 @@ for cookie in cookie_header.split(";"):
         break
 
 # Delete the file
-file_path = f"/var/www/ah-nguyen.site/public_html/hw2/session_{session_id}.txt"
+file_path = "../../demo-data/session_" + session_id + ".txt"
 os.remove(file_path)
 
 print("Content-Type: text/html")
