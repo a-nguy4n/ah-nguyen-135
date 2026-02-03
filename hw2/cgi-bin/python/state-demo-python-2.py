@@ -2,6 +2,9 @@
 
 import os
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "..", "demo-data"))
+
 env = os.environ
 
 # Retrieving session id from cookie
@@ -12,7 +15,7 @@ for cookie in cookie_header.split(";"):
     if cookie.startswith("session_id="):
         session_id = cookie[len("session_id="):]
         break
-file_path = "../../demo-data/session_" + session_id + ".txt"
+file_path = os.path.join(DATA_DIR, f"session_{session_id}.txt")
 message = ""
 with open(file_path, "r") as f:
     message = f.read()
