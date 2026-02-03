@@ -2,21 +2,21 @@
 session_start();
 
 $action = $_GET['action'] ?? 'info';
-$sid = $_GET['sid'] ?? '1';              // "1" or "2"
+$sid = $_GET['sid'] ?? '1';              
 if ($sid !== '1' && $sid !== '2') $sid = '1';
 
 $key = "messages_" . $sid;
 
-if (!isset($_SESSION['messages_1'])){
+if(!isset($_SESSION['messages_1'])){
     $_SESSION['messages_1'] = [];
 }
 
-if (!isset($_SESSION['messages_2'])){
+if(!isset($_SESSION['messages_2'])){
     $_SESSION['messages_2'] = [];
 }
 
 // saving the inputted messages 
-if ($action === "save" && $_SERVER["REQUEST_METHOD"] === "POST") {
+if($action === "save" && $_SERVER["REQUEST_METHOD"] === "POST"){
     $message = trim($_POST["message"] ?? "");
 
     if($message !== ""){
@@ -28,8 +28,8 @@ if ($action === "save" && $_SERVER["REQUEST_METHOD"] === "POST") {
     exit;
 }
 
-// clearing the message dat 
-if ($action === "clear") {
+// clearing the message data
+if($action === "clear"){
     $_SESSION['messages_1'] = [];
     $_SESSION['messages_2'] = [];
     header("Location: /hw2/cgi-bin/php/state-demo-php.php?action=info&sid=$sid");
@@ -37,16 +37,17 @@ if ($action === "clear") {
 }
 
 // displaying the messages if any
-if($action === "info") {
+if($action === "info"){
     echo "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Saved Messages: PHP</title></head><body>";
     echo "<h1>Saved Messages (Server-Side Session for PHP)</h1>";
     echo "<h2>Viewing Session $sid</h2>";
 
-    if (count($_SESSION[$key]) === 0) {
+    if(count($_SESSION[$key]) === 0) {
         echo "<p>No saved messages yet.</p>";
-    } else {
+    }
+    else{
         echo "<ol>";
-        foreach ($_SESSION[$key] as $msg) {
+        foreach ($_SESSION[$key] as $msg){
             echo "<li>" . htmlspecialchars($msg) . "</li>";
         }
         echo "</ol>";
