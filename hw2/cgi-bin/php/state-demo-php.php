@@ -1,66 +1,62 @@
-
-
-
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+session_start();
 
-$action = $_GET['action'] ?? '(none)';
-$file = $_SERVER['DOCUMENT_ROOT'] . "/hw2/demo-data/messages-php.txt";
+$action = $_GET['action'] ?? '';
 
-echo "<pre>";
-echo "DEBUG\n";
-echo "action: $action\n";
-echo "method: " . ($_SERVER["REQUEST_METHOD"] ?? "(unknown)") . "\n";
-echo "document_root: " . ($_SERVER["DOCUMENT_ROOT"] ?? "(none)") . "\n";
-echo "file: $file\n";
-echo "file exists: " . (file_exists($file) ? "yes" : "no") . "\n";
-echo "file writable: " . (is_writable($file) ? "yes" : "no") . "\n";
-echo "dir writable: " . (is_writable(dirname($file)) ? "yes" : "no") . "\n";
-echo "</pre>";
+if (!isset($_SESSION['messages'])) {
+    $_SESSION['messages'] = [];
+}
 
 /* SAVE */
 if ($action === "save" && $_SERVER["REQUEST_METHOD"] === "POST") {
     $message = trim($_POST["message"] ?? "");
 
-    echo "<pre>";
-    echo "POST message: " . htmlspecialchars($message) . "\n";
-    echo "Raw POST: " . htmlspecialchars(print_r($_POST, true)) . "\n";
-    echo "</pre>";
-
-    if ($message === "") {
-        echo "<p>ERROR: message is empty on the server.</p>";
-        exit;
-    }
-
-    $bytes = file_put_contents($file, $message . "\n", FILE_APPEND | LOCK_EX);
-
-    echo "<pre>write bytes: " . var_export($bytes, true) . "</pre>";
-
-    if ($bytes === false) {
-        echo "<p>ERROR: file_put_contents failed. This is usually permissions.</p>";
-        exit;
+    if ($message !== "") {
+        $_SESSION['messages'][] = $message;
     }
 
     header("Location: /hw2/cgi-bin/php/state-demo-php.php?action=info");
     exit;
 }
 
+/* CLEAR */
+if ($action === "clear") {
+    $_SESSION['messages'] = [];
+    header("Location: /hw2/cgi-bin/php/state-demo-php.php?action=info");
+    exit;
+}
+
 /* INFO */
 if ($action === "info") {
-    echo "<h1>Saved Messages</h1>";
+    echo "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Saved Messages</title></head><body>";
+    echo "<h1>Saved Messages (Server-side Session)</h1>";
 
-    if (file_exists($file)) {
-        $messages = file($file, FILE_IGNORE_NEW_LINES);
-        if (count($messages) === 0) {
-            echo "<p>(File exists but is empty.)</p>";
-        } else {
-            foreach ($messages as $msg) {
-                echo "<p>" . htmlspecialchars($msg) . "</p>";
-            }
-        }
+    if (count($_SESSION['messages']) === 0) {
+        echo "<p>No saved messages yet.</p>";
     } else {
-        echo "<p>(File does not exist.)</p>";
+        echo "<ol>";
+        foreach ($_SESSION['messages'] as $msg) {
+            echo "<li>" . htmlspecialchars($msg) . "</li>";
+        }
+        echo "</ol>";
     }
+
+    echo "<hr>";
+    echo '<a href="/hw2/stateDemoForms/form.html">Back to Form</a><br>';
+    echo '<a href="/hw2/cgi-bin/php/state-demo-php.php?action=clear">Clear Messages</a>';
+
+    echo "<hr>";
+    echo "<h3>Session Details</h3>";
+    echo "<p><b>Session ID:</b> " . htmlspecialchars(session_id()) . "</p>";
+    echo "<p><b>Cookie Name:</b> " . htmlspecialchars(session_name()) . "</p>";
+    echo "</body></html>";
+    exit;
 }
+
+/* DEFAULT */
+echo "<p>Unknown action. Try:</p>";
+echo "<ul>
+        <li>?action=info</li>
+        <li>?action=clear</li>
+      </ul>";
 ?>
