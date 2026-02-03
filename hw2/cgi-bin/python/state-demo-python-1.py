@@ -26,7 +26,7 @@ if method == "POST":
 
     # Saving data to file
     val = parsed_body.get("message", "")
-    file_path = f"../../demo-data/session_{session_id}.txt"
+    file_path = f"session_{session_id}.txt"
     data_to_write = f"message: {val[0] if val else ''}\nsession ID: {session_id}"
 
     with open(file_path, "w") as f:
@@ -48,7 +48,7 @@ else:  # GET request - read existing session
         if cookie.startswith("session_id="):
             session_id = cookie[len("session_id="):]
             break
-    file_path = f"../../demo-data/session_{session_id}.txt"
+    file_path = f"../../../session_{session_id}.txt"
     with open(file_path, "r") as f:
         message = f.read()
 
