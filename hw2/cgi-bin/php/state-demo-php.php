@@ -4,7 +4,7 @@ session_start();
 $action = $_GET['action'] ?? '';
 
 // to store messages
-$file = dirname(__DIR__, 2) . "/demo-data/messages-php.txt";
+$file = $_SERVER['DOCUMENT_ROOT'] . "/hw2/demo-data/messages-php.txt";
 
 // save message
 if($action === "save" && $_SERVER["REQUEST_METHOD"] === "POST") {
