@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> State Form (Python) </title>
+</head>
+<body>
+    
+    <h1>Send a Message!</h1>
+    <h2> Python Version </h2>
+    
+    <p> Write what you want to say! 
+        This will be saved on the server and shown on another page.
+    </p>
+    
+    <hr>
+
+    <form action="/hw2/cgi-bin/python/state-python.py?action=save" method="POST">
+        <label>
+            Your Message
+            <input type="text" name="message" required>
+        </label>
+
+        <br><br>
+
+        <button type="submit">
+            Save Message
+        </button>
+    </form>
+
+    <hr>
+
+    <p>
+    <a href="/hw2/cgi-bin/python/state-python.py?action=info">
+        View Saved Data
+    </a>
+    </p>
+
+</body>
+</html>
