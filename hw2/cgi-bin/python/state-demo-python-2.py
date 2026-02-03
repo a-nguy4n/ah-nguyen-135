@@ -16,8 +16,11 @@ for cookie in cookie_header.split(";"):
         break
 file_path = os.path.join(DATA_DIR, f"session_{session_id}.txt")
 message = ""
-with open(file_path, "r") as f:
-    message = f.read()
+if os.path.exists(file_path):
+    with open(file_path, "r") as f:
+        message = f.read()
+else:
+    message = "You did not leave a message."
 
 print("Cache-Control: no-cache")
 print("Content-Type: text/html\n")
