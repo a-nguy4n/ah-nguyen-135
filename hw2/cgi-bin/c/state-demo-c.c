@@ -205,7 +205,7 @@ int main(void) {
 
   printf("<hr>");
   printf("<a href='/hw2/cgi-bin/c/state_demo.cgi?action=clear'>Clear Messages</a><br>");
-  printf("<a href='/hw2/stateDemoForms/form.html'>Back to Form</a>");
+  printf("<a href='/hw2/stateDemoForms/state-form-c.html'>Back to Form</a>");
   printf("</body></html>");
 
   return 0;
