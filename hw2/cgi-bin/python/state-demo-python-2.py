@@ -12,7 +12,7 @@ for cookie in cookie_header.split(";"):
     if cookie.startswith("session_id="):
         session_id = cookie[len("session_id="):]
         break
-file_path = f"../../../session_{session_id}.txt"
+file_path = f"/var/www/ah-nguyen.site/public_html/hw2/session_{session_id}.txt"
 message = ""
 with open(file_path, "r") as f:
     message = f.read()
