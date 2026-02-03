@@ -1,4 +1,3 @@
-'''
 #!/usr/bin/env python3
 
 import os
@@ -43,8 +42,9 @@ print("""
 </body>
 </html>
 """)
-'''
 
+
+'''
 #!/usr/bin/env python3
 
 import os
@@ -90,3 +90,4 @@ print("""
 </body>
 </html>
 """)
+'''
