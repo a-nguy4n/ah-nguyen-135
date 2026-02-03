@@ -22,7 +22,7 @@ session_id = ''.join(random.choices(string.ascii_letters + string.digits, k=leng
 
 # Saving data to file
 val = parsed_body.get("message", "")
-file_path = f"/demo-data/session_{session_id}.txt"
+file_path = f"../../demo-data/session_{session_id}.txt"
 data_to_write = f"message: {val[0] if val else ''}\nsession ID: {session_id}"
 
 with open(file_path, "w") as f:
