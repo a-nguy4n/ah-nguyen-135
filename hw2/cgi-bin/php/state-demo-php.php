@@ -5,7 +5,7 @@ $action = $_GET['action'] ?? '';
 
 
 // to store messages
-$file = "messages-php.txt";
+$file = __DIR__ . "/messages-php.txt";
 
 // save message
 if($action === "save" && $_SERVER["REQUEST_METHOD"] === "POST") {
@@ -16,13 +16,14 @@ if($action === "save" && $_SERVER["REQUEST_METHOD"] === "POST") {
         file_put_contents($file, $message . "\n", FILE_APPEND);
     }
 
-    header("Location: state.php?action=info");
+    header("Location: /hw2/cgi-bin/php/state-demo-php.php?action=info");
     exit;
 }
 
 // display message
 if($action === "info") {
-
+    
+    echo "<!DOCTYPE html><html><body>";
     echo "<h1>Saved Messages</h1>";
 
     if(file_exists($file)) {
@@ -35,6 +36,7 @@ if($action === "info") {
         echo "<p>No messages yet.</p>";
     }
 
-    echo '<br><a href="form.html">Go Back</a>';
+    echo '<br><a href="/hw2/stateDemoForms/form.html">Go Back</a>';
+    echo "</body></html>";
 }
 ?>
