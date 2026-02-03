@@ -15,5 +15,5 @@ a.out
 # ===== Node / misc (safe to ignore) =====
 node_modules/
 
-# ===== demo-data files =====
-/hw2/demo-data/
+# ===== tmp files =====
+/hw2/tmp/
