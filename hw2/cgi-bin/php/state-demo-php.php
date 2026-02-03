@@ -3,9 +3,8 @@ session_start();
 
 $action = $_GET['action'] ?? '';
 
-
 // to store messages
-$file = __DIR__ . "/messages-php.txt";
+$file = dirname(__DIR__, 2) . "/demo-data/messages-php.txt";
 
 // save message
 if($action === "save" && $_SERVER["REQUEST_METHOD"] === "POST") {
