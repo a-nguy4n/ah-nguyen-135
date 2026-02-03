@@ -28,8 +28,8 @@ if ($action === "clear") {
 
 /* INFO */
 if ($action === "info") {
-    echo "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Saved Messages</title></head><body>";
-    echo "<h1>Saved Messages (Server-side Session)</h1>";
+    echo "<!DOCTYPE html><html><head><meta charset='UTF-8'><title> Saved Messages: PHP</title></head><body>";
+    echo "<h1>Saved Messages (Server-Side Session for PHP)</h1>";
 
     if (count($_SESSION['messages']) === 0) {
         echo "<p>No saved messages yet.</p>";
@@ -40,10 +40,9 @@ if ($action === "info") {
         }
         echo "</ol>";
     }
-
-    echo "<hr>";
-    echo '<a href="/hw2/stateDemoForms/form.html">Back to Form</a><br>';
     echo '<a href="/hw2/cgi-bin/php/state-demo-php.php?action=clear">Clear Messages</a>';
+    echo "<hr>";
+    echo '<a href="/hw2/stateDemoForms/state-form-php.html">Back to Form</a><br>';
 
     echo "<hr>";
     echo "<h3>Session Details</h3>";
