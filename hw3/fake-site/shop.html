@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shopmoji Shop 🛍️</title>
+  <link rel="stylesheet" href="/hw3/fake-site/assets/style.css" />
+  <script defer src="/hw3/fake-site/assets/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/hw3/fake-site/index.html" data-analytics="nav_home"><span class="logo">🛍️</span><span>Shopmoji</span></a>
+
+    <nav class="nav">
+      <a href="/hw3/fake-site/shop.html" class="active" data-analytics="nav_shop">Shop</a>
+      <a href="/hw3/fake-site/about.html" data-analytics="nav_about">About</a>
+      <a href="/hw3/fake-site/checkout.html" class="pill" data-analytics="nav_checkout">
+        Cart <span id="cartCount" class="count">0</span>
+      </a>
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle theme" data-analytics="toggle_theme">🌙</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h1 id="trending">Shop the Emoji Aisles 😄</h1>
+      <p class="muted">Filter, search, add-to-cart — all fake, all trackable.</p>
+
+      <div class="filters">
+        <label>
+          Search
+          <input id="searchInput" type="search" placeholder="Try: pizza, cat, brain..." data-analytics="shop_search_input" />
+        </label>
+
+        <label>
+          Category
+          <select id="categorySelect" data-analytics="shop_category_select">
+            <option value="all">All</option>
+            <option value="food">Food 🍕</option>
+            <option value="animals">Animals 🐶</option>
+            <option value="moods">Moods 😭</option>
+            <option value="productivity">Productivity ✅</option>
+            <option value="space">Space 🚀</option>
+          </select>
+        </label>
+
+        <label class="checkbox">
+          <input id="onlyInStock" type="checkbox" data-analytics="shop_instock_toggle" />
+          In stock only
+        </label>
+
+        <label>
+          Sort
+          <select id="sortSelect" data-analytics="shop_sort_select">
+            <option value="popular">Most popular</option>
+            <option value="priceLow">Price: low → high</option>
+            <option value="priceHigh">Price: high → low</option>
+            <option value="name">Name (A–Z)</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <section class="grid" id="productGrid" data-analytics="shop_product_grid">
+      <!-- JS renders products here -->
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Tip: click a product to open a detail page.</span>
+    <a href="/hw3/fake-site/checkout.html" data-analytics="footer_checkout">Checkout</a>
+  </footer>
+</body>
+</html>

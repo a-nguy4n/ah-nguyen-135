@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shopmoji 🛒✨</title>
+  <link rel="stylesheet" href="/hw3/fake-site/assets/style.css" />
+  <script defer src="/hw3/fake-site/assets/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/hw3/fake-site/index.html" data-analytics="nav_home">
+      <span class="logo">🛍️</span>
+      <span>Shopmoji</span>
+    </a>
+
+    <nav class="nav">
+      <a href="/hw3/fake-site/shop.html" data-analytics="nav_shop">Shop</a>
+      <a href="/hw3/fake-site/about.html" data-analytics="nav_about">About</a>
+      <a href="/hw3/fake-site/checkout.html" class="pill" data-analytics="nav_checkout">
+        Cart <span id="cartCount" class="count">0</span>
+      </a>
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle theme" data-analytics="toggle_theme">🌙</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero card">
+      <div>
+        <h1>Shopmoji 🛒✨</h1>
+        <p class="muted">
+          A fake emoji store with real clicks, filters, and forms (perfect for analytics).
+        </p>
+
+        <div class="row gap">
+          <a class="btn primary" href="/hw3/fake-site/shop.html" data-analytics="cta_shop_now">Shop now 👉</a>
+          <button class="btn" id="spinDeal" data-analytics="cta_spin_deal">Spin for a deal 🎰</button>
+        </div>
+
+        <p id="dealText" class="deal" aria-live="polite"></p>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <div class="bubble">😺</div>
+        <div class="bubble">🍕</div>
+        <div class="bubble">🧠</div>
+        <div class="bubble">🚀</div>
+        <div class="bubble">✨</div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>Trending</h2>
+        <p class="muted">The emojis everyone “needs.”</p>
+        <ul class="list">
+          <li>😎 Cool Guy Sunglasses</li>
+          <li>🔥 Spicy Reaction Pack</li>
+          <li>🧋 Boba Mood Bundle</li>
+        </ul>
+        <a class="btn small" href="/hw3/fake-site/shop.html#trending" data-analytics="home_trending_click">Browse trending</a>
+      </article>
+
+      <article class="card">
+        <h2>Newsletter</h2>
+        <p class="muted">Get fake deals delivered to your inbox. Very real joy.</p>
+
+        <form id="newsletterForm" class="form" novalidate data-analytics="newsletter_form_view">
+          <label>
+            Email
+            <input type="email" name="email" placeholder="you@emoji.com" required data-analytics="newsletter_email_input" />
+          </label>
+
+          <label class="checkbox">
+            <input type="checkbox" name="consent" required data-analytics="newsletter_consent_check" />
+            I consent to receiving ✨ maximum vibes ✨
+          </label>
+
+          <button class="btn primary" type="submit" data-analytics="newsletter_submit">Subscribe</button>
+          <p id="newsletterMsg" class="muted" aria-live="polite"></p>
+        </form>
+      </article>
+
+      <article class="card">
+        <h2>Quick Quiz</h2>
+        <p class="muted">Choose your vibe and we’ll recommend a product.</p>
+
+        <form id="vibeForm" class="form" data-analytics="vibe_form_view">
+          <label>
+            Today I feel…
+            <select name="vibe" required data-analytics="vibe_select">
+              <option value="">Select one</option>
+              <option value="cozy">Cozy ☕</option>
+              <option value="chaotic">Chaotic 🌀</option>
+              <option value="productive">Productive ✅</option>
+              <option value="sleepy">Sleepy 💤</option>
+            </select>
+          </label>
+
+          <button class="btn" type="submit" data-analytics="vibe_submit">Recommend</button>
+          <p id="vibeMsg" class="deal" aria-live="polite"></p>
+        </form>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© Shopmoji (fake store). Built for analytics practice.</span>
+    <a href="/hw3/fake-site/about.html" data-analytics="footer_about">About</a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shopmoji Product 🧾</title>
+  <link rel="stylesheet" href="/hw3/fake-site/assets/style.css" />
+  <script defer src="/hw3/fake-site/assets/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/hw3/fake-site/index.html" data-analytics="nav_home"><span class="logo">🛍️</span><span>Shopmoji</span></a>
+
+    <nav class="nav">
+      <a href="/hw3/fake-site/shop.html" data-analytics="nav_shop">Shop</a>
+      <a href="/hw3/fake-site/about.html" data-analytics="nav_about">About</a>
+      <a href="/hw3/fake-site/checkout.html" class="pill" data-analytics="nav_checkout">
+        Cart <span id="cartCount" class="count">0</span>
+      </a>
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle theme" data-analytics="toggle_theme">🌙</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card product">
+      <a href="/hw3/fake-site/shop.html" class="muted" data-analytics="product_back_to_shop">← Back to shop</a>
+
+      <div class="product-top">
+        <div class="emoji" id="pEmoji" aria-hidden="true">✨</div>
+        <div>
+          <h1 id="pName">Loading…</h1>
+          <p class="muted" id="pDesc"></p>
+          <p class="price" id="pPrice"></p>
+
+          <div class="row gap">
+            <button class="btn primary" id="addToCartBtn" data-analytics="product_add_to_cart">Add to cart 🛒</button>
+            <button class="btn" id="wishlistBtn" data-analytics="product_wishlist">Wishlist 💖</button>
+          </div>
+
+          <p id="productMsg" class="deal" aria-live="polite"></p>
+        </div>
+      </div>
+
+      <hr />
+
+      <h2>Leave a review 📝</h2>
+      <form id="reviewForm" class="form" data-analytics="review_form_view">
+        <label>
+          Rating
+          <select name="rating" required data-analytics="review_rating_select">
+            <option value="">Choose</option>
+            <option>⭐</option>
+            <option>⭐⭐</option>
+            <option>⭐⭐⭐</option>
+            <option>⭐⭐⭐⭐</option>
+            <option>⭐⭐⭐⭐⭐</option>
+          </select>
+        </label>
+
+        <label>
+          Your review
+          <textarea id="reviewText" name="review" rows="4" maxlength="220"
+            placeholder="Tell us how this emoji changed your life…"
+            required data-analytics="review_textarea"></textarea>
+          <div class="helper"><span id="charCount">0</span>/220</div>
+        </label>
+
+        <button class="btn primary" type="submit" data-analytics="review_submit">Submit review</button>
+        <p id="reviewMsg" class="muted" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Shopmoji product detail page</span>
+  </footer>
+</body>
+</html>

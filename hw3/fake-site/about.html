@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About Shopmoji 💡</title>
+  <link rel="stylesheet" href="/hw3/fake-site/assets/style.css" />
+  <script defer src="/hw3/fake-site/assets/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/hw3/fake-site/index.html" data-analytics="nav_home"><span class="logo">🛍️</span><span>Shopmoji</span></a>
+
+    <nav class="nav">
+      <a href="/hw3/fake-site/shop.html" data-analytics="nav_shop">Shop</a>
+      <a href="/hw3/fake-site/about.html" class="active" data-analytics="nav_about">About</a>
+      <a href="/hw3/fake-site/checkout.html" class="pill" data-analytics="nav_checkout">
+        Cart <span id="cartCount" class="count">0</span>
+      </a>
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle theme" data-analytics="toggle_theme">🌙</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h1>About Shopmoji 💡</h1>
+      <p class="muted">
+        Shopmoji is a fake store built for testing analytics scripts: page views, clicks, forms, filters, and cart events.
+      </p>
+
+      <h2>Contact (fake) 📩</h2>
+      <form id="contactForm" class="form" novalidate data-analytics="contact_form_view">
+        <label>
+          Name
+          <input name="name" required placeholder="Your Name" data-analytics="contact_name" />
+        </label>
+
+        <label>
+          Email
+          <input type="email" name="email" required placeholder="you@example.com" data-analytics="contact_email" />
+        </label>
+
+        <label>
+          Message
+          <textarea name="message" rows="4" maxlength="300" required placeholder="Tell us your emoji dreams…"
+            data-analytics="contact_message"></textarea>
+          <div class="helper">Max 300 characters.</div>
+        </label>
+
+        <button class="btn primary" type="submit" data-analytics="contact_submit">Send message</button>
+        <p id="contactMsg" class="muted" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Made with 🧠 + ✨</span>
+  </footer>
+</body>
+</html>

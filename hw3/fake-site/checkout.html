@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shopmoji Checkout ✅</title>
+  <link rel="stylesheet" href="/hw3/fake-site/assets/style.css" />
+  <script defer src="/hw3/fake-site/assets/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/hw3/fake-site/index.html" data-analytics="nav_home"><span class="logo">🛍️</span><span>Shopmoji</span></a>
+
+    <nav class="nav">
+      <a href="/hw3/fake-site/shop.html" data-analytics="nav_shop">Shop</a>
+      <a href="/hw3/fake-site/about.html" data-analytics="nav_about">About</a>
+      <a href="/hw3/fake-site/checkout.html" class="pill active" data-analytics="nav_checkout">
+        Cart <span id="cartCount" class="count">0</span>
+      </a>
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle theme" data-analytics="toggle_theme">🌙</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="grid">
+      <article class="card">
+        <h1>Checkout ✅</h1>
+        <p class="muted">Fake checkout. Real form validation.</p>
+
+        <div id="cartItems" class="cart" data-analytics="checkout_cart_view"></div>
+
+        <div class="row between">
+          <strong>Total</strong>
+          <strong id="cartTotal">$0.00</strong>
+        </div>
+
+        <div class="row gap">
+          <button class="btn" id="clearCartBtn" data-analytics="cart_clear">Clear cart 🧹</button>
+          <a class="btn" href="/hw3/fake-site/shop.html" data-analytics="cart_continue_shopping">Continue shopping</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Shipping info 🚚</h2>
+        <form id="checkoutForm" class="form" novalidate data-analytics="checkout_form_view">
+          <label>
+            Full name
+            <input name="name" required placeholder="Emoji McEmojiFace" data-analytics="checkout_name" />
+          </label>
+
+          <label>
+            Email
+            <input type="email" name="email" required placeholder="you@shopmoji.fake" data-analytics="checkout_email" />
+          </label>
+
+          <label>
+            Address
+            <input name="address" required placeholder="123 Vibe St" data-analytics="checkout_address" />
+          </label>
+
+          <div class="row gap">
+            <label class="grow">
+              City
+              <input name="city" required placeholder="Moodtown" data-analytics="checkout_city" />
+            </label>
+            <label>
+              ZIP
+              <input name="zip" inputmode="numeric" pattern="\\d{5}" placeholder="90210" required data-analytics="checkout_zip" />
+            </label>
+          </div>
+
+          <label class="checkbox">
+            <input type="checkbox" name="gift" data-analytics="checkout_gift_toggle" />
+            This is a gift 🎁 (adds extra fields)
+          </label>
+
+          <div id="giftFields" class="hidden">
+            <label>
+              Gift note (max 120 chars)
+              <textarea name="giftNote" maxlength="120" rows="3" placeholder="Hope this emoji brings you joy 😄"
+                data-analytics="checkout_gift_note"></textarea>
+            </label>
+          </div>
+
+          <button class="btn primary" type="submit" data-analytics="checkout_submit">Place order (fake)</button>
+          <p id="checkoutMsg" class="deal" aria-live="polite"></p>
+        </form>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Orders are not real. Feelings are.</span>
+  </footer>
+</body>
+</html>
