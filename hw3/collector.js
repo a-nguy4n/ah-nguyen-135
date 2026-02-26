@@ -203,6 +203,19 @@
   }
   console.log("Is CSS Applying:", isCSSApplying());
   
+
+   /**
+   * Collecting performance data, utilizing getNavigationTiming() reference code.
+   */
+  function getPerformanceData() {
+    const n = performance.getEntriesByType('navigation')[0];
+    return {
+        rawTiming: n.toJSON(),
+        loadStart: n.fetchStart - n.startTime,
+        loadEnd: n.loadEventEnd - n.startTime,
+        totalLoadTime: n.loadEventEnd - n.fetchStart
+    };
+  }
   
   window.addEventListener('load', function(){
     const staticData = getTechnographics();
