@@ -303,6 +303,10 @@ function trackPageEnterLeave(){
     const performanceData = getPerformanceData();
     const activityData = getactivityData();
 
+    console.log('Static data:', staticData);
+    console.log('Performance data:', performanceData);
+    console.log('Activity data:', activityData);
+
     const payload = JSON.stringify({
         sessionId: getSessionId(),
         static: staticData,
