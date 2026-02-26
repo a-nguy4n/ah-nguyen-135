@@ -124,15 +124,6 @@
   /**
    * Generate or retrieve a session ID from sessionStorage.
    */
-  function test() {
-    let sid = sessionStorage.getItem('_collector_sid');
-    if (!sid) {
-      sid = Math.random().toString(36).substring(2) + Date.now().toString(36);
-      sessionStorage.setItem('_collector_sid', sid);
-    }
-    return sid;
-  }
-
   function getSessionId() {
     const cookies = document.cookie.split(';');
     for (const c of cookies) {
@@ -182,6 +173,7 @@
    */
   async function getTechnographics() {
     const imgSupported = await imageSupported();
+    const cssStatus = isExternalCSSLoaded();
     return {
         userAgent: navigator.userAgent,
         language: navigator.language,
@@ -197,7 +189,8 @@
         colorScheme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         javascriptEnabled: true,
-        imagesEnabled: imgSupported
+        imagesEnabled: imgSupported,
+        cssExternalLoaded: cssStatus.anyLoaded
     };
   }
 
@@ -264,6 +257,7 @@
     };
   }
 
+  /* 
   window.addEventListener('load', function(){
     const staticData = getTechnographics();
     
@@ -287,4 +281,19 @@
     }
     console.log("External CSS status:", cssStatus);
   });
-})
+  */
+
+  window.addEventListener('load', async function(){
+    const staticData = await getTechnographics();
+    const performanceData = getPerformanceData();
+
+    const payload = JSON.stringify({
+        sessionId: getSessionId(),
+        static: staticData,
+        performance: performanceData
+    });
+
+    navigator.sendBeacon('/api/collect', new Blob([payload], { type: 'application/json' }));
+});
+
+})();
