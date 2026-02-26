@@ -158,7 +158,7 @@
   function imageSupported() {
     return new Promise(function(resolve, reject) {
         const image = document.createElement('img');
-        image.src = 
+        image.src = '/assets/cuteCat.jpg';  
         image.onload = function() {
             resolve(true);
         };
