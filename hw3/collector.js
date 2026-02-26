@@ -149,32 +149,46 @@
     };
   }
 
+  function imageSupported() {
+    return new Promise(function(resolve, reject) {
+        const image = document.createElement('img');
+        image.src = 
+        image.onload = function() {
+            resolve(true);
+        };
+        image.onerror = function() {
+            resolve(false); 
+        };
+    });
+  }
+
   /**
    * Collect a complete technographic profile.
    */
-  function getTechnographics() {
+  async function getTechnographics() {
+    const imgSupported = await imageSupported();
     return {
-      userAgent: navigator.userAgent,
-      language: navigator.language,
-      cookiesEnabled: navigator.cookieEnabled,
-      viewportWidth: window.innerWidth,
-      viewportHeight: window.innerHeight,
-      screenWidth: window.screen.width,
-      screenHeight: window.screen.height,
-      pixelRatio: window.devicePixelRatio,
-      cores: navigator.hardwareConcurrency || 0,
-      memory: navigator.deviceMemory || 0,
-      network: getNetworkInfo(),
-      colorScheme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
-      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-      javascriptEnabled: true
+        userAgent: navigator.userAgent,
+        language: navigator.language,
+        cookiesEnabled: navigator.cookieEnabled,
+        viewportWidth: window.innerWidth,
+        viewportHeight: window.innerHeight,
+        screenWidth: window.screen.width,
+        screenHeight: window.screen.height,
+        pixelRatio: window.devicePixelRatio,
+        cores: navigator.hardwareConcurrency || 0,
+        memory: navigator.deviceMemory || 0,
+        network: getNetworkInfo(),
+        colorScheme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        javascriptEnabled: true,
+        imagesEnabled: imgSupported
     };
   }
 
-  
-    
-    window.addEventListener('load', function() {
-        const staticData = getTechnographics();
+
+  window.addEventListener('load', function() {
+    const staticData = getTechnographics();
 
         // send it to your server
         fetch('/api/collect', {
@@ -184,6 +198,6 @@
           },
           body: JSON.stringify(staticData)
         });
-    });
+  });
 
 })();
