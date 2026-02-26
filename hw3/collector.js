@@ -171,9 +171,24 @@
     };
   }
 
+  // checks to see if CSS works: if not --> CSS suggested to be blocked/disabled 
+  function isCSSApplying(){
+    const div_element = document.createElement('div');
+    div_element.style.position = "absolute";
+    div_element.style.left = "7%";
+    div_element.style.width = "50px";
+    div_element.style.width = "200px";
+
+    document.body.appendChild(div_element);
+
+    const computedWidth = getComputedStyle(div_element).width;
+    document.body.removeChild(div_element);
+
+    return computedWidth === "200px";
+  }
+  console.log("Is CSS Applying:", isCSSApplying());
   
-    
-    window.addEventListener('load', function() {
+  window.addEventListener('load', function() {
         const staticData = getTechnographics();
 
         // send it to your server
