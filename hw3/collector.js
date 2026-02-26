@@ -124,7 +124,7 @@
   /**
    * Generate or retrieve a session ID from sessionStorage.
    */
-  function getSessionId() {
+  function test() {
     let sid = sessionStorage.getItem('_collector_sid');
     if (!sid) {
       sid = Math.random().toString(36).substring(2) + Date.now().toString(36);
@@ -133,7 +133,7 @@
     return sid;
   }
 
-  function checkSessionCookie() {
+  function getSessionId() {
     const cookies = document.cookie.split(';');
     for (const c of cookies) {
         const cookie = c.trim();
@@ -142,10 +142,10 @@
         }
     }
     // if no cookie found, generate a new ID
-    
+    const newSid = Math.random().toString(36).substring(2) + Date.now().toString(36);
     // store it in a cookie
-
-    // return it
+    document.cookie = `_collector_sid=${newSid}; path=/;`;
+    return newSid;
   }
 
   // Technographics
