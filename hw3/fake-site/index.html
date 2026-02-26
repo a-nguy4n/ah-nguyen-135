@@ -162,7 +162,15 @@
 
 
   window.addEventListener("load", () => {
-  console.log("External CSS status:", isExternalCSSLoaded());
+ const cssStatus = isExternalCSSLoaded();
+    console.log("External CSS Loaded:", cssStatus.anyLoaded);
+    if(!cssStatus.anyLoaded){
+      console.warn("⚠️ External CSS appears BLOCKED or DISABLED.");
+    }
+    else{
+      console.log("✅ External CSS successfully loaded.");
+    }
+    console.log("External CSS status:", cssStatus);
   });
 
 </script>

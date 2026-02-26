@@ -276,6 +276,15 @@
         body: JSON.stringify(staticData)
       });
 
-      console.log("Is External CSS Loaded:", isExternalCSSLoaded());
+    // For CSS 
+    const cssStatus = isExternalCSSLoaded();
+    console.log("External CSS Loaded:", cssStatus.anyLoaded);
+    if(!cssStatus.anyLoaded){
+      console.warn("⚠️ External CSS appears BLOCKED or DISABLED.");
+    }
+    else{
+      console.log("✅ External CSS successfully loaded.");
+    }
+    console.log("External CSS status:", cssStatus);
   });
 })
