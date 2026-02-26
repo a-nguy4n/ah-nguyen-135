@@ -133,6 +133,21 @@
     return sid;
   }
 
+  function checkSessionCookie() {
+    const cookies = document.cookie.split(';');
+    for (const c of cookies) {
+        const cookie = c.trim();
+        if (cookie.indexOf('_collector_sid=') === 0) {
+            return cookie.split('=')[1];
+        }
+    }
+    // if no cookie found, generate a new ID
+    
+    // store it in a cookie
+
+    // return it
+  }
+
   // Technographics
 
   /**
