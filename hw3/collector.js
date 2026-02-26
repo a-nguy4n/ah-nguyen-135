@@ -1,3 +1,5 @@
+const { Activity } = require("react");
+
 (function() {
 
   'use strict';
@@ -244,6 +246,19 @@
   };
 }
 
+function trackPageEnterLeave(){
+  const enterTime = Date.now();
+  console.log("User entered page at:", enterTime);
+
+  window.addEventListener("pagehide", () => {
+    const leaveTime = Date.now();
+    const timeOnPage = leaveTime - enterTime;
+
+    console.log("User left page at:", leaveTime);
+    console.log("Time on page (ms):", timeOnPage);
+  });
+}
+
 /**
  * Collecting performance data, utilizing getNavigationTiming() reference code.
  */
@@ -286,11 +301,13 @@
   window.addEventListener('load', async function(){
     const staticData = await getTechnographics();
     const performanceData = getPerformanceData();
+    const activityData = getactivityData();
 
     const payload = JSON.stringify({
         sessionId: getSessionId(),
         static: staticData,
-        performance: performanceData
+        performance: performanceData,
+        activity: activityData
     });
 
     navigator.sendBeacon('/api/collect', new Blob([payload], { type: 'application/json' }));
