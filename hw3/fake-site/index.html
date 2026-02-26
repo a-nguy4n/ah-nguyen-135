@@ -108,5 +108,24 @@
     <span>© Shopmoji (fake store). Built for analytics practice.</span>
     <a href="/about.html" data-analytics="footer_about">About</a>
   </footer>
+
+  <script>
+    function isCssApplying() {
+      const el = document.createElement("div");
+      el.style.position = "absolute";
+      el.style.left = "-9999px";
+      el.style.width = "10px";
+
+      // Change width via CSS
+      el.style.width = "123px";
+
+      document.body.appendChild(el);
+      const computedWidth = getComputedStyle(el).width;
+      document.body.removeChild(el);
+
+      return computedWidth === "123px";
+    }
+    console.log("CSS applying?", isCssApplying());
+  </script>
 </body>
 </html>
