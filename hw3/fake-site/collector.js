@@ -248,16 +248,31 @@ const { Activity } = require("react");
 
 function trackPageEnterLeave(){
   const enterTime = Date.now();
+  activityState.enteredAt = enterTime;
+
   console.log("User entered page at:", enterTime);
 
   window.addEventListener("pagehide", () => {
     const leaveTime = Date.now();
     const timeOnPage = leaveTime - enterTime;
 
+    activityState.leftAt = leaveTime;
+    activityState.timeOnPageMs = timeOnPage;
+
     console.log("User left page at:", leaveTime);
     console.log("Time on page (ms):", timeOnPage);
   });
 }
+
+ const activityState = {
+      enteredAt: null,
+      leftAt: null,
+      timeOnPageMs: null
+  }
+
+  function getActivityData(){
+      return { activityState };
+  };
 
 /**
  * Collecting performance data, utilizing getNavigationTiming() reference code.
@@ -299,9 +314,12 @@ function trackPageEnterLeave(){
   */
 
   window.addEventListener('load', async function(){
+
+    trackPageEnterLeave();
+    
     const staticData = await getTechnographics();
     const performanceData = getPerformanceData();
-    const activityData = getactivityData();
+    const activityData = getActivityData();
 
     console.log('Static data:', staticData);
     console.log('Performance data:', performanceData);
