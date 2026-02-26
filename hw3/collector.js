@@ -188,54 +188,62 @@
 
   // checks to see if CSS external sheets works/loads: 
   // if not --> CSS suggested to be blocked/disabled 
-   function isExternalCSSLoaded(){
+  function isExternalCSSLoaded(){
     const links = [...document.querySelectorAll('link[rel="stylesheet"]')];
 
-    if(links.length === 0) {
-      return{ 
-        found: false, 
-        anyLoaded: false, 
-        reason: "no stylesheets found" 
+    if (links.length === 0) {
+      return {
+        found: false,
+        anyLoaded: false,
+        reason: "no stylesheets found"
       };
-    }   
+    }
+
+    // resource timing entries (only reliable after load)
+    const resources = performance.getEntriesByType("resource");
 
     const results = links.map(link => {
-      const sheet = link.sheet;
+      const href = link.href;
 
-      // if no sheet object, definitely not loaded
-      if(!sheet){
-        return{ 
-          href: link.href, 
-          loaded: false, 
-          reason: "no link.sheet" 
+      // find a matching resource entry for THIS navigation
+      const entry = resources.find(e =>
+        e.initiatorType === "link" && e.name === href
+      );
+
+      // for a timing entry: the browser fetched it in this navigation
+      if(entry){
+        return {
+          href,
+          loaded: true,
+          via: "resource_timing",
+          duration: Math.round(entry.duration),
+          transferSize: entry.transferSize,
+          encodedBodySize: entry.encodedBodySize
         };
       }
-      // attempting to access cssRules (can throw if not actually available / cross-origin)
-      try{
-        const rulesCount = sheet.cssRules ? sheet.cssRules.length : 0;
-        return{ 
-          href: link.href, 
-          loaded: true, rulesCount 
-        };
-      } 
-      catch (e){
-        // Cross-origin stylesheets often throw SecurityError here
-        return{ 
-          href: link.href, 
-          loaded: true, 
-          reason: "cross-origin (cannot read rules)" 
-        };
-      }
-    });
 
-    const anyLoaded = results.some(r => r.loaded);
-    
+    // No timing entry => likely blocked/failed/not fetched this navigation
+    // (Don't trust link.sheet for cross-origin)
     return{
-      found: true,
-      anyLoaded,
-      stylesheets: results
+      href,
+      loaded: false,
+      reason: "no resource timing entry (blocked/failed/not fetched this navigation)"
     };
-  }
+  });
+
+  const anyLoaded = results.some(r => r.loaded);
+
+  return{
+    found: true,
+    anyLoaded,
+    stylesheets: results
+  };
+}
+
+// IMPORTANT: call after load
+window.addEventListener("load", () => {
+  console.log("External CSS status:", isExternalCSSLoaded());
+});
 
    /**
    * Collecting performance data, utilizing getNavigationTiming() reference code.
