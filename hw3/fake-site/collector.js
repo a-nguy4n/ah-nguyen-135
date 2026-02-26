@@ -246,6 +246,23 @@ const { Activity } = require("react");
   };
 }
 
+
+const activityState = {
+    enteredAt: null,
+    leftAt: null,
+    timeOnPageMs: null,
+
+    mouseMoves: 0,
+    lastCursor: { x: 0, y: 0 },
+    clicks: [],
+    scroll: { x: 0, y: 0 }
+
+}
+
+function getActivityData(){
+    return { activityState };
+};
+
 function trackPageEnterLeave(){
   const enterTime = Date.now();
   activityState.enteredAt = enterTime;
@@ -264,15 +281,35 @@ function trackPageEnterLeave(){
   });
 }
 
- const activityState = {
-      enteredAt: null,
-      leftAt: null,
-      timeOnPageMs: null
-  }
+function trackMouseActivity(){
+  // Mouse move (cursor position)
+  window.addEventListener("mousemove", (e) => {
+    activityState.mouseMoves += 1;
+    activityState.lastCursor = {
+      x: e.clientX,
+      y: e.clientY
+    };
+  });
 
-  function getActivityData(){
-      return { activityState };
-  };
+  // Mouse clicks
+  window.addEventListener("click", (e) => {
+    activityState.clicks.push({
+      x: e.clientX,
+      y: e.clientY,
+      button: e.button,   // 0 = left, 1 = middle, 2 = right
+      time: Date.now()
+    });
+  });
+
+  // Scroll tracking
+  window.addEventListener("scroll", () => {
+    activityState.scroll = {
+      x: window.scrollX,
+      y: window.scrollY
+    };
+  });
+}
+
 
 /**
  * Collecting performance data, utilizing getNavigationTiming() reference code.
@@ -316,7 +353,8 @@ function trackPageEnterLeave(){
   window.addEventListener('load', async function(){
 
     trackPageEnterLeave();
-    
+    trackMouseActivity();
+
     const staticData = await getTechnographics();
     const performanceData = getPerformanceData();
     const activityData = getActivityData();
