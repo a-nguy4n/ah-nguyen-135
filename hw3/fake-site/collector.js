@@ -255,7 +255,10 @@ const activityState = {
     mouseMoves: 0,
     lastCursor: { x: 0, y: 0 },
     clicks: [],
-    scroll: { x: 0, y: 0 }
+    scroll: { x: 0, y: 0 },
+
+    keyPresses: [],
+    keyReleases: []
 
 }
 
@@ -313,8 +316,16 @@ function trackMouseActivity(){
 // Keyboard tracking
 function trackKeyboard() {
   window.addEventListener("keydown", (e) => {
-    // For privacy, we won't log the actual keys, just that a key was pressed
-    activityState.keyPresses = (activityState.keyPresses || 0) + 1;
+    activityState.keyPresses.push({
+    type: 'keydown',
+    timestamp: Date.now()
+  });
+  });
+  window.addEventListener("keyup", (e) => {
+    activityState.keyReleases.push({
+      type: 'keyup',
+      timestamp: Date.now()
+    });
   });
 }
 
@@ -361,6 +372,7 @@ function trackKeyboard() {
 
     trackPageEnterLeave();
     trackMouseActivity();
+    trackKeyboard();
 
     const staticData = await getTechnographics();
     const performanceData = getPerformanceData();
