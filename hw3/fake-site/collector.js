@@ -310,6 +310,13 @@ function trackMouseActivity(){
   });
 }
 
+// Keyboard tracking
+function trackKeyboard() {
+  window.addEventListener("keydown", (e) => {
+    // For privacy, we won't log the actual keys, just that a key was pressed
+    activityState.keyPresses = (activityState.keyPresses || 0) + 1;
+  });
+}
 
 /**
  * Collecting performance data, utilizing getNavigationTiming() reference code.
