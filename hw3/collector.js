@@ -200,10 +200,32 @@
     }   
 
     const results = links.map(link => {
-      return{
-        href: link.href,
-        loaded: !!link.sheet,   // will be true if any external CSS is loaded
-      };
+      const sheet = link.sheet;
+
+      // if no sheet object, definitely not loaded
+      if(!sheet){
+        return{ 
+          href: link.href, 
+          loaded: false, 
+          reason: "no link.sheet" 
+        };
+      }
+      // attempting to access cssRules (can throw if not actually available / cross-origin)
+      try{
+        const rulesCount = sheet.cssRules ? sheet.cssRules.length : 0;
+        return{ 
+          href: link.href, 
+          loaded: true, rulesCount 
+        };
+      } 
+      catch (e){
+        // Cross-origin stylesheets often throw SecurityError here
+        return{ 
+          href: link.href, 
+          loaded: true, 
+          reason: "cross-origin (cannot read rules)" 
+        };
+      }
     });
 
     const anyLoaded = results.some(r => r.loaded);
