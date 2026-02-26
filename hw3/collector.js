@@ -186,23 +186,34 @@
     };
   }
 
-  // checks to see if CSS works: if not --> CSS suggested to be blocked/disabled 
-  function isCSSApplying(){
-    const div_element = document.createElement('div');
-    div_element.style.position = "absolute";
-    div_element.style.left = "7%";
-    div_element.style.width = "50px";
-    div_element.style.width = "200px";
+  // checks to see if CSS external sheets works/loads: 
+  // if not --> CSS suggested to be blocked/disabled 
+   function isExternalCSSLoaded(){
+    const links = [...document.querySelectorAll('link[rel="stylesheet"]')];
 
-    document.body.appendChild(div_element);
+    if(links.length === 0) {
+      return{ 
+        found: false, 
+        anyLoaded: false, 
+        reason: "no stylesheets found" 
+      };
+    }   
 
-    const computedWidth = getComputedStyle(div_element).width;
-    document.body.removeChild(div_element);
+    const results = links.map(link => {
+      return{
+        href: link.href,
+        loaded: !!link.sheet,   // will be true if any external CSS is loaded
+      };
+    });
 
-    return computedWidth === "200px";
+    const anyLoaded = results.some(r => r.loaded);
+    
+    return{
+      found: true,
+      anyLoaded,
+      stylesheets: results
+    };
   }
-  console.log("Is CSS Applying:", isCSSApplying());
-  
 
    /**
    * Collecting performance data, utilizing getNavigationTiming() reference code.
@@ -216,17 +227,19 @@
         totalLoadTime: n.loadEventEnd - n.fetchStart
     };
   }
-  
+
   window.addEventListener('load', function(){
     const staticData = getTechnographics();
+    
+      // send it to your server
+      fetch('/api/collect', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(staticData)
+      });
 
-        // send it to your server
-        fetch('/api/collect', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(staticData)
-        });
+      console.log("Is External CSS Loaded:", isExternalCSSLoaded());
   });
 })

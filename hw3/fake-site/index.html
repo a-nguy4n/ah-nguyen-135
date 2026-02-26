@@ -108,24 +108,37 @@
     <span>© Shopmoji (fake store). Built for analytics practice.</span>
     <a href="/about.html" data-analytics="footer_about">About</a>
   </footer>
+<script>
+    function isExternalCSSLoaded(){
+    const links = [...document.querySelectorAll('link[rel="stylesheet"]')];
 
-  <script>
-    function isCssApplying() {
-      const el = document.createElement("div");
-      el.style.position = "absolute";
-      el.style.left = "-9999px";
-      el.style.width = "10px";
+    if(links.length === 0) {
+      return{ 
+        found: false, 
+        anyLoaded: false, 
+        reason: "no stylesheets found" 
+      };
+    }   
 
-      // Change width via CSS
-      el.style.width = "123px";
+    const results = links.map(link => {
+      return{
+        href: link.href,
+        loaded: !!link.sheet,   // will be true if any external CSS is loaded
+      };
+    });
 
-      document.body.appendChild(el);
-      const computedWidth = getComputedStyle(el).width;
-      document.body.removeChild(el);
+    const anyLoaded = results.some(r => r.loaded);
+    
+    return{
+      found: true,
+      anyLoaded,
+      stylesheets: results
+    };
+  }
+  window.addEventListener("load", () => {
+  console.log("External CSS status:", isExternalCSSLoaded());
+  });
 
-      return computedWidth === "123px";
-    }
-    console.log("CSS applying?", isCssApplying());
-  </script>
+</script>
 </body>
 </html>
