@@ -17,3 +17,6 @@ node_modules/
 
 # ===== tmp files =====
 /hw2/tmp/
+
+# ===== config files =====
+/hw3/fake-site/api/config.php
