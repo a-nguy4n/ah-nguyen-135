@@ -269,7 +269,9 @@
         idleEndAt: null,
         idleDurationMs: null,
         breaks: [] 
-      }
+      },
+
+      pageUrl: null
   }
 
   function getActivityData(){
@@ -288,6 +290,7 @@
 
       activityState.leftAt = leaveTime;
       activityState.timeOnPageMs = timeOnPage;
+      activityState.pageUrl = window.location.href;
 
       console.log("User left page at:", leaveTime);
       console.log("Time on page (ms):", timeOnPage);
