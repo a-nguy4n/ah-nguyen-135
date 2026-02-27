@@ -493,7 +493,6 @@
 
     const staticData = await getTechnographics();
     const performanceData = getPerformanceData();
-    const activityData = getActivityData();
 
     console.log('Static data:', staticData);
     console.log('Performance data:', performanceData);
@@ -503,10 +502,19 @@
         sessionId: getSessionId(),
         static: staticData,
         performance: performanceData,
-        activity: activityData
+        //activity: activityData
     });
 
     navigator.sendBeacon('/api/collect.php', new Blob([payload], { type: 'application/json' }));
+
+    // send activity data every 5 seconds
+    setInterval(() => {
+        const activityPayload = JSON.stringify({
+            sessionId: getSessionId(),
+            activity: getActivityData()
+        });
+        navigator.sendBeacon('/api/collect.php', new Blob([activityPayload], { type: 'application/json' }));
+    }, 5000);
 });
 
 })();
