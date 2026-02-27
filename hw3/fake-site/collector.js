@@ -258,8 +258,10 @@ const activityState = {
     scroll: { x: 0, y: 0 },
 
     keyPresses: [],
-    keyReleases: []
+    keyReleases: [],
 
+    errors: [],
+    errorCount: 0
 }
 
 function getActivityData(){
@@ -329,6 +331,58 @@ function trackKeyboard() {
   });
 }
 
+// Tracking Errors 
+function trackErrors() {
+  const MAX_ERRORS = 10;
+  const seen = new Set(); 
+
+  function recordError(payload){
+    const key = `${payload.type}|${payload.message}|${payload.source}|${payload.line}|${payload.col}`;
+    
+    if(seen.has(key)){
+      return;
+    }
+
+    seen.add(key);
+
+    if(activityState.errorCount >= MAX_ERRORS){
+      return;
+    }
+
+    activityState.errorCount += 1;
+    activityState.errors.push(payload);
+  }
+
+  window.addEventListener("error", (event) => {
+    recordError({
+      type: "error",
+      time: Date.now(),
+      message: event.message || "Unknown error",
+      source: event.filename || "",
+      line: event.lineno || null,
+      col: event.colno || null,
+      stack: event.error && event.error.stack ? String(event.error.stack) : ""
+    });
+  });
+
+  window.addEventListener("unhandledrejection", (event) => {
+    const reason = event.reason;
+
+    recordError({
+      type: "unhandledrejection",
+      time: Date.now(),
+      message:
+        reason instanceof Error
+          ? reason.message
+          : (typeof reason === "string" ? reason : JSON.stringify(reason)),
+      source: "",
+      line: null,
+      col: null,
+      stack: reason instanceof Error && reason.stack ? String(reason.stack) : ""
+    });
+  });
+}
+
 /**
  * Collecting performance data, utilizing getNavigationTiming() reference code.
  */
@@ -373,6 +427,7 @@ function trackKeyboard() {
     trackPageEnterLeave();
     trackMouseActivity();
     trackKeyboard();
+    trackErrors();
 
     const staticData = await getTechnographics();
     const performanceData = getPerformanceData();
