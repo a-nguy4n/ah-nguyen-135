@@ -285,17 +285,20 @@
     console.log("User entered page at:", enterTime);
 
     window.addEventListener("pagehide", () => {
-      const leaveTime = Date.now();
-      const timeOnPage = leaveTime - enterTime;
+    const leaveTime = Date.now();
+    const timeOnPage = leaveTime - enterTime;
 
-      activityState.leftAt = leaveTime;
-      activityState.timeOnPageMs = timeOnPage;
-      activityState.pageUrl = window.location.href;
+    activityState.leftAt = leaveTime;
+    activityState.timeOnPageMs = timeOnPage;
 
-      console.log("User left page at:", leaveTime);
-      console.log("Time on page (ms):", timeOnPage);
+    const payload = JSON.stringify({
+        sessionId: getSessionId(),
+        activity: getActivityData()
     });
-    navigator.sendBeacon('/api/collect.php', new Blob([activityPayload], { type: 'application/json' }));
+
+    navigator.sendBeacon('/api/collect.php', new Blob([payload], { type: 'application/json' }));
+});
+
   }
 
   function trackMouseActivity(){
@@ -496,7 +499,6 @@
 
     console.log('Static data:', staticData);
     console.log('Performance data:', performanceData);
-    console.log('Activity data:', activityData);
 
     const payload = JSON.stringify({
         sessionId: getSessionId(),
