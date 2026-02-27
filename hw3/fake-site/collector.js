@@ -502,7 +502,7 @@
         activity: activityData
     });
 
-    navigator.sendBeacon('/api/collect', new Blob([payload], { type: 'application/json' }));
+    navigator.sendBeacon('/api/collect.php', new Blob([payload], { type: 'application/json' }));
 });
 
 })();
