@@ -295,6 +295,7 @@
       console.log("User left page at:", leaveTime);
       console.log("Time on page (ms):", timeOnPage);
     });
+    navigator.sendBeacon('/api/collect.php', new Blob([activityPayload], { type: 'application/json' }));
   }
 
   function trackMouseActivity(){
