@@ -407,6 +407,7 @@
 
     function markActivityTime(){
       const currentTime = Date.now();
+      activityState.idle.lastActivityAt = currentTime;
 
       if(activityState.idle.isIdle){
         activityState.idle.isIdle = false;
@@ -417,37 +418,37 @@
 
         activityState.idle.breaks.push({
           startAt: activityState.idle.idleStartAt,
-          endAt: now,
+          endAt: currentTime,   
           durationMs: duration
         });
 
-        console.log("Break ended at:", now);
+        console.log("Break ended at:", currentTime);
         console.log("Break duration (ms):", duration);
 
         activityState.idle.idleStartAt = null;
       }
-
-      const activityEvents = ["mousemove", "click", "scroll", "keydown", "keyup", "touchstart"];
-
-      activityEvents.forEach((event) => {
-        window.addEventListener(event, markActivityTime, { passive: true });
-      });
-
-      setInterval(() => {
-        const now = Date.now();
-        
-        if(!activityState.idle.isIdle){
-          const elapsed = now - activityState.idle.lastActivityAt;
-          
-          if(elapsed >= IDLE_THRESHOLD_MS){
-            activityState.idle.isIdle = true;
-            activityState.idle.idleStartAt = now;
-            console.log("Break started at:", now);
-          }
-        }
-      }, CHECK_EVERY_MS);
     }
+    const activityEvents = ["mousemove","click","scroll","keydown","keyup","touchstart"];
+
+    activityEvents.forEach((event) => {
+      window.addEventListener(event, markActivityTime, { passive: true });
+    });
+
+    setInterval(() => {
+      const now = Date.now();
+      
+      if(!activityState.idle.isIdle){
+        const elapsed = now - activityState.idle.lastActivityAt;
+        
+        if(elapsed >= IDLE_THRESHOLD_MS){
+          activityState.idle.isIdle = true;
+          activityState.idle.idleStartAt = now;
+          console.log("Break started at:", now);
+        }
+      }
+    }, CHECK_EVERY_MS);
   }
+  
 
   // Collecting performance data, utilizing getNavigationTiming() reference code.
     function getPerformanceData(){
@@ -459,33 +460,7 @@
           totalLoadTime: n.loadEventEnd - n.fetchStart
       };
     }
-
-  /* 
-  window.addEventListener('load', function(){
-    const staticData = getTechnographics();
     
-      // send it to your server
-      fetch('/api/collect', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(staticData)
-      });
-
-    // For CSS 
-    const cssStatus = isExternalCSSLoaded();
-    console.log("External CSS Loaded:", cssStatus.anyLoaded);
-    if(!cssStatus.anyLoaded){
-      console.warn("⚠️ External CSS appears BLOCKED or DISABLED.");
-    }
-    else{
-      console.log("✅ External CSS successfully loaded.");
-    }
-    console.log("External CSS status:", cssStatus);
-  });
-  */
-
   window.addEventListener('load', async function(){
 
     trackPageEnterLeave();
@@ -504,7 +479,7 @@
         sessionId: getSessionId(),
         static: staticData,
         performance: performanceData,
-        //activity: activityData
+        activity: getActivityData()
     });
 
     navigator.sendBeacon('/api/collect.php', new Blob([payload], { type: 'application/json' }));
