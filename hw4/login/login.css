@@ -1,0 +1,75 @@
+@font-face {
+    font-family: "Space Mono";
+    src: url("/fonts/Space_Mono/SpaceMono-Regular.ttf");
+}
+
+*{
+  box-sizing: border-box;
+  font-family: "Space Mono", sans-serif;
+}
+
+body{
+  background: #f4f6f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  
+  background: white;
+  background-image:
+    radial-gradient(
+      circle at top right,
+      rgba(15, 105, 154, 0.813) 0%,
+      rgb(15, 106, 154) 15%,
+      rgb(15, 106, 154) 25%,
+      white 60%
+    );
+}
+
+.login-container{
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  width: 320px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+h2{
+  margin-bottom: 20px;
+}
+
+.input-group{
+  text-align: left;
+  margin-bottom: 15px;
+  border: none;
+}
+
+.input-group label{
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.input-group input{
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button{
+  width: 90%;
+  padding: 10px;
+  border: none;
+  background: #0f5a76;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover{
+  background: #45a049;
+}
+
