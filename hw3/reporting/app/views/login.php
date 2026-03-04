@@ -19,7 +19,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
-  <link rel="stylesheet" href="/hw4/login/login.css">
+  <link rel="stylesheet" href="login.css">
 </head>
 
 <body>
