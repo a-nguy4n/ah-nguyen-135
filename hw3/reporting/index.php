@@ -11,10 +11,10 @@ if ($uri === '' || $uri === '/') $uri = '/login';
 
 switch ($uri) {
     case '/login':
-        require APP . '/controllers/AuthController.php';
+        require APP . '/controllers/authController.php';
         break;
     case '/dashboard':
-        require APP . '/controllers/DashboardController.php';
+        require APP . '/controllers/dashboardController.php';
         break;
     default:
         http_response_code(404);
