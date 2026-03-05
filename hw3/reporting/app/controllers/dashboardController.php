@@ -5,3 +5,4 @@ if (empty($_SESSION['user'])) {
 }
 
 require APP . '/views/dashboard.php';
+?>
