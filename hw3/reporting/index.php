@@ -16,6 +16,11 @@ switch ($uri) {
     case '/dashboard':
         require APP . '/controllers/dashboardController.php';
         break;
+    case '/logout':
+        session_destroy();
+        header('Location: /login');
+        exit;
+        break;
     default:
         http_response_code(404);
         echo '404 Not Found';
