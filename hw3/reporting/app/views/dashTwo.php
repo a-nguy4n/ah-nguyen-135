@@ -139,9 +139,16 @@
     }, $performanceData);
 
     $totalMouse = array_sum(array_column($activityData, 'mouse_moves'));
-    $totalClicks = array_sum(array_column($activityData, 'clicks'));
+    $totalClicks = array_sum(array_map(function($r) {
+        $clicks = json_decode($r['clicks'], true);
+        return is_array($clicks) ? count($clicks) : 0;
+    }, $activityData));
+    $totalKeys = array_sum(array_map(function($r) {
+        $keys = json_decode($r['key_presses'], true);
+        return is_array($keys) ? count($keys) : 0;
+    }, $activityData));
     $totalScroll = array_sum(array_column($activityData, 'scroll'));
-    $totalKeys = array_sum(array_column($activityData, 'key_presses'));
+    $totalIdle = array_sum(array_column($activityData, 'total_idle_time_ms'));
     ?>
 
     <script>
@@ -167,19 +174,20 @@
         new Chart(document.getElementById('activityChart'), {
             type: 'bar',
             data: {
-                labels: ['Mouse Moves', 'Clicks', 'Scroll', 'Key Presses'],
+                labels: ['Mouse Moves', 'Clicks', 'Key Presses', 'Total Idle Time (ms)'],
                 datasets: [{
                     label: 'Total Count',
                     data: [
                         <?= (int)$totalMouse ?>,
                         <?= (int)$totalClicks ?>,
                         <?= (int)$totalScroll ?>,
-                        <?= (int)$totalKeys ?>
+                        <?= (int)$totalIdle ?>
                     ]
                 }]
             },
             options: { responsive: true }
         });
+
     </script>
 
 </body>
