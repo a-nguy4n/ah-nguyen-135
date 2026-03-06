@@ -21,6 +21,26 @@
     <h1>Analytics Dashboard</h1>
     <a href="/logout">Logout</a>
 
+    <section class="charts-section" aria-labelledby="charts-heading">
+        <h3 id="charts-heading">Charts</h3>
+
+        <article class="chart-card">
+            <h4>Performance Over Time</h4>
+            <figure>
+                <canvas id="perfChart"></canvas>
+                <figcaption class="chart-caption">Trend of total page load time across captured sessions.</figcaption>
+            </figure>
+        </article>
+
+        <article class="chart-card">
+            <h4>Activity Totals</h4>
+            <figure>
+                <canvas id="activityChart"></canvas>
+                <figcaption class="chart-caption">Aggregated interaction counts from captured activity events.</figcaption>
+            </figure>
+        </article>
+    </section>
+
     <h3>Static Data</h3>
     <table border="1">
         <thead>
@@ -108,26 +128,6 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-
-    <section class="charts-section" aria-labelledby="charts-heading">
-        <h3 id="charts-heading">Charts</h3>
-
-        <article class="chart-card">
-            <h4>Performance Over Time</h4>
-            <figure>
-                <canvas id="perfChart"></canvas>
-                <figcaption class="chart-caption">Trend of total page load time across captured sessions.</figcaption>
-            </figure>
-        </article>
-
-        <article class="chart-card">
-            <h4>Activity Totals</h4>
-            <figure>
-                <canvas id="activityChart"></canvas>
-                <figcaption class="chart-caption">Aggregated interaction counts from captured activity events.</figcaption>
-            </figure>
-        </article>
-    </section>
 
     <?php
     $perfLabels = array_map(function($r) {
