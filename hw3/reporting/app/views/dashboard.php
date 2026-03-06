@@ -47,5 +47,29 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <h2>Performance Data</h2>
+    <table border="1">
+    <thead>
+        <tr>
+            <th>Session ID</th>
+            <th>Raw Timing</th>
+            <th>Total Load Time</th>
+            <th>Created At</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($performanceData as $row): ?>
+            <tr>
+                <td><?= $row['session_id'] ?></td>
+                <td><?= $row['raw_timing'] ?></td>
+                <td><?= $row['total_load_time'] ?></td>
+                <td><?= $row['created_at'] ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
 </body>
 </html>
