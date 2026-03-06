@@ -274,6 +274,11 @@
 
       pageUrl: null
   }
+
+  let lastSentClickIndex = 0;
+  let lastSentKeyPressIndex = 0;
+  let lastSentKeyReleaseIndex = 0;
+
   window._activityState = activityState;
 
   function getActivityData(){
@@ -487,14 +492,40 @@
 
     navigator.sendBeacon('/api/collect.php', new Blob([payload], { type: 'application/json' }));
 
-    // send activity data every 5 seconds
+    // send new activity data every 5 seconds
+    /*
     setInterval(() => {
         const activityPayload = JSON.stringify({
             sessionId: getSessionId(),
             activity: getActivityData()
         });
         navigator.sendBeacon('/api/collect.php', new Blob([activityPayload], { type: 'application/json' }));
-    }, 5000);
+    }, 5000); */
+
+
+    setInterval(() => {
+      const newClicks = activityState.clicks.slice(lastSentClickIndex);
+      const newKeyPresses = activityState.keyPresses.slice(lastSentKeyPressIndex);
+      const newKeyReleases = activityState.keyReleases.slice(lastSentKeyReleaseIndex);
+
+      lastSentClickIndex = activityState.clicks.length;
+      lastSentKeyPressIndex = activityState.keyPresses.length;
+      lastSentKeyReleaseIndex = activityState.keyReleases.length;
+
+      const activityPayload = JSON.stringify({
+          sessionId: getSessionId(),
+          activity: {
+              activityState: {
+                  ...activityState,
+                  clicks: newClicks,
+                  keyPresses: newKeyPresses,
+                  keyReleases: newKeyReleases
+              }
+          }
+      });
+      navigator.sendBeacon('/api/collect.php', new Blob([activityPayload], { type: 'application/json' }));
+  }, 5000);
+
 });
 
 })();

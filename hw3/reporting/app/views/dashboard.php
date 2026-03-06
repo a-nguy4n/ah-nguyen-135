@@ -143,7 +143,6 @@
         $clicks = json_decode($r['clicks'], true);
         return is_array($clicks) ? count($clicks) : 0;
     }, $activityData));
-    echo "<p>Total clicks: " . $totalClicks . "</p>";
     $totalKeys = array_sum(array_map(function($r) {
         $keys = json_decode($r['key_presses'], true);
         return is_array($keys) ? count($keys) : 0;
