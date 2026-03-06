@@ -13,13 +13,9 @@ switch ($uri) {
     case '/login':
         require APP . '/controllers/authController.php';
         break;
+
     case '/dashboard':
         require APP . '/controllers/dashboardController.php';
-        break;
-
-    // Dash Duplicate will delete later, just for testing
-    case '/dashtwo':
-        require APP . '/controllers/dashTwo.php';
         break;
 
     case '/logout':
@@ -27,6 +23,7 @@ switch ($uri) {
         header('Location: /login');
         exit;
         break;
+        
     default:
         http_response_code(404);
         echo '404 Not Found';
