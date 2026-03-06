@@ -275,6 +275,8 @@
       pageUrl: null
   }
 
+  window._activityState = activityState;
+
   function getActivityData(){
       return { activityState };
   };

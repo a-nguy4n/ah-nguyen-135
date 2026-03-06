@@ -88,5 +88,6 @@ if(isset($data['activity'])) {
     $stmt->execute();    
 }
 
+
 echo json_encode(['success' => true]);
 ?>
