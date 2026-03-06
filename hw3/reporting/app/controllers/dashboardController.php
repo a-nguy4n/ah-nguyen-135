@@ -4,5 +4,9 @@ if (empty($_SESSION['user'])) {
     exit;
 }
 
+require APP . '/models/staticData.php';
+$model = new staticData();
+$staticData = $model->getAll();
+
 require APP . '/views/dashboard.php';
 ?>
