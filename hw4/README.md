@@ -30,7 +30,14 @@
   - Views are login.php and dashboard.php
   - Controllers are authController.php and dashboardController.php
 
-  https://collector.ah-nguyen.site/
+  - Authentication Flow 
+    - Inside authController.php is where we verify the username and password 
+    against the database and store the user in session 
+    - We have protected routes in dashboardController.php as it checks $_SESSION['user'] 
+      and redirects to /login if not authenticated
+    - When logging out, the session is destroyed from index.php with /logout route 
+    - As such, forceful browsing is handled where access to /dashboard isn't allowed without logging in first. 
+
 
 - Part 2: Connecting our Datastore to a Data Table / Grid
 
