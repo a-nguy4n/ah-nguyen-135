@@ -145,41 +145,41 @@
     ?>
 
     <script>
-    const perfLabels = <?= json_encode($perfLabels) ?>;
-    const perfValues = <?= json_encode($perfValues) ?>;
+        const perfLabels = <?= json_encode($perfLabels) ?>;
+        const perfValues = <?= json_encode($perfValues) ?>;
 
-    new Chart(document.getElementById('perfChart'), {
-        type: 'line',
-        data: {
-            labels: perfLabels,
-            datasets: [{
-                label: 'Total Load Time (ms)',
-                data: perfValues,
-                borderColor: '#0f6a9a',
-                backgroundColor: 'rgba(15,106,154,0.15)',
-                tension: 0.25,
-                fill: true
-            }]
-        },
-        options: { responsive: true }
-    });
+        new Chart(document.getElementById('perfChart'), {
+            type: 'line',
+            data: {
+                labels: perfLabels,
+                datasets: [{
+                    label: 'Total Load Time (ms)',
+                    data: perfValues,
+                    borderColor: '#0f6a9a',
+                    backgroundColor: 'rgba(15,106,154,0.15)',
+                    tension: 0.25,
+                    fill: true
+                }]
+            },
+            options: { responsive: true }
+        });
 
-    new Chart(document.getElementById('activityChart'), {
-        type: 'bar',
-        data: {
-            labels: ['Mouse Moves', 'Clicks', 'Scroll', 'Key Presses'],
-            datasets: [{
-                label: 'Total Count',
-                data: [
-                    <?= (int)$totalMouse ?>,
-                    <?= (int)$totalClicks ?>,
-                    <?= (int)$totalScroll ?>,
-                    <?= (int)$totalKeys ?>
-                ]
-            }]
-        },
-        options: { responsive: true }
-    });
+        new Chart(document.getElementById('activityChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Mouse Moves', 'Clicks', 'Scroll', 'Key Presses'],
+                datasets: [{
+                    label: 'Total Count',
+                    data: [
+                        <?= (int)$totalMouse ?>,
+                        <?= (int)$totalClicks ?>,
+                        <?= (int)$totalScroll ?>,
+                        <?= (int)$totalKeys ?>
+                    ]
+                }]
+            },
+            options: { responsive: true }
+        });
     </script>
 
 </body>
