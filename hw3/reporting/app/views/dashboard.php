@@ -71,5 +71,42 @@
         </tbody>
     </table>
 
+    <h2>Activity Data</h2>
+    <table border="1">
+    <thead>
+        <tr>
+            <th>Session ID</th>
+            <th>Time On Page</th>
+            <th>Mouse Moves</th>
+            <th>Clicks</th>
+            <th>Scroll</th>
+            <th>Key Presses</th>
+            <th>Key Releases</th>
+            <th>Error Count</th>
+            <th>Idle Breaks</th>
+            <th>Total Idle Time</th>
+            <th>Created At</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($activityData as $row): ?>
+            <tr>
+                <td><?= $row['session_id'] ?></td>
+                <td><?= $row['time_on_page_ms'] ?></td>
+                <td><?= $row['mouse_moves'] ?></td>
+                <td><?= $row['clicks'] ?></td>
+                <td><?= $row['scroll'] ?></td>
+                <td><?= $row['key_presses'] ?></td>
+                <td><?= $row['key_releases'] ?></td>
+                <td><?= $row['error_count'] ?></td>
+                <td><?= $row['idle_breaks'] ?></td>
+                <td><?= $row['total_idle_time_ms'] ?></td>
+                <td><?= $row['created_at'] ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
 </body>
 </html>

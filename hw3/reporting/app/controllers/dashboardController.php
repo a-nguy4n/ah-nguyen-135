@@ -12,5 +12,9 @@ require APP . '/models/performanceData.php';
 $model = new performanceData();
 $performanceData = $model->getAll();
 
+require APP . '/models/activityData.php';
+$model = new activityData();
+$activityData = $model->getAll();
+
 require APP . '/views/dashboard.php';
 ?>
