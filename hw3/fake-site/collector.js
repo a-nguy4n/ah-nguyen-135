@@ -421,6 +421,7 @@
           endAt: currentTime,   
           durationMs: duration
         });
+        activityState.idle.totalIdleTimeMs = (activityState.idle.totalIdleTimeMs || 0) + duration;
 
         console.log("Break ended at:", currentTime);
         console.log("Break duration (ms):", duration);
