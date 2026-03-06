@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head><title>Dashboard</title></head>
+<head>
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .charts-section { margin-top: 24px; }
+        .chart-card {
+            max-width: 900px;
+            margin: 20px 0;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #fff;
+        }
+        .chart-card h4 { margin: 0 0 8px 0; }
+        .chart-caption { font-size: 0.9rem; color: #555; margin-top: 8px; }
+    </style>
+</head>
 <body>
     <h1>Analytics Dashboard 2</h1>
     <a href="/logout">Logout</a>
@@ -92,6 +108,79 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <section class="charts-section" aria-labelledby="charts-heading">
+        <h3 id="charts-heading">Charts</h3>
+
+        <article class="chart-card">
+            <h4>Performance Over Time</h4>
+            <figure>
+                <canvas id="perfChart"></canvas>
+                <figcaption class="chart-caption">Trend of total page load time across captured sessions.</figcaption>
+            </figure>
+        </article>
+
+        <article class="chart-card">
+            <h4>Activity Totals</h4>
+            <figure>
+                <canvas id="activityChart"></canvas>
+                <figcaption class="chart-caption">Aggregated interaction counts from captured activity events.</figcaption>
+            </figure>
+        </article>
+    </section>
+
+    <?php
+    $perfLabels = array_map(function($r) {
+        return date('m/d H:i', strtotime($r['created_at']));
+    }, $performanceData);
+
+    $perfValues = array_map(function($r) {
+        return (float)$r['total_load_time'];
+    }, $performanceData);
+
+    $totalMouse = array_sum(array_column($activityData, 'mouse_moves'));
+    $totalClicks = array_sum(array_column($activityData, 'clicks'));
+    $totalScroll = array_sum(array_column($activityData, 'scroll'));
+    $totalKeys = array_sum(array_column($activityData, 'key_presses'));
+    ?>
+
+    <script>
+    const perfLabels = <?= json_encode($perfLabels) ?>;
+    const perfValues = <?= json_encode($perfValues) ?>;
+
+    new Chart(document.getElementById('perfChart'), {
+        type: 'line',
+        data: {
+            labels: perfLabels,
+            datasets: [{
+                label: 'Total Load Time (ms)',
+                data: perfValues,
+                borderColor: '#0f6a9a',
+                backgroundColor: 'rgba(15,106,154,0.15)',
+                tension: 0.25,
+                fill: true
+            }]
+        },
+        options: { responsive: true }
+    });
+
+    new Chart(document.getElementById('activityChart'), {
+        type: 'bar',
+        data: {
+            labels: ['Mouse Moves', 'Clicks', 'Scroll', 'Key Presses'],
+            datasets: [{
+                label: 'Total Count',
+                data: [
+                    <?= (int)$totalMouse ?>,
+                    <?= (int)$totalClicks ?>,
+                    <?= (int)$totalScroll ?>,
+                    <?= (int)$totalKeys ?>
+                ]
+            }]
+        },
+        options: { responsive: true }
+    });
+    </script>
 
 </body>
 </html>
