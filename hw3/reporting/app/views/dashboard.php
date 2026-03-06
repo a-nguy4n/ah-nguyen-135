@@ -85,7 +85,6 @@
             <th>Error Count</th>
             <th>Idle Breaks</th>
             <th>Total Idle Time</th>
-            <th>Created At</th>
 
         </tr>
     </thead>
@@ -102,7 +101,6 @@
                 <td><?= $row['error_count'] ?></td>
                 <td><?= $row['idle_breaks'] ?></td>
                 <td><?= $row['total_idle_time_ms'] ?></td>
-                <td><?= $row['created_at'] ?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
