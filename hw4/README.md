@@ -48,5 +48,5 @@
   -  Our dashboard displays two interactive charts:
      1. **Performance Over Time (Line Chart)**: Shows page load times across all captured sessions. The data flows from MySQL → performanceData.php model → dashboardController.php → dashboard.php, where we take timestamps and `total_load_time` values, convert them to JSON with `json_encode()`, and pass them to Chart.js for rendering.
     
-    2. **Activity Totals (Bar Chart)**: Displays aggregated user interaction counts (mouse moves, clicks, key presses, idle time). The activityData.php model queries the MySQL activity table, then we sum each interaction type using `array_sum()` and `array_column()`, pass the totals to Chart.js, and render as a grouped bar chart.
+    2. **Activity Totals (Bar Chart)**: Displays user interaction counts (mouse moves, clicks, key presses, idle time). The activityData.php model queries the MySQL activity table, then we sum each interaction type using `array_sum()` and `array_column()`, pass the totals to Chart.js, and render as a grouped bar chart.
   - To simplify, our architecture is **MySQL Database → PHP Models (queries) → PHP Controller (data prep) → JavaScript (Chart.js rendering)**. 
