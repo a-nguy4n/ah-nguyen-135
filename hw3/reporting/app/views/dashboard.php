@@ -129,6 +129,13 @@
         </tbody>
     </table>
 
+
+    echo "<pre>";
+echo "Total rows: " . count($activityData) . "\n";
+echo "First row clicks: " . $activityData[0]['clicks'] . "\n";
+echo "Total clicks calculated: " . $totalClicks . "\n";
+echo "</pre>";
+
     <?php
     $perfLabels = array_map(function($r) {
         return date('m/d H:i', strtotime($r['created_at']));
