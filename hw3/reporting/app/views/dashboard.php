@@ -15,10 +15,10 @@
 <head><title>Dashboard</title></head>
 <body>
     <h1>Analytics Dashboard</h1>
-    <p>Welcome, <?= $_SESSION['user'] ?></p>
+    <h2>Welcome, <?= $_SESSION['user'] ?></h2>
     <a href="/logout">Logout</a>
 
-    <h2>Static Data</h2>
+    <h3>Static Data</h3>
     <table border="1">
         <thead>
             <tr>
@@ -48,7 +48,7 @@
         </tbody>
     </table>
 
-    <h2>Performance Data</h2>
+    <h3>Performance Data</h3>
     <table border="1">
     <thead>
         <tr>
@@ -71,7 +71,7 @@
         </tbody>
     </table>
 
-    <h2>Activity Data</h2>
+    <h3>Activity Data</h3>
     <table border="1">
     <thead>
         <tr>
