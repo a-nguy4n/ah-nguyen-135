@@ -40,5 +40,7 @@
 
 
 - Part 2: Connecting our Datastore to a Data Table / Grid
+  - We decided to display the static, performance, and activity data in a table. We chose data we felt was most important and added it to the table. To accomplish this, we had to connect the MySQL database on our server to an HTML table on the dashboard page. dashboardController.php fetches data from our server from MySQL and passes it to dashboard.php which renders it as a raw HTML table. We then created php files for each type of data collected (staticData.php, performanceData.php, activityData.php) to query each respective table in MySQL and return all the necessary rows.
+  
 
 - Part 3: Connection our Datastore to a Chart
