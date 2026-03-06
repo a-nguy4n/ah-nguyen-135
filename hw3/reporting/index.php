@@ -16,6 +16,12 @@ switch ($uri) {
     case '/dashboard':
         require APP . '/controllers/dashboardController.php';
         break;
+
+    // Dash Duplicate will delete later, just for testing
+    case '/dashtwo':
+        require APP . '/controllers/dashTwo.php';
+        break;
+
     case '/logout':
         session_destroy();
         header('Location: /login');
