@@ -16,5 +16,8 @@ require APP . '/models/activityData.php';
 $model = new activityData();
 $activityData = $model->getAll();
 
+$activityData = $model->getAll();
+var_dump(count($activityData));
+
 require APP . '/views/dashboard.php';
 ?>
