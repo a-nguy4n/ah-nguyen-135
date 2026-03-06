@@ -148,7 +148,7 @@
         return is_array($keys) ? count($keys) : 0;
     }, $activityData));
     $totalScroll = array_sum(array_column($activityData, 'scroll'));
-    $totalIdle = array_sum(array_column($activityData, 'total_idle_time_ms'));
+    $totalIdle = round(array_sum(array_column($activityData, 'total_idle_time_ms')) / 1000);
     ?>
 
     <script>
@@ -174,7 +174,7 @@
         new Chart(document.getElementById('activityChart'), {
             type: 'bar',
             data: {
-                labels: ['Mouse Moves', 'Clicks', 'Key Presses', 'Total Idle Time (ms)'],
+                labels: ['Mouse Moves', 'Clicks', 'Key Presses', 'Total Idle Time (s)'],
                 datasets: [{
                     label: 'Total Count',
                     data: [
