@@ -19,12 +19,19 @@
 
 ## Homework 4 Detailing 
 
-- URL:  
+- URL:  https://reporting.ah-nguyen.site/
 
-- Username:
+- Username: grader
 
-- Password: 
+- Password: password 
 
-- Part 1: 
-- Part 2:
-- Part 3: 
+- Part 1: MVC Scaffold 
+  - Models are inside staticData.php, performanceData.php, and activityData.php 
+  - Views are login.php and dashboard.php
+  - Controllers are authController.php and dashboardController.php
+
+  https://collector.ah-nguyen.site/
+
+- Part 2: Connecting our Datastore to a Data Table / Grid
+
+- Part 3: Connection our Datastore to a Chart
