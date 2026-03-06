@@ -14,7 +14,7 @@
 <html>
 <head><title>Dashboard</title></head>
 <body>
-    <h1>Analytics Dashboard</h1>
+    <h1>Analytics Dashboard 2</h1>
     <a href="/logout">Logout</a>
 
     <h3>Static Data</h3>
