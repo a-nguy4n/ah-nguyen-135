@@ -15,7 +15,6 @@
 <head><title>Dashboard</title></head>
 <body>
     <h1>Analytics Dashboard</h1>
-    <h2>Welcome, <?= $_SESSION['user'] ?></h2>
     <a href="/logout">Logout</a>
 
     <h3>Static Data</h3>
