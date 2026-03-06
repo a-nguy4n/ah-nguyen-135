@@ -268,7 +268,8 @@
         idleStartAt: null,
         idleEndAt: null,
         idleDurationMs: null,
-        breaks: [] 
+        breaks: [],
+        totalIdleTimeMs: 0 
       },
 
       pageUrl: null
