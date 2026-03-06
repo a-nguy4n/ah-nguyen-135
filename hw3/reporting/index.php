@@ -18,7 +18,7 @@ switch ($uri) {
         break;
 
     // Dash Duplicate will delete later, just for testing
-    case '/dashTwo':
+    case '/dashtwo':
         require APP . '/controllers/dashTwo.php';
         break;
 
