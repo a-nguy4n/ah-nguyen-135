@@ -4,6 +4,11 @@ if (empty($_SESSION['user'])) {
     exit;
 }
 
+if (empty($_SESSION['role'])) {
+    header('Location: /login');
+    exit;
+}
+
 require APP . '/models/activityData.php';
 $model = new activityData();
 $activityData = $model->getAll();
