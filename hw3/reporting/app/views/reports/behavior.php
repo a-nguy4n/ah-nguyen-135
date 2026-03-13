@@ -177,8 +177,8 @@
             </script>
         </section>
 
-        <section id="behavior-comments">
-            <h2>Behavior Comments<?php if (!empty($comments)) echo ' (' . count($comments) . ')'; ?></h2>
+        <section id="analyst-comments">
+            <h2>Analyst Comments<?php if (!empty($comments)) echo ' (' . count($comments) . ')'; ?></h2>
 
             <?php if (!empty($comments)): ?>
                 <?php foreach ($comments as $c): ?>
