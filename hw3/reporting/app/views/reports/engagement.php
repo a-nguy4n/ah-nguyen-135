@@ -39,6 +39,30 @@
         </tbody>
     </table>
 
+    <h2> Session Engagement </h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Session ID</th>
+                <th>Time On Page (ms)</th>
+                <th>Mouse Moves</th>
+                <th>Click Count</th>
+                <th>Total Idle Time (s)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($activityData as $row): ?>
+            <tr>
+                <td><?= $row['session_id'] ?></td>
+                <td><?= $row['time_on_page_ms'] ?></td>
+                <td><?= $row['mouse_moves'] ?></td>
+                <td><?= count(json_decode($row['clicks'], true) ?? []) ?></td>
+                <td><?= round($row['total_idle_time_ms'] / 1000, 1) ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
     <?php
     $networkCounts = [];
     foreach ($staticData as $row) {
@@ -47,8 +71,11 @@
     }
     ?>
 
-    <h2>Network Types</h2>
-    <canvas id="networkChart" style="max-width:600px"></canvas>
+    <h2>Network Type Distribution</h2>
+    <canvas id="networkChart" style="max-width:500px"></canvas>
+
+    <h2>Time On Page Per Session</h2>
+    <canvas id="timeChart" style="max-width:800px"></canvas>
 
     <script>
     new Chart(document.getElementById('networkChart'), {
@@ -57,16 +84,35 @@
             labels: <?= json_encode(array_keys($networkCounts)) ?>,
             datasets: [{
                 data: <?= json_encode(array_values($networkCounts)) ?>,
-                backgroundColor: [
-                    'rgba(54, 162, 235, 0.7)',
-                    'rgba(255, 99, 132, 0.7)',
-                    'rgba(75, 192, 192, 0.7)',
-                    'rgba(255, 159, 64, 0.7)'
-                ]
+                backgroundColor: ['#4e79a7','#f28e2b','#e15759','#76b7b2'],
+                borderWidth: 2,
+                borderColor: '#fff'
             }]
         },
-        options: { responsive: true }
+        options: {
+            responsive: true,
+            plugins: { legend: { position: 'bottom' } }
+        }
+    });
+
+    new Chart(document.getElementById('timeChart'), {
+        type: 'bar',
+        data: {
+            labels: <?= json_encode($sessionLabels) ?>,
+            datasets: [{
+                label: 'Time On Page (ms)',
+                data: <?= json_encode($timeOnPage) ?>,
+                backgroundColor: '#4e79a7',
+                borderRadius: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true } }
+        }
     });
     </script>
+
 </body>
 </html>
