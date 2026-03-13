@@ -57,7 +57,8 @@
                         <tbody>
                             <?php foreach ($savedReports as $report): ?>
                                 <tr>
-                                    <td><?= htmlspecialchars($report['title']) ?></td>
+                                    <?php $displayTitle = preg_replace('/\s-\s\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}$/', '', $report['title']); ?>
+                                    <td><?= htmlspecialchars($displayTitle) ?></td>
                                     <td><?= htmlspecialchars(ucfirst($report['report_type'])) ?></td>
                                     <td><?= htmlspecialchars($report['created_by']) ?></td>
                                     <td><?= htmlspecialchars($report['created_at']) ?></td>
