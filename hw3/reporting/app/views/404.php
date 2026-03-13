@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Page Not Found</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="/project/dashboard.css">
+    <link rel="stylesheet" href="/project/error-pages-style/error-page-style.css">
 </head>
 <body>
     <h1><b>404<b></h1>
