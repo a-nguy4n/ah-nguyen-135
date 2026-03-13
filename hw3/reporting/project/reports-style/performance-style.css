@@ -37,16 +37,6 @@ section{
     height: fit-content;
 }
 
-table{
-    width: 100%;
-    table-layout: fixed;
-}
-
-th,
-td{
-    overflow-wrap: anywhere;
-}
-
 #perfChart{
     width: 100% !important;
     max-width: 100%;

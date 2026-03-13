@@ -236,8 +236,6 @@ main{
 
 
 /** General Shared Styles for all Reports **/
-
-
 body[data-report-type="performance"]{
     --report-title-color: var(--performance-background);
     --section-card-color: var(--performance-background);
@@ -270,10 +268,23 @@ section{
 
 section > h2{
     margin: 2%;
+    padding: 3%;
     font-family: var(--report-title-font);
     font-size: var(--text-large);
     font-weight: 500;
     color: var(--subheader-font-color);
+}
+
+table{
+    width: 100%;
+    table-layout: fixed;
+    background-color: white;
+}
+
+th,
+td{
+    overflow-wrap: anywhere;
+    font-family: var(--archivo-font);
 }
 
 

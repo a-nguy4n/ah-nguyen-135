@@ -132,8 +132,8 @@
                 options: {
                     responsive: true,
                     indexAxis: 'y',
-                    plugins: { legend: { display: false } },
-                    scales: { x: { beginAtZero: true } }
+                    plugins: { legend: { display: false, labels: { font: { family: 'Archivo Black, sans-serif' } } } },
+                    scales: { x: { beginAtZero: true, ticks: { font: { family: 'Archivo Black, sans-serif' } } } }
                 }
             });
 
@@ -150,8 +150,8 @@
                 },
                 options: {
                     responsive: true,
-                    plugins: { legend: { display: false } },
-                    scales: { y: { beginAtZero: true } }
+                    plugins: { legend: { display: false, labels: { font: { family: 'Archivo Black, sans-serif' } } } },
+                    scales: { y: { beginAtZero: true, ticks: { font: { family: 'Archivo Black, sans-serif' } } } }
                 }
             });
         </script>

@@ -106,7 +106,16 @@
                     ]
                 }]
             },
-            options: { responsive: true }
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { labels: { font: { family: 'Archivo Black, sans-serif' } } }
+                },
+                scales: {
+                    x: { ticks: { font: { family: 'Archivo Black, sans-serif' } } },
+                    y: { ticks: { font: { family: 'Archivo Black, sans-serif' } } }
+                }
+            }
         });
         </script>
     </main>
