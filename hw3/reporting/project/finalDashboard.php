@@ -22,7 +22,6 @@
                 <li><a class="nav-link" href="/reports/performance">Performance</a></li>
                 <li><a class="nav-link" href="/reports/behavior">Behavior</a></li>
                 <li><a class="nav-link" href="/reports/engagement">Engagement</a></li>
-                <li><a class="nav-link" href="#">Saved Reports</a></li>
                 <li><a class="nav-link" href="/admin/users">User Management</a></li>
             </ul>
         </nav>
