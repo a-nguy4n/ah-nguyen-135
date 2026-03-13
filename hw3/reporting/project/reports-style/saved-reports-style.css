@@ -32,6 +32,21 @@ main > h1{
     text-align: left;
 }
 
+#saved-reports-section th:nth-child(1),
+#saved-reports-section td:nth-child(1){
+    width: 42%;
+}
+
+#saved-reports-section th:nth-child(3),
+#saved-reports-section td:nth-child(3){
+    width: 11%;
+}
+
+#saved-reports-section th:nth-child(5),
+#saved-reports-section td:nth-child(5){
+    width: 8%;
+}
+
 .saved-report-link{
     display: inline-flex;
     align-items: center;
