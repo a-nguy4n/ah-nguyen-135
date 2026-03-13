@@ -154,9 +154,16 @@
                 },
                 options: {
                     responsive: true,
+                    maintainAspectRatio: false,
+                    layout: {
+                        padding: { top: 8, right: 16, bottom: 12, left: 16 }
+                    },
                     indexAxis: 'y',
                     plugins: { legend: { display: false, labels: { font: { family: 'Archivo Black, sans-serif' } } } },
-                    scales: { x: { beginAtZero: true, ticks: { font: { family: 'Archivo Black, sans-serif' } } } }
+                    scales: {
+                        x: { beginAtZero: true, ticks: { font: { family: 'Archivo Black, sans-serif' } } },
+                        y: { ticks: { font: { family: 'Archivo Black, sans-serif' } } }
+                    }
                 }
             });
 
@@ -173,8 +180,15 @@
                 },
                 options: {
                     responsive: true,
+                    maintainAspectRatio: false,
+                    layout: {
+                        padding: { top: 8, right: 16, bottom: 12, left: 16 }
+                    },
                     plugins: { legend: { display: false, labels: { font: { family: 'Archivo Black, sans-serif' } } } },
-                    scales: { y: { beginAtZero: true, ticks: { font: { family: 'Archivo Black, sans-serif' } } } }
+                    scales: {
+                        x: { ticks: { font: { family: 'Archivo Black, sans-serif' } } },
+                        y: { beginAtZero: true, ticks: { font: { family: 'Archivo Black, sans-serif' } } }
+                    }
                 }
             });
 
