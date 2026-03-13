@@ -11,7 +11,7 @@ if (empty($_SESSION['role'])) {
 
 if ($_SESSION['role'] === 'analyst') {
     $allowed = explode(',', $_SESSION['sections'] ?? '');
-    if (!in_array('performance', $allowed)) {
+    if (!in_array('engagement', $allowed)) {
         http_response_code(403);
         require APP . '/views/403.php';
         exit;
