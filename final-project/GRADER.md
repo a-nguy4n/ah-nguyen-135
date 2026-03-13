@@ -48,6 +48,13 @@ Areas of Concern:
 - Saved reports are currently PDF snapshot based; publish/unpublish workflow is not implemented yet.
 - Saved reports list currently has no search/filter/pagination.
 - CSRF protections can be further improved for write actions.
+- Saved report persistence depends on writable server storage directories; in locked-down hosting environments this may need manual permission configuration.
+- Saved report titles are generated automatically and can become repetitive if many reports are saved in a short time window.
+- Analyst section checks currently rely on comma-separated `sections` in session/database values; malformed spacing or unexpected values could cause access confusion.
+- Error/edge handling on large PDF generation jobs is basic; very large datasets may produce slower export response times.
+- There is limited user feedback messaging after some actions (like save/export failures), which can make troubleshooting less obvious to end users.
+- Session security can be strengthened further with additional hardening (session regeneration timing, tighter cookie flags in all deployment contexts).
+- Frontend table and chart views are optimized for current dataset sizes; significantly larger data volumes may require pagination/aggregation for better UX.
 
 
 
