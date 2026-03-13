@@ -21,6 +21,7 @@ section{
 
 #user-add-section{
     grid-area: add-user;
+    width: fit-content;
 }
 
 #user-list-section{
