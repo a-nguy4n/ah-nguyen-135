@@ -136,36 +136,44 @@ $dompdf->setPaper('A4', $paperOrientation);
 $dompdf->render();
 $pdfOutput = $dompdf->output();
 
-$exportsDir = ROOT . '/project/exports';
-$canPersistToExports = true;
-
-if(!is_dir($exportsDir) && !@mkdir($exportsDir, 0755, true)){
-    $canPersistToExports = false;
-}
-
-if($canPersistToExports && !is_writable($exportsDir)){
-    $canPersistToExports = false;
-}
-
 $fileName = $filePrefix . date('Ymd-His') . '-' . bin2hex(random_bytes(4)) . '.pdf';
-$filePath = $exportsDir . '/' . $fileName;
-$didPersist = false;
+$candidateDirs = [
+    ROOT . '/project/exports',
+    ROOT . '/exports',
+    sys_get_temp_dir() . '/reporting-exports'
+];
 
-if($canPersistToExports){
-    $didPersist = @file_put_contents($filePath, $pdfOutput) !== false;
+$didPersist = false;
+$persistedPath = null;
+
+foreach($candidateDirs as $dir){
+    if(!is_dir($dir) && !@mkdir($dir, 0755, true)){
+        continue;
+    }
+
+    if(!is_writable($dir)){
+        continue;
+    }
+
+    $candidateFilePath = rtrim($dir, '/') . '/' . $fileName;
+    if(@file_put_contents($candidateFilePath, $pdfOutput) !== false){
+        $didPersist = true;
+        $persistedPath = $candidateFilePath;
+        break;
+    }
 }
 
 if($mode === 'save'){
     if(!$didPersist){
         http_response_code(500);
-        echo 'Could not save report snapshot. Ensure /project/exports exists and is writable by PHP.';
+        echo 'Could not save report snapshot. Ensure at least one writable directory exists: /project/exports, /exports, or system temp.';
         exit;
     }
 
     require APP . '/models/savedReportModel.php';
     $savedReportModel = new savedReportModel();
     $title = ucfirst($reportType) . ' Report - ' . date('Y-m-d H:i');
-    $savedReportModel->create($reportType, $title, $fileName, '/project/exports/' . $fileName, $_SESSION['user']);
+    $savedReportModel->create($reportType, $title, $fileName, $persistedPath, $_SESSION['user']);
 
     header('Location: /saved-reports');
     exit;
@@ -188,8 +196,16 @@ if($mode === 'export'){
         exit;
     }
 
+    if(str_starts_with($persistedPath, ROOT . '/project/exports/')){
         header('Location: /project/exports/' . rawurlencode($fileName));
         exit;
+    }
+
+    header('Content-Type: application/pdf');
+    header('Content-Disposition: attachment; filename="' . $fileName . '"');
+    header('Cache-Control: private, max-age=0, must-revalidate');
+    echo $pdfOutput;
+    exit;
 }
 
 exit;

@@ -24,7 +24,20 @@ if ($uriPath === '/saved-reports/download') {
         exit;
     }
 
-    $filePath = ROOT . '/project/exports/' . basename($report['file_name']);
+    $storedPath = $report['file_path'] ?? '';
+    $filePath = $storedPath;
+
+    if (!str_starts_with($storedPath, '/')) {
+        $filePath = ROOT . '/' . ltrim($storedPath, '/');
+    }
+
+    if (!is_file($filePath) && !empty($report['file_name'])) {
+        $legacyPath = ROOT . '/project/exports/' . basename($report['file_name']);
+        if (is_file($legacyPath)) {
+            $filePath = $legacyPath;
+        }
+    }
+
     if (!is_file($filePath)) {
         http_response_code(404);
         require APP . '/views/404.php';
