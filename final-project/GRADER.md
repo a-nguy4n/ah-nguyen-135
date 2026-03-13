@@ -13,6 +13,19 @@ Credentials
   - Username: guest; password: guest
 
 Our Scenario: 
+1. Visit https://reporting.ah-nguyen.site — you should see the login page
+2. Try typing https://reporting.ah-nguyen.site/dashboard directly — you should be redirected to login
+3. Log in as 'grader' which has the role of analyst, you should see the dashboard with links to all three reports
+4. Visit the performance report 
+5. Visit the behavior report 
+6. Visit the engagement report 
+7. Log out and log in as 'engagement' which has the role analyst but is restricted to the engagement report 
+8. Click on the performance report, you should be redirected to a 403 page
+9. Click on the engagement report, this should work
+10. Log out and log in as 'guest' which has a viewer role 
+11. Click on performance reports and verify that you cannot add a comment
+12. Log out and log in as 'haley' which has a super admin role 
+13. Visit the user management tab and verify that you could create a user if needed
 
 - To Check out and Access 403 Error Page: 
   1. Log in with the Analyst or Viewer credentials listed above.

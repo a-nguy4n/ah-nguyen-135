@@ -7,8 +7,8 @@ Link to Deployed Site:
 - https://ah-nguyen.site/ 
 
 AI Usage Mentions 
-
 Observation & Commentary on AI Usage 
+- Claude.ai was used to help set up the boilerplate for analyst comments. It was not used as a final solution but more of a starting point which was then applied to all controller pages. 
 
 Roadmap (Our Steps + Future Steps)
 
