@@ -31,7 +31,6 @@ Roadmap (Our Steps + Future Steps)
     - Sources:
         - https://github.com/dompdf/dompdf for HTML to PDF converter
 
-
 - Dashboard + Reports UI: 
     - First design the dashboard that gives access points to each report type 
         - Each report type is scoped to its own page and card on dash 
