@@ -25,38 +25,6 @@ $generatedAt = date('Y-m-d H:i:s');
 $pdfStylesPath = ROOT . '/project/pdfs-style/pdf-style.css';
 $pdfStyles = file_exists($pdfStylesPath) ? file_get_contents($pdfStylesPath) : '';
 
-$perfLabels = array_map(function ($row) {
-    return date('m/d H:i', strtotime((string)($row['created_at'] ?? 'now')));
-}, $performanceData);
-
-$perfValues = array_map(function ($row) {
-    return (float)($row['total_load_time'] ?? 0);
-}, $performanceData);
-
-$chartConfig = [
-    'type' => 'line',
-    'data' => [
-        'labels' => $perfLabels,
-        'datasets' => [[
-            'label' => 'Total Load Time (ms)',
-            'data' => $perfValues,
-            'borderColor' => '#0f6a9a',
-            'backgroundColor' => 'rgba(15,106,154,0.15)',
-            'fill' => true,
-            'tension' => 0.25,
-        ]],
-    ],
-    'options' => [
-        'plugins' => [
-            'legend' => [
-                'display' => true,
-            ],
-        ],
-    ],
-];
-
-$chartImageUrl = 'https://quickchart.io/chart?width=1000&height=360&c=' . rawurlencode(json_encode($chartConfig));
-
 ob_start();
 require APP . '/views/reports/for-exports/performance-pdf.php';
 $html = ob_get_clean();

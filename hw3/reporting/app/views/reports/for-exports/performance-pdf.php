@@ -9,13 +9,6 @@
     <h1>Performance Report</h1>
     <p>Generated at: <?= htmlspecialchars($generatedAt, ENT_QUOTES, 'UTF-8') ?></p>
 
-    <h2>Load Time Over Time</h2>
-    <div class="chart-block">
-        <img class="chart-image" src="<?= htmlspecialchars($chartImageUrl, ENT_QUOTES, 'UTF-8') ?>" alt="Performance chart" />
-    </div>
-
-    <h2>Page Load Times</h2>
-
     <table>
         <thead>
             <tr>

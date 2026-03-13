@@ -10,11 +10,6 @@ h1{
 	font-size: 1.1rem;
 }
 
-h2{
-	margin: 1rem 0 0.35rem 0;
-	font-size: 0.95rem;
-}
-
 p{
 	margin: 0 0 1.5% 0;
 	color: #444;
@@ -36,15 +31,4 @@ td{
 
 th{
 	background: #f3f3f3;
-}
-
-.chart-block{
-	margin: 0.35rem 0 0.75rem 0;
-}
-
-.chart-image{
-	display: block;
-	width: 100%;
-	height: auto;
-	border: 1px solid #d0d0d0;
 }
