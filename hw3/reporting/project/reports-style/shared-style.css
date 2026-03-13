@@ -276,13 +276,17 @@ section > h2{
 }
 
 .pdf-button{
-    padding: 2% 3%;
+    padding: 2%;
     font-size: var(--text-medium);
     color: var(--font-color);
     background-color: white;
     border: none;
     border-radius: 99px;
     cursor: pointer;
+}
+
+.pdf-button:hover{
+    color: var(--report-title-color);
 }
 
 table{
