@@ -39,12 +39,12 @@
         </tbody>
     </table>
 
-    <h2> Session Engagement </h2>
+    <h2>Session Engagement</h2>
     <table border="1">
         <thead>
             <tr>
                 <th>Session ID</th>
-                <th>Time On Page (ms)</th>
+                <th>Time On Page (s)</th>
                 <th>Mouse Moves</th>
                 <th>Click Count</th>
                 <th>Total Idle Time (s)</th>
@@ -54,7 +54,7 @@
             <?php foreach ($activityData as $row): ?>
             <tr>
                 <td><?= $row['session_id'] ?></td>
-                <td><?= $row['time_on_page_ms'] ?></td>
+                <td><?= round($row['time_on_page_ms'] / 1000, 1) ?></td>
                 <td><?= $row['mouse_moves'] ?></td>
                 <td><?= count(json_decode($row['clicks'], true) ?? []) ?></td>
                 <td><?= round($row['total_idle_time_ms'] / 1000, 1) ?></td>
@@ -75,10 +75,9 @@
     }, $activityData);
 
     $timeOnPage = array_map(function($r) {
-        return (int)$r['time_on_page_ms'];
+        return round($r['time_on_page_ms'] / 1000, 1);
     }, $activityData);
     ?>
-
 
     <h2>Network Type Distribution</h2>
     <canvas id="networkChart" style="max-width:500px"></canvas>
@@ -109,7 +108,7 @@
         data: {
             labels: <?= json_encode($sessionLabels) ?>,
             datasets: [{
-                label: 'Time On Page (ms)',
+                label: 'Time On Page (s)',
                 data: <?= json_encode($timeOnPage) ?>,
                 backgroundColor: '#4e79a7',
                 borderRadius: 4
