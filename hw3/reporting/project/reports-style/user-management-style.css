@@ -141,6 +141,11 @@ section{
     text-align: center;
 }
 
+#user-list-section td{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
 /* Narrow ID column; remaining 4 columns share space equally */
 #user-list-section th:nth-child(1),
 #user-list-section td:nth-child(1){
