@@ -34,6 +34,11 @@ section{
     max-width: 100%;
 }
 
+#performance-analyst-comments{
+    grid-area: analyst-card;
+    place-self: start;
+}
+
 #performance-load-time{
     grid-area: card-one;
 }
@@ -46,7 +51,3 @@ section{
     justify-content: center;
 }
 
-#analyst-comments{
-    grid-area: analyst-card;
-    place-self: start;
-}

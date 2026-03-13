@@ -9,26 +9,22 @@
 </head>
 <body data-report-type="performance">
     <header>
-        <a href="/project/dashboard.html" class="site-title">
+        <a href="/dashboard" class="site-title">
             <h1>
                 <span class="material-icons site-title-icon" aria-hidden="true">stacked_line_chart</span>
                 ANALYTICS DASHBOARD
             </h1>
         </a>
-
         <nav class="main-navigation" aria-label="Main Navigation">
             <ul class="nav-list">
                 <li><a class="nav-link" href="/dashboard">Dashboard</a></li>
                 <li><a class="nav-link active" href="/reports/performance">Performance</a></li>
                 <li><a class="nav-link" href="/reports/behavior">Behavior</a></li>
                 <li><a class="nav-link" href="/reports/engagement">Engagement</a></li>
-                <li><a class="nav-link" href="#">Saved Reports</a></li>
             </ul>
         </nav>
-
         <details class="user-menu">
-            <summary class="role-pill">Super Admin</summary>
-
+            <summary class="role-pill"><?= htmlspecialchars($_SESSION['role']) ?></summary>
             <ul class="dropdown">
                 <li><a class="logout" href="/logout">Logout</a></li>
             </ul>
@@ -38,10 +34,29 @@
     <main>
         <h1>Performance Report</h1>
 
-        <button type="button" class="pdf-button" onclick="window.location.href='/reports/performance/export/pdf'">
-            <span class="material-icons">download</span>
-            PDF
-        </button>
+        <section class="analyst-comments-card" id="performance-analyst-comments">
+            <h2>Analyst Comments<?php if (!empty($comments)) echo ' (' . count($comments) . ')'; ?></h2>
+
+            <?php if (!empty($comments)): ?>
+                <?php foreach ($comments as $c): ?>
+                    <p>
+                        <strong><?= htmlspecialchars($c['username']) ?></strong>
+                        (<?= htmlspecialchars($c['created_at']) ?>):
+                        <?= nl2br(htmlspecialchars($c['comment'])) ?>
+                    </p>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No comments yet.</p>
+            <?php endif; ?>
+
+            <?php if ($_SESSION['role'] !== 'viewer'): ?>
+                <form method="POST" action="/reports/performance">
+                    <textarea name="comment" rows="4" cols="50" maxlength="2000" required placeholder="Add your analysis..."></textarea>
+                    <br>
+                    <button type="submit">Save Comment</button>
+                </form>
+            <?php endif; ?>
+        </section>
 
         <section id="performance-load-time">
             <h2>Page Load Times</h2>
@@ -94,30 +109,6 @@
                 options: { responsive: true }
             });
             </script>
-        </section>
-
-        <section id="analyst-comments">
-            <h2>Analyst Comments<?php if (!empty($comments)) echo ' (' . count($comments) . ')'; ?></h2>
-
-            <?php if (!empty($comments)): ?>
-                <?php foreach ($comments as $c): ?>
-                    <p>
-                        <strong><?= htmlspecialchars($c['username']) ?></strong>
-                        (<?= htmlspecialchars($c['created_at']) ?>):
-                        <?= nl2br(htmlspecialchars($c['comment'])) ?>
-                    </p>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <p>No comments yet.</p>
-            <?php endif; ?>
-
-            <?php if ($_SESSION['role'] !== 'viewer'): ?>
-                <form method="POST" action="/reports/performance">
-                    <textarea name="comment" rows="4" cols="50" maxlength="2000" required placeholder="Add your analysis..."></textarea>
-                    <br>
-                    <button type="submit">Save Comment</button>
-                </form>
-            <?php endif; ?>
         </section>
     </main>
 </body>

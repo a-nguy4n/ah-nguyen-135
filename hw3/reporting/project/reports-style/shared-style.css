@@ -305,6 +305,10 @@ section > h2{
     color: var(--report-title-color);
 }
 
+.analyst-comments-card{
+    width: fit-content;
+}
+
 table{
     width: 100%;
     table-layout: fixed;
