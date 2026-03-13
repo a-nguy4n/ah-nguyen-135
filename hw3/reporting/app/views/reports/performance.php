@@ -38,12 +38,19 @@
     <main>
         <h1>Performance Report</h1>
         
+        <button class="pdf-button"> 
+                <span class="material-icons">
+                    download
+                </span>
+                PDF
+        </button>
+        
         <a href="/dashboard">Back to Dashboard</a> </br>
         <a href="/logout">Logout</a>
 
         <section id="performance-load-time"> 
             <h2>Page Load Times</h2>
-    
+
             <table border="1">
                 <thead>
                     <tr>

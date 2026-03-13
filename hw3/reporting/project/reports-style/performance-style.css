@@ -2,17 +2,32 @@
 main{
     display: grid;
     grid-template-areas: 
-            "report-title report-title"
+            "report-title pdf-button"
             "card-one     card-two";
     grid-template-columns: minmax(0, 30%) minmax(0, 1fr);
     gap: 3%;
-    margin: 3%;
-    padding: 2%;
+    margin: 1%;
+    padding: 0% 2% 0% 0%;
 }
 
 h1{
     grid-area: report-title;
     margin: 0;
+}
+
+.pdf-button{
+    grid-area: pdf-button;
+    justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5ch;
+    padding: 0.5ch 1ch;
+    font-size: var(--text-medium);
+    background-color: var(--pdf-button-bg-color);
+    color: var(--pdf-button-text-color);
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
 }
 
 section{
