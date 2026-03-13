@@ -60,6 +60,13 @@
     --report-title-font: var(--header-font);
     --report-title-size: clamp(20px, 2vw, 24px);
     --report-title-color: var(--font-color);
+
+    --text-small:  clamp(12px, 1.1vw, 14px);
+    --text-medium: clamp(14px, 1.4vw, 18px);
+    --text-large:  clamp(17px, 1.55vw, 21px);
+
+    --card-radius: 15px;
+
 }
 
 body{
@@ -233,14 +240,17 @@ main{
 
 body[data-report-type="performance"]{
     --report-title-color: var(--performance-background);
+    --section-card-color: var(--performance-background);
 }
 
 body[data-report-type="behavior"]{
     --report-title-color: var(--behavior-background);
+    --section-card-color: var(--behavior-background);
 }
 
 body[data-report-type="engagement"]{
     --report-title-color: var(--engagement-background);
+    --section-card-color: var(--engagement-background);
 }
 
 main > h1{
@@ -251,12 +261,21 @@ main > h1{
     color: var(--report-title-color);
 }
 
+section{
+    background: var(--section-card-color);
+    border-radius: var(--card-radius);
+    padding: 2%;
+    margin: 1%;
+}
+
 section > h2{
     margin: 0 0 1.5% 0;
     font-family: var(--report-title-font);
-    font-size: var(--report-title-size);
+    font-size: var(--text-large);
     font-weight: 500;
     color: var(--subheader-font-color);
 }
+
+
 
 
