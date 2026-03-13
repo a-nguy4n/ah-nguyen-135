@@ -77,7 +77,8 @@
 
 body{
     overflow-x: hidden;
-	margin: 2%;
+	margin: 0 2%;
+    padding-bottom: 2%;
 	background-color: var(--background-color);
 	color: var(--font-color);
 }
