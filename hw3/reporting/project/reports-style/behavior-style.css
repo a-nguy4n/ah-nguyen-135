@@ -5,8 +5,8 @@ main{
 			"links       links"
 			"time-table  movement-table"
 			"chart       chart";
-	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-	gap: 3%;
+	grid-template-columns: minmax(35%, 1fr) minmax(65%, 1fr);
+	gap: 5%;
 	margin: 1%;
 	padding: 0% 4% 0% 0.5%;
 }
