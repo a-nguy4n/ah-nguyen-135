@@ -39,10 +39,10 @@
         <h1>Performance Report</h1>
         
         <button class="pdf-button" onclick="window.location.href='/reports/performance/export/pdf'"> 
-                <span class="material-icons">
-                    download
-                </span>
-                PDF
+            <span class="material-icons">
+                download
+            </span>
+            PDF
         </button>
 
         <section id="performance-load-time"> 
