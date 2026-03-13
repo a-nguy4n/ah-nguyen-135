@@ -21,7 +21,7 @@
 
     /* Typography */
     --header-font: "Space Mono", monospace;
-    --archivo-font: "Archivo Black";
+    --archivo-font: "Archivo Black", sans-serif;
     --text-small:  clamp(12px, 1.1vw, 14px);
     --text-medium: clamp(14px, 1.4vw, 18px);
     --text-xlarge:  clamp(20px, 2vw, 24px);
