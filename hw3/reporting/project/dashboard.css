@@ -115,12 +115,27 @@ header{
     grid-area: title;
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
     margin: 0;
     justify-self: start;
-    font-size: var(--text-medium);
-    letter-spacing: 0.06em;
+    color: var(--font-color);
     text-decoration: none;
+}
+
+.site-title:visited,
+.site-title:hover,
+.site-title:active{
+    color: var(--font-color);
+    text-decoration: none;
+}
+
+.site-title h1{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0;
+    font-size: var(--text-medium);
+    font-weight: 400;
+    letter-spacing: 0.06em;
 }
 
 .site-title-icon{
