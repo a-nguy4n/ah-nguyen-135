@@ -4,12 +4,12 @@ if (empty($_SESSION['user'])) {
     exit;
 }
 
-require APP . '/models/activity.php';
+require APP . '/models/activityData.php';
 $model = new activityData();
 $activityData = $model->getAll();
 
-require APP . '/models/static.php';
-$model = new StaticModel();
+require APP . '/models/staticData.php';
+$model = new staticData();
 $staticData = $model->getAll();
 
 require APP . '/views/reports/engagement.php';
