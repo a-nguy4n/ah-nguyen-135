@@ -7,7 +7,7 @@ main{
 			"device-table  device-table"
 			"session-table session-table";
 	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-	column-gap: 2rem;
+	column-gap: 3rem;
 	row-gap: 1rem;
 	padding: 0% 4% 2rem 0.5%;
 }
@@ -50,9 +50,21 @@ section{
 	gap: 1rem;
 }
 
-#network-type-chart-section canvas,
-#time-on-page-chart-section canvas{
-	margin-inline: auto;
+.chart-frame{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	padding: 1rem;
+	box-sizing: border-box;
+}
+
+.network-chart-frame{
+	padding: 1rem 1.25rem 1.5rem;
+}
+
+.time-chart-frame{
+	padding: 0.75rem 1rem 1rem;
 }
 
 #device-environment-table-section{
@@ -71,17 +83,18 @@ section{
 #networkChart,
 #timeChart{
 	display: block;
-	width: 100% !important;
+	width: 100%;
 	max-width: 100%;
-	height: 320px !important;
+	height: 320px;
+	margin-inline: auto;
 }
 
 #networkChart{
-	width: min(100%, 500px) !important;
+	max-width: 500px;
 }
 
 #timeChart{
-	width: min(100%, 800px) !important;
+	max-width: 800px;
 }
 
 #device-environment-table-scroll,

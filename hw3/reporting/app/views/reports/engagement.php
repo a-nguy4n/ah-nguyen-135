@@ -85,12 +85,16 @@
 
         <section id="network-type-chart-section">
             <h2>Network Type Distribution</h2>
-            <canvas id="networkChart" style="max-width:500px"></canvas>
+            <div class="chart-frame network-chart-frame">
+                <canvas id="networkChart"></canvas>
+            </div>
         </section>
 
         <section id="time-on-page-chart-section">
             <h2>Time On Page Per Session</h2>
-            <canvas id="timeChart" style="max-width:800px"></canvas>
+            <div class="chart-frame time-chart-frame">
+                <canvas id="timeChart"></canvas>
+            </div>
         </section>
 
         <section id="device-environment-table-section">
