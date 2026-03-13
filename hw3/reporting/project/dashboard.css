@@ -10,7 +10,7 @@
 
 :root{
     /* Base colors */
-    --background-color: #F9EFE5;
+    --background-color: #F9EFE5;    
     --font-color: rgb(0, 0, 0);
     --pill-color: var(--menu-pill-bg-color);
     --hover-role: #3060ad;
