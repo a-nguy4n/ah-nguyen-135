@@ -45,6 +45,10 @@ section{
     width: 100%;
 }
 
+.user-role-form{
+    align-items: center;
+}
+
 #user-add-section input,
 #user-add-section select,
 .user-role-form select,
@@ -63,7 +67,7 @@ section{
 /* Narrower + visible gray border for inline table inputs */
 .user-role-form select,
 .user-role-form input[type="text"]{
-    width: 90%;
+    width: 86%;
     border: 1px solid #cccccc;
 }
 
@@ -142,6 +146,26 @@ section{
 #user-list-section td:nth-child(1){
     width: 3rem;
     text-align: center;
+}
+
+#user-list-section th:nth-child(2),
+#user-list-section td:nth-child(2){
+    width: 22%;
+}
+
+#user-list-section th:nth-child(3),
+#user-list-section td:nth-child(3){
+    width: 16%;
+}
+
+#user-list-section th:nth-child(4),
+#user-list-section td:nth-child(4){
+    width: 34%;
+}
+
+#user-list-section th:nth-child(5),
+#user-list-section td:nth-child(5){
+    width: 16%;
 }
 
 #user-list-section td form{
