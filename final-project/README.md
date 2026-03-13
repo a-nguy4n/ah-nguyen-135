@@ -11,7 +11,6 @@ Observation & Commentary on AI Usage
 Roadmap (Our Steps + Future Steps)
 
 - Adding 3 Layers of Users: 
-  -
 
 - Setting up Export System:
     - Ideally when we click the PDF download button on the any of our pages for the reports:
@@ -21,6 +20,9 @@ Roadmap (Our Steps + Future Steps)
         - A PDF library then converts that HTML into an actual PDF file
         - The server saves the PDF in an exports folder and returns:
             - either a download immediately, or a URL to open/share later
+    - Sources:
+        - https://github.com/dompdf/dompdf for HTML to PDF converter
+
 
 - Dashboard + Reports UI: 
     - First design the dashboard that gives access points to each report type 
