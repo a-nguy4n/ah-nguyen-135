@@ -4,9 +4,9 @@ Credentials
 
 - Super Admin: 
 
-- Admin 
+- Admin:
 
-- Report 
+- Reporter: 
 
 Our Scenario: 
 
