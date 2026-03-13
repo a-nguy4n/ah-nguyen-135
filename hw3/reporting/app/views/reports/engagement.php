@@ -4,6 +4,7 @@
     <title>Engagement Report</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/project/reports-style/shared-style.css">
+    <link rel="stylesheet" href="/project/reports-style/engagement-style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body data-report-type="engagement">
@@ -37,6 +38,11 @@
     <main>
 
         <h1>Engagement Report</h1>
+
+        <button class="pdf-button">
+            <span class="material-icons">download</span>
+            PDF
+        </button>
 
         <a href="/dashboard">Back to Dashboard</a> <br>
         <a href="/logout">Logout</a>
