@@ -36,16 +36,12 @@ $generatedAt = date('Y-m-d H:i:s');
 $pdfStylesPath = ROOT . '/project/pdfs-style/pdf-style.css';
 $pdfStyles = '';
 
-if (file_exists($pdfStylesPath)){
+if(file_exists($pdfStylesPath)){
     $loadedStyles = file_get_contents($pdfStylesPath);
     if($loadedStyles !== false){
         $pdfStyles = $loadedStyles;
     }
 }
-
-$viewPath = '';
-$filePrefix = '';
-$paperOrientation = 'portrait';
 
 $reportConfig = [
     'performance' => [
@@ -65,29 +61,34 @@ $reportConfig = [
     ],
 ];
 
-$viewPath = $reportConfig[$reportType]['viewPath'];
-$filePrefix = $reportConfig[$reportType]['filePrefix'];
-$paperOrientation = $reportConfig[$reportType]['paperOrientation'];
+$currentReportConfig = $reportConfig[$reportType];
+$viewPath = $currentReportConfig['viewPath'];
+$filePrefix = $currentReportConfig['filePrefix'];
+$paperOrientation = $currentReportConfig['paperOrientation'];
 
-if($reportType === 'performance'){
-    require APP . '/models/performanceData.php';
-    $performanceModel = new performanceData();
-    $performanceData = $performanceModel->getAll();
-}
-elseif($reportType === 'behavior'){
-    require APP . '/models/activityData.php';
-    $activityModel = new activityData();
-    $activityData = $activityModel->getAll();
-}
-else{
-    require APP . '/models/activityData.php';
-    require APP . '/models/staticData.php';
+switch($reportType){
+    case 'performance':
+        require APP . '/models/performanceData.php';
+        $performanceModel = new performanceData();
+        $performanceData = $performanceModel->getAll();
+        break;
 
-    $activityModel = new activityData();
-    $activityData = $activityModel->getAll();
+    case 'behavior':
+        require APP . '/models/activityData.php';
+        $activityModel = new activityData();
+        $activityData = $activityModel->getAll();
+        break;
 
-    $staticModel = new staticData();
-    $staticData = $staticModel->getAll();
+    case 'engagement':
+        require APP . '/models/activityData.php';
+        require APP . '/models/staticData.php';
+
+        $activityModel = new activityData();
+        $activityData = $activityModel->getAll();
+
+        $staticModel = new staticData();
+        $staticData = $staticModel->getAll();
+        break;
 }
 
 if(!file_exists($viewPath)){
@@ -100,7 +101,7 @@ ob_start();
 require $viewPath;
 $html = ob_get_clean();
 
-if(!is_string($html)) {
+if(!is_string($html)){
     http_response_code(500);
     echo 'Failed to render PDF HTML.';
     exit;

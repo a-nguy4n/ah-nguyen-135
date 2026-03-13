@@ -47,7 +47,6 @@ switch ($uri) {
         session_destroy();
         header('Location: /login');
         exit;
-        break;
         
     default:
         http_response_code(404);
