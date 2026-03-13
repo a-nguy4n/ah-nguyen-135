@@ -1,7 +1,7 @@
 
 const dropdowns = document.querySelectorAll(".dropdown");
 
-function closeAllDropdowns(except = null) {
+function closeAllDropdowns(except = null){
     dropdowns.forEach(d => {
         if (d !== except) {
         d.classList.remove("open");
@@ -20,23 +20,19 @@ dropdowns.forEach(dropdown => {
 
         const isOpen = dropdown.classList.contains("open");
 
-        // close all others first
         closeAllDropdowns(dropdown);
 
-        // toggle this one
         dropdown.classList.toggle("open", !isOpen);
         btn.setAttribute("aria-expanded", String(!isOpen));
     });
 });
 
-// click outside closes all
 document.addEventListener("click", (e) => {
     if (!e.target.closest(".dropdown")) {
         closeAllDropdowns();
     }
 });
 
-// optional: ESC closes all
 document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeAllDropdowns();
 });
