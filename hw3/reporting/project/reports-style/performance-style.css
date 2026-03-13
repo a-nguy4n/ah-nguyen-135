@@ -5,7 +5,8 @@ main{
             "report-title report-title"
             "card-one     card-two";
     grid-template-columns: 30% 1fr;
-    gap: 1.5%;
+    gap: 3%;
+    margin: 3%;
 }
 
 h1{
