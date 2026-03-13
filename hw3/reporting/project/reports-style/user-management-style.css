@@ -110,7 +110,7 @@ section{
 }
 
 #user-list-section table{
-    min-width: 760px;
+    width: max-content;
 }
 
 #user-list-section th,
