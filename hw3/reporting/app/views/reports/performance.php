@@ -1,3 +1,55 @@
+<?php
+// Minimal MySQLi-backed analyst comments (short form, uses reporting/config.php)
+require_once __DIR__ . '/../../../config.php'; // defines DB_HOST, DB_USER, DB_PASS, DB_NAME
+if (session_status() === PHP_SESSION_NONE) session_start();
+$reportKey = 'performance';
+
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+if ($conn->connect_errno) {
+    http_response_code(500);
+    echo 'DB connection failed: ' . $conn->connect_error;
+    exit;
+}
+
+// Handle POST (validate role + length) and persist to comments table
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment'])) {
+    if (empty($_SESSION['role']) || $_SESSION['role'] === 'viewer') {
+        http_response_code(403);
+        exit('Forbidden');
+    }
+
+    $text = trim((string)($_POST['comment'] ?? ''));
+    if ($text === '') {
+        $_SESSION['flash_error'] = 'Comment required';
+        header('Location: ' . $_SERVER['REQUEST_URI']);
+        exit;
+    }
+
+    $username = $_SESSION['username'] ?? 'Anonymous';
+
+    $stmt = $conn->prepare('INSERT INTO comments (`report`, `username`, `comment`) VALUES (?, ?, ?)');
+    $stmt->bind_param('sss', $reportKey, $username, $text);
+    $stmt->execute();
+    $stmt->close();
+
+    // PRG
+    header('Location: ' . $_SERVER['REQUEST_URI']);
+    exit;
+}
+
+// Load comments for display (newest first)
+$comments = [];
+$stmt = $conn->prepare('SELECT username, comment, created_at FROM comments WHERE `report` = ? ORDER BY created_at DESC');
+$stmt->bind_param('s', $reportKey);
+$stmt->execute();
+$result = $stmt->get_result();
+if ($result) {
+    $comments = $result->fetch_all(MYSQLI_ASSOC);
+}
+$stmt->close();
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,11 +90,11 @@
     <main>
         <h1>Performance Report</h1>
         
-        <button class="pdf-button" onclick="window.location.href='/reports/performance/export/pdf'"> 
-            <span class="material-icons">
-                download
-            </span>
-            PDF
+        <button class="pdf-button"> 
+                <span class="material-icons">
+                    download
+                </span>
+                PDF
         </button>
 
         <section id="performance-load-time"> 
@@ -113,7 +165,11 @@
 
         <!-- Analyst Comments -->
         <section id="analyst-comments">
-            <h2>Analyst Comments</h2>
+            <h2>Analyst Comments<?php if (!empty($comments)) echo ' (' . count($comments) . ')'; ?></h2>
+
+            <?php if (!empty($_SESSION['flash_error'])): ?>
+                <div class="flash-error"><?= htmlspecialchars($_SESSION['flash_error']); unset($_SESSION['flash_error']); ?></div>
+            <?php endif; ?>
 
             <?php if (!empty($comments)): ?>
                 <?php foreach ($comments as $c): ?>
@@ -127,7 +183,7 @@
                 <p>No comments yet.</p>
             <?php endif; ?>
 
-            <?php if (!empty($_SESSION['role']) && $_SESSION['role'] !== 'viewer'): ?>
+            <?php if (empty($_SESSION['role']) || $_SESSION['role'] !== 'viewer'): ?>
                 <form method="POST" action="/reports/performance">
                     <textarea name="comment" rows="4" cols="50" maxlength="2000" required placeholder="Add your analysis..."></textarea>
                     <br>
