@@ -21,7 +21,7 @@ section{
 
 #user-add-section{
     grid-area: add-user;
-    width: 50%;
+    width: 45%;
 }
 
 #user-list-section{
@@ -64,7 +64,8 @@ section{
 }
 
 #user-add-section button,
-#user-list-section button{
+.user-role-form button,
+.user-delete-form button{
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -111,9 +112,30 @@ section{
 #user-list-section th,
 #user-list-section td{
     white-space: nowrap;
+    vertical-align: middle;
+}
+
+/* Narrow + centered columns */
+#user-list-section th:nth-child(1),
+#user-list-section td:nth-child(1){
+    width: 3rem;
+    text-align: center;
+}
+
+#user-list-section th:nth-child(3),
+#user-list-section td:nth-child(3){
+    width: 8rem;
+    text-align: center;
+}
+
+#user-list-section th:nth-child(5),
+#user-list-section td:nth-child(5){
+    width: 5rem;
+    text-align: center;
 }
 
 #user-list-section td form{
     margin: 0;
+    justify-content: center;
 }
 
