@@ -44,12 +44,6 @@
             PDF
         </button>
 
-        <div class="report-links">
-            <a href="/dashboard">Back to Dashboard</a>
-            &nbsp;|&nbsp;
-            <a href="/logout">Logout</a>
-        </div>
-
         <section id="activity-time-table"> 
             <h2>Activity Time</h2>
             <div class="table-scroll">

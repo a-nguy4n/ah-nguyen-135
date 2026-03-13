@@ -44,9 +44,6 @@
                 </span>
                 PDF
         </button>
-        
-        <a href="/dashboard">Back to Dashboard</a> </br>
-        <a href="/logout">Logout</a>
 
         <section id="performance-load-time"> 
             <h2>Page Load Times</h2>
