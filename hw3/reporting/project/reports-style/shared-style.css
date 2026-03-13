@@ -67,6 +67,7 @@
     --text-large:  clamp(17px, 1.55vw, 21px);
 
     --card-radius: 15px;
+    --button-radius: 40px;
 
     --pdf-button-height: 2.25rem;
     --pdf-button-padding-x: 0.9rem;
@@ -315,6 +316,26 @@ section > h2{
 
 .analyst-comments-card{
     width: fit-content;
+}
+
+.analyst-comments-card button[type="submit"]{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 1rem;
+    border: none;
+    border-radius: var(--button-radius);
+    background: var(--menu-pill-bg-color);
+    color: var(--menu-pill-text-color);
+    cursor: pointer;
+    font-family: var(--header-font);
+    font-size: var(--text-small);
+    transition: background 0.2s, color 0.2s;
+}
+
+.analyst-comments-card button[type="submit"]:hover{
+    background: var(--hover-role);
+    color: var(--menu-pill-text-color);
 }
 
 table{
