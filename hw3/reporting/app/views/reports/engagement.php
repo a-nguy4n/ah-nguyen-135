@@ -39,7 +39,7 @@
 
         <h1>Engagement Report</h1>
 
-        <button class="pdf-button">
+        <button type="button" class="pdf-button" onclick="window.location.href='/reports/engagement/export/pdf'">
             <span class="material-icons">download</span>
             PDF
         </button>

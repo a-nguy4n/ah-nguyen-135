@@ -39,7 +39,7 @@
 
         <h1>Behavior Report</h1>
 
-        <button class="pdf-button">
+        <button type="button" class="pdf-button" onclick="window.location.href='/reports/behavior/export/pdf'">
             <span class="material-icons">download</span>
             PDF
         </button>
