@@ -24,27 +24,33 @@ main > h1{
 #saved-reports-section table{
     min-width: 760px;
     width: 100%;
+    table-layout: auto;
 }
 
 #saved-reports-section th,
 #saved-reports-section td{
     white-space: nowrap;
-    text-align: left;
+    text-align: center;
+    vertical-align: middle;
 }
 
 #saved-reports-section th:nth-child(1),
 #saved-reports-section td:nth-child(1){
-    width: 42%;
+    width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #saved-reports-section th:nth-child(3),
 #saved-reports-section td:nth-child(3){
-    width: 11%;
+    width: 1%;
+    white-space: nowrap;
 }
 
 #saved-reports-section th:nth-child(5),
 #saved-reports-section td:nth-child(5){
-    width: 8%;
+    width: 1%;
+    white-space: nowrap;
 }
 
 .saved-report-link{
