@@ -4,7 +4,7 @@ main{
     grid-template-areas: 
             "report-title pdf-button"
             "card-one     card-two";
-    grid-template-columns: minmax(0, 30%) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 35%) minmax(0, 1fr);
     gap: 3%;
     margin: 1%;
     padding: 0% 4% 0% 0.5%;
