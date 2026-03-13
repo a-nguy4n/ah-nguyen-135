@@ -113,10 +113,18 @@ header{
 
 .site-title{
     grid-area: title;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
     margin: 0;
     justify-self: start;
     font-size: var(--text-medium);
     letter-spacing: 0.06em;
+}
+
+.site-title-icon{
+    font-size: 1.25em;
+    line-height: 1;
 }
 
 footer{
@@ -226,7 +234,6 @@ footer{
 .dropdown li a{
     display: block;
     padding: 3%;
-    grid-area: menu;
     text-decoration: none;
     color: var(--dropdown-link-text-color);
     font-size: var(--dropdown-item-text);
@@ -314,7 +321,6 @@ footer{
                 "button";
     grid-template-rows: auto auto 1fr auto;
     row-gap: 1rem;
-    background: var(--glassy-color);
     border: 1px solid var(--card-border-color, rgba(255, 255, 255, 0.6));
     border-radius: var(--card-radius);
     box-shadow: var(--box-shadow);
@@ -324,7 +330,7 @@ footer{
 
 .analytics-card img{
     grid-area: icon;
-    width: var(--image-width, 25%);
+    width: 25%;
     margin-bottom: 10%;
 }
 
