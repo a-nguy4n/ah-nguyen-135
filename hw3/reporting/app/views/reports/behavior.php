@@ -176,6 +176,31 @@
                 setupShowMore('#activity-table-rows-events tr', 'activity-movement-show-more');
             </script>
         </section>
+
+        <section id="behavior-comments">
+            <h2>Behavior Comments<?php if (!empty($comments)) echo ' (' . count($comments) . ')'; ?></h2>
+
+            <?php if (!empty($comments)): ?>
+                <?php foreach ($comments as $c): ?>
+                    <p>
+                        <strong><?= htmlspecialchars($c['username']) ?></strong>
+                        (<?= htmlspecialchars($c['created_at']) ?>):
+                        <?= nl2br(htmlspecialchars($c['comment'])) ?>
+                    </p>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No comments yet.</p>
+            <?php endif; ?>
+
+            <?php if ($_SESSION['role'] !== 'viewer'): ?>
+                <form method="POST" action="/reports/performance">
+                    <textarea name="comment" rows="4" cols="50" maxlength="2000" required placeholder="Add your analysis..."></textarea>
+                    <br>
+                    <button type="submit">Save Comment</button>
+                </form>
+            <?php endif; ?>
+        </section>
+
     </main>
 </body>
 </html>
