@@ -279,6 +279,10 @@ footer{
     font-size: var(--text-xlarge);
     font-family: var(--header-font);
     font-weight: 400;
+    color: var(--font-color);
+}
+
+.overview-user-highlight{
     color: #72a1eb;
 }
 

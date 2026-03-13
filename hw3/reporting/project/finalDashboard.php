@@ -36,7 +36,7 @@
 
     <main>
         <section id="overview">
-            <h1>Welcome <?= htmlspecialchars($_SESSION['user']) ?> to the Analytics Dashboard!</h1>
+            <h1>Welcome <span class="overview-user-highlight"><?= htmlspecialchars($_SESSION['user']) ?></span> to the Analytics Dashboard!</h1>
             <p><i>Get insights into performance, user behavior, and engagement metrics.</i></p>
         </section>
 
