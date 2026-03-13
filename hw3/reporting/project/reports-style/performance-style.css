@@ -1,5 +1,20 @@
 
+main{
+    display: grid;
+    grid-template-areas: 
+            "card-one card-two";
+    grid-template-columns: auto;
+}
+
+
+section{
+    width: fit-content;
+}
 
 #performance-load-time{
+    grid-area: card-one;
+}
 
+#performance-load-over-time{
+    grid-area: card-two;
 }
