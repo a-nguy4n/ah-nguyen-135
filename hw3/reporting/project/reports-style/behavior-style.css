@@ -26,7 +26,6 @@ section{
 	min-width: 0;
 	width: 100%;
 	height: fit-content;
-    padding: 1.5%;
 }
 
 #activityChart{
@@ -40,10 +39,6 @@ section{
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-}
-
-#activity-totals-chart h2{
-	padding: 0.5%;
 }
 
 #activity-data-table{

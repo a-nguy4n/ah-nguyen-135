@@ -267,13 +267,13 @@ main > h1{
 section{
     background: var(--section-card-color);
     border-radius: var(--card-radius);
-    padding: 2%;
-    margin: 1%;
+    padding: 1rem;
+    margin: 0;
 }
 
 section > h2{
-    margin: 2%;
-    padding: 3%;
+    margin: 0 0 0.75rem 0;
+    padding: 0;
     font-family: var(--report-title-font);
     font-size: var(--text-large);
     font-weight: 500;
