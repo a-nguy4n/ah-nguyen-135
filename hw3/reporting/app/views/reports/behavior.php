@@ -44,6 +44,30 @@
             PDF
         </button>
 
+        <section class="analyst-comments-card" id="behavior-analyst-comments">
+            <h2>Analyst Comments<?php if (!empty($comments)) echo ' (' . count($comments) . ')'; ?></h2>
+
+            <?php if (!empty($comments)): ?>
+                <?php foreach ($comments as $c): ?>
+                    <p>
+                        <strong><?= htmlspecialchars($c['username']) ?></strong>
+                        (<?= htmlspecialchars($c['created_at']) ?>):
+                        <?= nl2br(htmlspecialchars($c['comment'])) ?>
+                    </p>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No comments yet.</p>
+            <?php endif; ?>
+
+            <?php if ($_SESSION['role'] !== 'viewer'): ?>
+                <form method="POST" action="/reports/behavior">
+                    <textarea name="comment" rows="4" cols="50" maxlength="2000" required placeholder="Add your analysis..."></textarea>
+                    <br>
+                    <button type="submit">Save Comment</button>
+                </form>
+            <?php endif; ?>
+        </section>
+
         <section id="activity-time-table"> 
             <h2>Activity Time</h2>
             <div class="table-scroll">
@@ -175,30 +199,6 @@
                 setupShowMore('#activity-table-rows-time tr', 'activity-time-show-more');
                 setupShowMore('#activity-table-rows-events tr', 'activity-movement-show-more');
             </script>
-        </section>
-
-        <section id="analyst-comments">
-            <h2>Analyst Comments<?php if (!empty($comments)) echo ' (' . count($comments) . ')'; ?></h2>
-
-            <?php if (!empty($comments)): ?>
-                <?php foreach ($comments as $c): ?>
-                    <p>
-                        <strong><?= htmlspecialchars($c['username']) ?></strong>
-                        (<?= htmlspecialchars($c['created_at']) ?>):
-                        <?= nl2br(htmlspecialchars($c['comment'])) ?>
-                    </p>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <p>No comments yet.</p>
-            <?php endif; ?>
-
-            <?php if ($_SESSION['role'] !== 'viewer'): ?>
-                <form method="POST" action="/reports/behavior">
-                    <textarea name="comment" rows="4" cols="50" maxlength="2000" required placeholder="Add your analysis..."></textarea>
-                    <br>
-                    <button type="submit">Save Comment</button>
-                </form>
-            <?php endif; ?>
         </section>
 
     </main>

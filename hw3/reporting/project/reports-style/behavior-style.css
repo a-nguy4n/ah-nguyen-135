@@ -1,9 +1,9 @@
 main{
 	display: grid;
 	grid-template-areas:
-			"report-title pdf-button"
-			"links       links"
-			"chart       time-table"
+			"report-title   pdf-button"
+			"analyst-card   analyst-card"
+			"chart          time-table"
 			"movement-table movement-table";
 	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 	gap: 5%;
@@ -87,6 +87,11 @@ section{
 #activityChart{
 	width: 100% !important;
 	max-width: 100%;
+}
+
+#behavior-analyst-comments{
+	grid-area: analyst-card;
+	place-self: start;
 }
 
 #activity-totals-chart{

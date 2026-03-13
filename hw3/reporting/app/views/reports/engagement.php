@@ -60,6 +60,30 @@
         }, $activityData);
         ?>
 
+        <section class="analyst-comments-card" id="engagement-analyst-comments">
+            <h2>Analyst Comments<?php if (!empty($comments)) echo ' (' . count($comments) . ')'; ?></h2>
+
+            <?php if (!empty($comments)): ?>
+                <?php foreach ($comments as $c): ?>
+                    <p>
+                        <strong><?= htmlspecialchars($c['username']) ?></strong>
+                        (<?= htmlspecialchars($c['created_at']) ?>):
+                        <?= nl2br(htmlspecialchars($c['comment'])) ?>
+                    </p>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No comments yet.</p>
+            <?php endif; ?>
+
+            <?php if ($_SESSION['role'] !== 'viewer'): ?>
+                <form method="POST" action="/reports/performance">
+                    <textarea name="comment" rows="4" cols="50" maxlength="2000" required placeholder="Add your analysis..."></textarea>
+                    <br>
+                    <button type="submit">Save Comment</button>
+                </form>
+            <?php endif; ?>
+        </section>
+
         <section id="network-type-chart-section">
             <h2>Network Type Distribution</h2>
             <canvas id="networkChart" style="max-width:500px"></canvas>
@@ -211,30 +235,6 @@
             setupShowMore('#device-environment-table-rows tr', 'device-environment-show-more');
             setupShowMore('#session-engagement-table-rows tr', 'session-engagement-show-more');
         </script>
-
-        <section id="analyst-comments">
-            <h2>Analyst Comments<?php if (!empty($comments)) echo ' (' . count($comments) . ')'; ?></h2>
-
-            <?php if (!empty($comments)): ?>
-                <?php foreach ($comments as $c): ?>
-                    <p>
-                        <strong><?= htmlspecialchars($c['username']) ?></strong>
-                        (<?= htmlspecialchars($c['created_at']) ?>):
-                        <?= nl2br(htmlspecialchars($c['comment'])) ?>
-                    </p>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <p>No comments yet.</p>
-            <?php endif; ?>
-
-            <?php if ($_SESSION['role'] !== 'viewer'): ?>
-                <form method="POST" action="/reports/performance">
-                    <textarea name="comment" rows="4" cols="50" maxlength="2000" required placeholder="Add your analysis..."></textarea>
-                    <br>
-                    <button type="submit">Save Comment</button>
-                </form>
-            <?php endif; ?>
-        </section>
 
     </main>
 

@@ -1,8 +1,8 @@
 main{
 	display: grid;
 	grid-template-areas:
-			"report-title pdf-button"
-			"links       links"
+			"report-title  pdf-button"
+			"analyst-card  analyst-card"
 			"network-chart time-chart"
 			"device-table  device-table"
 			"session-table session-table";
@@ -49,6 +49,11 @@ section{
 
 #session-engagement-table-section{
 	grid-area: session-table;
+}
+
+#engagement-analyst-comments{
+	grid-area: analyst-card;
+	place-self: start;
 }
 
 #networkChart,
