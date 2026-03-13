@@ -45,7 +45,7 @@
                     <option value="analyst">Analyst</option>
                     <option value="super_admin">Super Admin</option>
                 </select>
-                <input type="text" name="sections" placeholder="For example, performance or behavior">
+                <input type="text" name="sections" placeholder="Limited Sections (for analysts, e.g. performance,behavior)">
                 <button type="submit">Add User</button>
             </form>
         </section>
@@ -78,7 +78,7 @@
                                         <option value="analyst" <?= $user['role'] === 'analyst' ? 'selected' : '' ?>>Analyst</option>
                                         <option value="super_admin" <?= $user['role'] === 'super_admin' ? 'selected' : '' ?>>Super Admin</option>
                                     </select>
-                                    <input type="text" name="sections" value="<?= htmlspecialchars($user['sections'] ?? '') ?>" placeholder="For example, performance or behavior">
+                                    <input type="text" name="sections" value="<?= htmlspecialchars($user['sections'] ?? '') ?>" placeholder="Limited Sections (for analysts, e.g. performance,behavior)">
                                     <button type="submit">Update</button>
                                 </form>
                             </td>

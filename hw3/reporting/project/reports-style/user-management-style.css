@@ -75,6 +75,8 @@ section{
     align-items: center;
     justify-content: center;
     padding: 0.55rem 1rem;
+    width: fit-content;
+    align-self: flex-start;
     border: none;
     border-radius: var(--button-radius);
     background: #FF9063;
