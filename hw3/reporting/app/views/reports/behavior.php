@@ -58,23 +58,40 @@
                         <tr>
                             <th>Session ID</th>
                             <th>Time On Page (ms)</th>
-                            <th>Mouse Moves</th>
-                            <th>Click Count</th>
-                            <th>Key Presses</th>
-                            <th>Error Count</th>
                             <th>Total Idle Time (s)</th>
                         </tr>
                     </thead>
-                    <tbody id="activity-table-rows">
+                    <tbody id="activity-table-rows-time">
                         <?php foreach ($activityData as $row): ?>
                         <tr>
                             <td><?= $row['session_id'] ?></td>
                             <td><?= $row['time_on_page_ms'] ?></td>
+                            <td><?= round($row['total_idle_time_ms'] / 1000, 1) ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-scroll">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Session ID</th>
+                            <th>Mouse Moves</th>
+                            <th>Click Count</th>
+                            <th>Key Presses</th>
+                            <th>Error Count</th>
+                        </tr>
+                    </thead>
+                    <tbody id="activity-table-rows-events">
+                        <?php foreach ($activityData as $row): ?>
+                        <tr>
+                            <td><?= $row['session_id'] ?></td>
                             <td><?= $row['mouse_moves'] ?></td>
                             <td><?= count(json_decode($row['clicks'], true) ?? []) ?></td>
                             <td><?= count(json_decode($row['key_presses'], true) ?? []) ?></td>
                             <td><?= $row['error_count'] ?></td>
-                            <td><?= round($row['total_idle_time_ms'] / 1000, 1) ?></td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -135,7 +152,7 @@
                 }
             });
 
-            const activityRows = Array.from(document.querySelectorAll('#activity-table-rows tr'));
+            const activityRows = Array.from(document.querySelectorAll('#activity-table-rows-time tr, #activity-table-rows-events tr'));
             const showMoreButton = document.getElementById('activity-show-more');
             const defaultVisibleRows = 8;
             let expanded = false;
