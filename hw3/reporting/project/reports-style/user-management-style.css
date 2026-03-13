@@ -60,6 +60,13 @@ section{
     color: var(--font-color);
 }
 
+/* Narrower + visible gray border for inline table inputs */
+.user-role-form select,
+.user-role-form input[type="text"]{
+    width: 90%;
+    border: 1px solid #cccccc;
+}
+
 #user-add-section input:focus,
 #user-add-section select:focus,
 .user-role-form select:focus,
