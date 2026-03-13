@@ -336,11 +336,26 @@ section > h2{
     width: fit-content;
 }
 
+.analyst-comments-card form{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+}
+
+.analyst-comments-card form textarea{
+    width: 100%;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
 .analyst-comments-card button[type="submit"]{
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 0.55rem 1rem;
+    width: fit-content;
+    align-self: flex-end;
     border: none;
     border-radius: var(--button-radius);
     background: var(--comment-button-bg);

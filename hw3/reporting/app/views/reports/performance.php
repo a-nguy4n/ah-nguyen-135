@@ -58,7 +58,6 @@
             <?php if ($_SESSION['role'] !== 'viewer'): ?>
                 <form method="POST" action="/reports/performance">
                     <textarea name="comment" rows="4" cols="50" maxlength="2000" required placeholder="Add your analysis..."></textarea>
-                    <br>
                     <button type="submit">Save Comment</button>
                 </form>
             <?php endif; ?>

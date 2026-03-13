@@ -88,12 +88,18 @@ section{
     transition: background 0.2s ease, color 0.2s ease;
 }
 
+#user-add-section button{
+    background: #2f9e44;
+    align-self: flex-end;
+}
+
 #user-add-section button:hover{
-    background: #c04020;
+    background: #1f6f2f;
 }
 
 .user-role-form button{
     background: #2f9e44;
+    align-self: center;
 }
 
 .user-role-form button:hover{
