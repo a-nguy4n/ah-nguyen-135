@@ -38,7 +38,7 @@
     <main>
         <h1>Performance Report</h1>
         
-        <button class="pdf-button"> 
+        <button class="pdf-button" onclick="window.location.href='/reports/performance/export/pdf'"> 
                 <span class="material-icons">
                     download
                 </span>

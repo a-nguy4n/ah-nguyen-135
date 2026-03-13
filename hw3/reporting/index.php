@@ -21,14 +21,26 @@ switch ($uri) {
     case '/dashboard':
         require APP . '/controllers/dashboardController.php';
         break;
+
     case '/reports/performance':
         require APP . '/controllers/performanceController.php';
         break;
+    case '/reports/performance/export/pdf':
+        require APP . '/controllers/for-exports/performanceExportController.php';
+        break;
+
     case '/reports/engagement':
         require APP . '/controllers/engagementController.php';
         break; 
+    case '/reports/engagement/export/pdf':
+        require APP . '/controllers/for-exports/engagementExportController.php';
+        break;
+
     case '/reports/behavior':
         require APP . '/controllers/behaviorController.php';
+        break;
+    case '/reports/behavior/export/pdf':
+        require APP . '/controllers/for-exports/behaviorExportController.php';
         break;
 
     case '/logout':
