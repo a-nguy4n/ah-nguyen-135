@@ -44,62 +44,11 @@
             PDF
         </button>
 
-        <a href="/dashboard">Back to Dashboard</a> <br>
-        <a href="/logout">Logout</a>
-
-        <h2>Device & Environment Data</h2>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Session ID</th>
-                    <th>User Agent</th>
-                    <th>Language</th>
-                    <th>Screen Width</th>
-                    <th>Screen Height</th>
-                    <th>Network Type</th>
-                    <th>Timezone</th>
-                    <th>Created At</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($staticData as $row): ?>
-                <tr>
-                    <td><?= $row['session_id'] ?></td>
-                    <td><?= $row['user_agent'] ?></td>
-                    <td><?= $row['language'] ?></td>
-                    <td><?= $row['screen_width'] ?></td>
-                    <td><?= $row['screen_height'] ?></td>
-                    <td><?= $row['network_type'] ?></td>
-                    <td><?= $row['timezone'] ?></td>
-                    <td><?= $row['created_at'] ?></td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-
-        <h2>Session Engagement</h2>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Session ID</th>
-                    <th>Time On Page (s)</th>
-                    <th>Mouse Moves</th>
-                    <th>Click Count</th>
-                    <th>Total Idle Time (s)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($activityData as $row): ?>
-                <tr>
-                    <td><?= $row['session_id'] ?></td>
-                    <td><?= round($row['time_on_page_ms'] / 1000, 1) ?></td>
-                    <td><?= $row['mouse_moves'] ?></td>
-                    <td><?= count(json_decode($row['clicks'], true) ?? []) ?></td>
-                    <td><?= round($row['total_idle_time_ms'] / 1000, 1) ?></td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+        <div class="report-links">
+            <a href="/dashboard">Back to Dashboard</a>
+            &nbsp;|&nbsp;
+            <a href="/logout">Logout</a>
+        </div>
 
         <?php
         $networkCounts = [];
@@ -117,11 +66,79 @@
         }, $activityData);
         ?>
 
-        <h2>Network Type Distribution</h2>
-        <canvas id="networkChart" style="max-width:500px"></canvas>
+        <section id="network-type-chart-section">
+            <h2>Network Type Distribution</h2>
+            <canvas id="networkChart" style="max-width:500px"></canvas>
+        </section>
 
-        <h2>Time On Page Per Session</h2>
-        <canvas id="timeChart" style="max-width:800px"></canvas>
+        <section id="time-on-page-chart-section">
+            <h2>Time On Page Per Session</h2>
+            <canvas id="timeChart" style="max-width:800px"></canvas>
+        </section>
+
+        <section id="device-environment-table-section">
+            <h2>Device &amp; Environment Data</h2>
+            <div id="device-environment-table-scroll">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Session ID</th>
+                            <th>User Agent</th>
+                            <th>Language</th>
+                            <th>Screen Width</th>
+                            <th>Screen Height</th>
+                            <th>Network Type</th>
+                            <th>Timezone</th>
+                            <th>Created At</th>
+                        </tr>
+                    </thead>
+                    <tbody id="device-environment-table-rows">
+                        <?php foreach ($staticData as $row): ?>
+                        <tr>
+                            <td><?= $row['session_id'] ?></td>
+                            <td><?= $row['user_agent'] ?></td>
+                            <td><?= $row['language'] ?></td>
+                            <td><?= $row['screen_width'] ?></td>
+                            <td><?= $row['screen_height'] ?></td>
+                            <td><?= $row['network_type'] ?></td>
+                            <td><?= $row['timezone'] ?></td>
+                            <td><?= $row['created_at'] ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <button type="button" id="device-environment-show-more" class="table-more-btn">Show More</button>
+        </section>
+
+        <section id="session-engagement-table-section">
+            <h2>Session Engagement</h2>
+            <div id="session-engagement-table-scroll">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Session ID</th>
+                            <th>Time On Page (s)</th>
+                            <th>Mouse Moves</th>
+                            <th>Click Count</th>
+                            <th>Total Idle Time (s)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="session-engagement-table-rows">
+                        <?php foreach ($activityData as $row): ?>
+                        <tr>
+                            <td><?= $row['session_id'] ?></td>
+                            <td><?= round($row['time_on_page_ms'] / 1000, 1) ?></td>
+                            <td><?= $row['mouse_moves'] ?></td>
+                            <td><?= count(json_decode($row['clicks'], true) ?? []) ?></td>
+                            <td><?= round($row['total_idle_time_ms'] / 1000, 1) ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <button type="button" id="session-engagement-show-more" class="table-more-btn">Show More</button>
+        </section>
 
         <script>
             new Chart(document.getElementById('networkChart'), {
@@ -160,6 +177,31 @@
                     scales: { y: { beginAtZero: true, ticks: { font: { family: 'Archivo Black, sans-serif' } } } }
                 }
             });
+
+            const defaultVisibleRows = 8;
+
+            const setupShowMore = (rowSelector, buttonId) => {
+                const rows = Array.from(document.querySelectorAll(rowSelector));
+                const button = document.getElementById(buttonId);
+                let expanded = false;
+
+                const applyRows = () => {
+                    rows.forEach((row, index) => {
+                        row.style.display = expanded || index < defaultVisibleRows ? '' : 'none';
+                    });
+                    button.textContent = expanded ? 'Show Less' : 'Show More';
+                };
+
+                button.addEventListener('click', () => {
+                    expanded = !expanded;
+                    applyRows();
+                });
+
+                applyRows();
+            };
+
+            setupShowMore('#device-environment-table-rows tr', 'device-environment-show-more');
+            setupShowMore('#session-engagement-table-rows tr', 'session-engagement-show-more');
         </script>
 
     </main>

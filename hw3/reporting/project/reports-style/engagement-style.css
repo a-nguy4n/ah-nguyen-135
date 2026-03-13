@@ -1,0 +1,88 @@
+main{
+	display: grid;
+	grid-template-areas:
+			"report-title pdf-button"
+			"links       links"
+			"network-chart time-chart"
+			"device-table  device-table"
+			"session-table session-table";
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	gap: 5%;
+	padding: 0% 4% 2rem 0.5%;
+}
+
+h1{
+	grid-area: report-title;
+	margin: 0;
+}
+
+.pdf-button{
+	grid-area: pdf-button;
+	justify-self: end;
+	display: inline-flex;
+	align-items: center;
+}
+
+.report-links{
+	grid-area: links;
+	white-space: nowrap;
+}
+
+section{
+	min-width: 0;
+	width: 100%;
+	height: fit-content;
+}
+
+#network-type-chart-section{
+	grid-area: network-chart;
+}
+
+#time-on-page-chart-section{
+	grid-area: time-chart;
+}
+
+#device-environment-table-section{
+	grid-area: device-table;
+}
+
+#session-engagement-table-section{
+	grid-area: session-table;
+}
+
+#networkChart,
+#timeChart{
+	width: 100% !important;
+	max-width: 100%;
+}
+
+#device-environment-table-scroll,
+#session-engagement-table-scroll{
+	overflow-x: hidden;
+}
+
+#device-environment-table-section table,
+#session-engagement-table-section table{
+	min-width: 0;
+	width: 100%;
+}
+
+#device-environment-table-section th,
+#device-environment-table-section td,
+#session-engagement-table-section th,
+#session-engagement-table-section td{
+	white-space: normal;
+	overflow-wrap: anywhere;
+}
+
+.table-more-btn{
+	margin-top: 0.75rem;
+	padding: 0.35rem 0.8rem;
+	border: none;
+	border-radius: 999px;
+	cursor: pointer;
+	font-family: var(--header-font);
+	font-size: var(--text-small);
+	background: white;
+	color: var(--font-color);
+}

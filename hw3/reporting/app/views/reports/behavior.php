@@ -124,62 +124,62 @@
             <canvas id="activityChart" style="max-width:800px"></canvas>
 
             <script>
-            new Chart(document.getElementById('activityChart'), {
-                type: 'bar',
-                data: {
-                    labels: ['Mouse Moves', 'Clicks', 'Key Presses', 'Total Idle Time (s)'],
-                    datasets: [{
-                        label: 'Total Count',
-                        data: [
-                            <?= (int)$totalMouse ?>,
-                            <?= (int)$totalClicks ?>,
-                            <?= (int)$totalKeys ?>,
-                            <?= (int)$totalIdle ?>
-                        ],
-                        backgroundColor: [
-                            'rgba(54, 162, 235, 0.7)',
-                            'rgba(255, 99, 132, 0.7)',
-                            'rgba(75, 192, 192, 0.7)',
-                            'rgba(255, 159, 64, 0.7)'
-                        ]
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: { labels: { font: { family: 'Archivo Black, sans-serif' } } }
+                new Chart(document.getElementById('activityChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Mouse Moves', 'Clicks', 'Key Presses', 'Total Idle Time (s)'],
+                        datasets: [{
+                            label: 'Total Count',
+                            data: [
+                                <?= (int)$totalMouse ?>,
+                                <?= (int)$totalClicks ?>,
+                                <?= (int)$totalKeys ?>,
+                                <?= (int)$totalIdle ?>
+                            ],
+                            backgroundColor: [
+                                'rgba(54, 162, 235, 0.7)',
+                                'rgba(255, 99, 132, 0.7)',
+                                'rgba(75, 192, 192, 0.7)',
+                                'rgba(255, 159, 64, 0.7)'
+                            ]
+                        }]
                     },
-                    scales: {
-                        x: { ticks: { font: { family: 'Archivo Black, sans-serif' } } },
-                        y: { ticks: { font: { family: 'Archivo Black, sans-serif' } } }
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { labels: { font: { family: 'Archivo Black, sans-serif' } } }
+                        },
+                        scales: {
+                            x: { ticks: { font: { family: 'Archivo Black, sans-serif' } } },
+                            y: { ticks: { font: { family: 'Archivo Black, sans-serif' } } }
+                        }
                     }
-                }
-            });
-
-            const defaultVisibleRows = 8;
-
-            const setupShowMore = (rowSelector, buttonId) => {
-                const rows = Array.from(document.querySelectorAll(rowSelector));
-                const button = document.getElementById(buttonId);
-                let expanded = false;
-
-                const applyRows = () => {
-                    rows.forEach((row, index) => {
-                        row.style.display = expanded || index < defaultVisibleRows ? '' : 'none';
-                    });
-                    button.textContent = expanded ? 'Show Less' : 'Show More';
-                };
-
-                button.addEventListener('click', () => {
-                    expanded = !expanded;
-                    applyRows();
                 });
 
-                applyRows();
-            };
+                const defaultVisibleRows = 8;
 
-            setupShowMore('#activity-table-rows-time tr', 'activity-time-show-more');
-            setupShowMore('#activity-table-rows-events tr', 'activity-movement-show-more');
+                const setupShowMore = (rowSelector, buttonId) => {
+                    const rows = Array.from(document.querySelectorAll(rowSelector));
+                    const button = document.getElementById(buttonId);
+                    let expanded = false;
+
+                    const applyRows = () => {
+                        rows.forEach((row, index) => {
+                            row.style.display = expanded || index < defaultVisibleRows ? '' : 'none';
+                        });
+                        button.textContent = expanded ? 'Show Less' : 'Show More';
+                    };
+
+                    button.addEventListener('click', () => {
+                        expanded = !expanded;
+                        applyRows();
+                    });
+
+                    applyRows();
+                };
+
+                setupShowMore('#activity-table-rows-time tr', 'activity-time-show-more');
+                setupShowMore('#activity-table-rows-events tr', 'activity-movement-show-more');
             </script>
         </section>
 
