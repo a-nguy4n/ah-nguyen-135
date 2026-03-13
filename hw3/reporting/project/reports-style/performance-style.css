@@ -6,7 +6,6 @@ main{
             "card-one     card-two";
     grid-template-columns: minmax(0, 35%) minmax(0, 1fr);
     gap: 5%;
-    margin: 1%;
     padding: 0% 4% 0% 0.5%;
 }
 
