@@ -21,7 +21,7 @@ section{
 
 #user-add-section{
     grid-area: add-user;
-    width: fit-content;
+    width: 50%;
 }
 
 #user-list-section{
@@ -81,7 +81,7 @@ section{
 }
 
 #user-add-section button:hover{
-    background: #6f2fa3;
+    background: #25073e;
 }
 
 .user-role-form button{
