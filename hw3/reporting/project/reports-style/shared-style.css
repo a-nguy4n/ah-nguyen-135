@@ -260,21 +260,21 @@ body[data-report-type="performance"]{
     --report-title-color: var(--performance-background);
     --section-card-color: var(--performance-background);
     --comment-button-bg: #0e7820;
-    --comment-button-hover-bg: #0e7820;
+    --comment-button-hover-bg: #064811;
 }
 
 body[data-report-type="behavior"]{
     --report-title-color: var(--behavior-background);
     --section-card-color: var(--behavior-background);
     --comment-button-bg: #3060ad;
-    --comment-button-hover-bg: #3060ad;
+    --comment-button-hover-bg: #123265;
 }
 
 body[data-report-type="engagement"]{
     --report-title-color: var(--engagement-background);
     --section-card-color: var(--engagement-background);
-    --comment-button-bg: #de90c4;
-    --comment-button-hover-bg: #de90c4;
+    --comment-button-bg: #da75b8;
+    --comment-button-hover-bg: #5f1245;
 }
 
 main > h1{
