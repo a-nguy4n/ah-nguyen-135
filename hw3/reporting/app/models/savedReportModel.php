@@ -1,5 +1,5 @@
 <?php
-class savedReportModel {
+class savedReportModel{
     private $conn;
 
     public function __construct() {
@@ -8,7 +8,7 @@ class savedReportModel {
         $this->ensureTable();
     }
 
-    private function ensureTable() {
+    private function ensureTable(){
         $sql = "CREATE TABLE IF NOT EXISTS saved_reports (
             id INT AUTO_INCREMENT PRIMARY KEY,
             report_type VARCHAR(32) NOT NULL,
@@ -28,7 +28,7 @@ class savedReportModel {
         return $stmt->execute();
     }
 
-    public function getAll() {
+    public function getAll(){
         $result = $this->conn->query("SELECT id, report_type, title, file_name, file_path, created_by, created_at FROM saved_reports ORDER BY created_at DESC");
         if (!$result) {
             return [];
@@ -36,7 +36,7 @@ class savedReportModel {
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getById($id) {
+    public function getById($id){
         $stmt = $this->conn->prepare("SELECT id, report_type, title, file_name, file_path, created_by, created_at FROM saved_reports WHERE id = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
