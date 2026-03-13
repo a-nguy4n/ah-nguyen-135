@@ -24,3 +24,4 @@ if ($action === 'POST') {
 }
 
 require APP . '/views/login.php';
+?>
