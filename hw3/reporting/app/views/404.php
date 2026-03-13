@@ -10,6 +10,7 @@
 <body>
     <h1><b>404<b></h1>
     <p>Page Not Found</p>
-    <p><a href="/">Go Home</a></p>
+    <img src="/project/images/error-404-image.png" alt="404 Error" class="error-image">
+    <a href="/dashboard">Back to Dashboard</a>
 </body>
 </html>
