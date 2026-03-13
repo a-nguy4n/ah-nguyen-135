@@ -3,5 +3,5 @@ if (empty($_SESSION['user'])) {
     header('Location: /login');
     exit;
 }
-require ROOT . '/project/dashboard.html';
+require ROOT . '/project/finalDashboard.php';
 ?>
