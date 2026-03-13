@@ -14,7 +14,6 @@ Credentials
 
 Our Scenario: 
 
-
 - To Check out and Access 403 Error Page: 
   1. Log in with the Analyst or Viewer credentials listed above.
   2. In the browser, go to https://reporting.ah-nguyen.site/admin/users
