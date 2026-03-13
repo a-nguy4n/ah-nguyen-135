@@ -159,27 +159,24 @@
 
         <script>
             new Chart(document.getElementById('networkChart'), {
-                type: 'bar',
+                type: 'pie',
                 data: {
                     labels: <?= json_encode(array_keys($networkCounts)) ?>,
                     datasets: [{
-                        label: 'Sessions',
                         data: <?= json_encode(array_values($networkCounts)) ?>,
                         backgroundColor: ['#4e79a7','#f28e2b','#e15759','#76b7b2'],
-                        borderRadius: 4
+                        borderWidth: 2,
+                        borderColor: '#fff'
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    layout: {
-                        padding: { top: 8, right: 16, bottom: 12, left: 16 }
-                    },
-                    indexAxis: 'y',
-                    plugins: { legend: { display: false, labels: { font: { family: 'Archivo Black, sans-serif' } } } },
-                    scales: {
-                        x: { beginAtZero: true, ticks: { font: { family: 'Archivo Black, sans-serif' } } },
-                        y: { ticks: { font: { family: 'Archivo Black, sans-serif' } } }
+                    plugins: {
+                        legend: { 
+                            position: 'bottom',
+                            labels: { font: { family: 'Archivo Black, sans-serif' } }
+                        }
                     }
                 }
             });
