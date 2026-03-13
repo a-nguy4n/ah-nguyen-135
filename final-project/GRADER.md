@@ -10,5 +10,16 @@ Credentials
 
 Our Scenario: 
 
+
+- To Check out and Access 403 Error Page: 
+  1. Log in with the Analyst or Viewer credentials listed above.
+  2. In the browser, go to https://reporting.ah-nguyen.site/admin/users
+  3. You should see the 403 Access Denied page.
+
+- To Checkout and Access 404 Error Page: 
+  1. Log in to the site.
+  2. https://reporting.ah-nguyen.site/not-a-real-page
+  3. You should see the 404 Page Not Found page.
+
 Areas of Concern:
 
