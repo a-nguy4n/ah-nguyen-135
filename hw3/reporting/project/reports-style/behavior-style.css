@@ -106,3 +106,7 @@ section{
 	grid-area: movement-table;
 }
 
+.hidden-p{
+    opacity: 0;
+    margin: 5%;
+}

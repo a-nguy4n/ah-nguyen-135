@@ -182,6 +182,8 @@
             setupShowMore('#activity-table-rows-events tr', 'activity-movement-show-more');
             </script>
         </section>
+
+        <p class="hidden-p"> For extra breathing room </p>
     </main>
 </body>
 </html>
