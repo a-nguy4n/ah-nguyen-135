@@ -70,7 +70,7 @@
                             <td><?= htmlspecialchars($user['username']) ?></td>
                             <td><?= htmlspecialchars($user['role']) ?></td>
                             <td>
-                                <form method="POST" action="/admin/users">
+                                <form method="POST" action="/admin/users" class="user-role-form">
                                     <input type="hidden" name="action" value="update_role">
                                     <input type="hidden" name="id" value="<?= $user['id'] ?>">
                                     <select name="role">

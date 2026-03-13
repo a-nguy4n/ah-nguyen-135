@@ -57,7 +57,7 @@
     --performance-background: #41b254;
     --behavior-background: #72a1eb;
     --engagement-background: #de83a1;
-    --user-management-background: #9D4CDB;
+    --user-management-background: #FF9063;
 
     --report-title-font: var(--header-font);
     --report-title-size: clamp(20px, 2vw, 24px);
@@ -282,8 +282,8 @@ body[data-report-type="engagement"]{
 body[data-report-type="user-management"]{
     --report-title-color: var(--user-management-background);
     --section-card-color: var(--user-management-background);
-    --comment-button-bg: #9D4CDB;
-    --comment-button-hover-bg: #6f2fa3;
+    --comment-button-bg: #FF9063;
+    --comment-button-hover-bg: #c04020;
 }
 
 main > h1{
