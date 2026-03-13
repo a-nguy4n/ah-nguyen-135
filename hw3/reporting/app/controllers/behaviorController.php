@@ -4,7 +4,7 @@ if (empty($_SESSION['user'])) {
     exit;
 }
 
-require APP . '/models/activity.php';
+require APP . '/models/activityData.php';
 $model = new activityData();
 $activityData = $model->getAll();
 
