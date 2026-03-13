@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Performance Report</title>
+    <link rel="stylesheet" href="/project/reports-style/performance-style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
