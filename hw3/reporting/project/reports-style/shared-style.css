@@ -68,6 +68,9 @@
 
     --card-radius: 15px;
     --button-radius: 40px;
+    --comment-button-bg: var(--menu-pill-bg-color);
+    --comment-button-text-color: #ffffff;
+    --comment-button-hover-bg: var(--hover-role);
 
     --pdf-button-height: 2.25rem;
     --pdf-button-padding-x: 0.9rem;
@@ -256,16 +259,22 @@ main{
 body[data-report-type="performance"]{
     --report-title-color: var(--performance-background);
     --section-card-color: var(--performance-background);
+    --comment-button-bg: #0e7820;
+    --comment-button-hover-bg: #0e7820;
 }
 
 body[data-report-type="behavior"]{
     --report-title-color: var(--behavior-background);
     --section-card-color: var(--behavior-background);
+    --comment-button-bg: #3060ad;
+    --comment-button-hover-bg: #3060ad;
 }
 
 body[data-report-type="engagement"]{
     --report-title-color: var(--engagement-background);
     --section-card-color: var(--engagement-background);
+    --comment-button-bg: #de90c4;
+    --comment-button-hover-bg: #de90c4;
 }
 
 main > h1{
@@ -325,8 +334,8 @@ section > h2{
     padding: 0.55rem 1rem;
     border: none;
     border-radius: var(--button-radius);
-    background: var(--menu-pill-bg-color);
-    color: var(--menu-pill-text-color);
+    background: var(--comment-button-bg);
+    color: var(--comment-button-text-color);
     cursor: pointer;
     font-family: var(--header-font);
     font-size: var(--text-small);
@@ -334,8 +343,8 @@ section > h2{
 }
 
 .analyst-comments-card button[type="submit"]:hover{
-    background: var(--hover-role);
-    color: var(--menu-pill-text-color);
+    background: var(--comment-button-hover-bg);
+    color: var(--comment-button-text-color);
 }
 
 table{
