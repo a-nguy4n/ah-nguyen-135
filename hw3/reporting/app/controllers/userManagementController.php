@@ -20,12 +20,12 @@ $model = new userModel();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     if ($_POST['action'] === 'add') {
-        $model->add($_POST['username'], $_POST['password'], $_POST['role']);
+        $model->add($_POST['username'], $_POST['password'], $_POST['role'], $_POST['sections']);
+    } elseif ($_POST['action'] === 'update_role') {
+        $model->updateRole($_POST['id'], $_POST['role'], $_POST['sections']);
     } elseif ($_POST['action'] === 'delete') {
         $model->delete($_POST['id']);
-    } elseif ($_POST['action'] === 'update_role') {
-        $model->updateRole($_POST['id'], $_POST['role']);
-    }
+    } 
     header('Location: /admin/users');
     exit;
 }

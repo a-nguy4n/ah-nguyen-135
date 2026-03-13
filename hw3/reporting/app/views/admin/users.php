@@ -45,6 +45,7 @@
                     <option value="analyst">Analyst</option>
                     <option value="super_admin">Super Admin</option>
                 </select>
+                <input type="text" name="sections" placeholder="e.g. performance,behavior,engagement">
                 <button type="submit">Add User</button>
             </form>
         </section>
@@ -69,7 +70,7 @@
                             <td><?= htmlspecialchars($user['username']) ?></td>
                             <td><?= htmlspecialchars($user['role']) ?></td>
                             <td>
-                                <form method="POST" action="/admin/users" class="user-role-form">
+                                <form method="POST" action="/admin/users">
                                     <input type="hidden" name="action" value="update_role">
                                     <input type="hidden" name="id" value="<?= $user['id'] ?>">
                                     <select name="role">
@@ -77,6 +78,7 @@
                                         <option value="analyst" <?= $user['role'] === 'analyst' ? 'selected' : '' ?>>Analyst</option>
                                         <option value="super_admin" <?= $user['role'] === 'super_admin' ? 'selected' : '' ?>>Super Admin</option>
                                     </select>
+                                    <input type="text" name="sections" value="<?= htmlspecialchars($user['sections'] ?? '') ?>" placeholder="e.g. performance,behavior">
                                     <button type="submit">Update</button>
                                 </form>
                             </td>

@@ -9,6 +9,15 @@ if (empty($_SESSION['role'])) {
     exit;
 }
 
+if ($_SESSION['role'] === 'analyst') {
+    $allowed = explode(',', $_SESSION['sections'] ?? '');
+    if (!in_array('performance', $allowed)) {
+        http_response_code(403);
+        require APP . '/views/403.php';
+        exit;
+    }
+}
+
 require_once ROOT . '/config.php';
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 

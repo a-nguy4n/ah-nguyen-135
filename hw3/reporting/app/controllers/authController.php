@@ -17,6 +17,7 @@ if ($action === 'POST') {
     if ($user && password_verify($password, $user['password_hash'])) {
         $_SESSION['user'] = $user['username'];
         $_SESSION['role'] = $user['role'];
+        $_SESSION['sections'] = $user['sections'];
         header('Location: /dashboard');
         exit;
     } else {
