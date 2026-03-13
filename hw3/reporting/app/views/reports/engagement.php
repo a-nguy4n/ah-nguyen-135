@@ -9,7 +9,7 @@
 </head>
 <body data-report-type="engagement">
     <header>
-        <a href="/project/dashboard.html" class="site-title">
+        <a href="/dashboard" class="site-title">
             <h1>
                 <span class="material-icons site-title-icon" aria-hidden="true">stacked_line_chart</span>
                 ANALYTICS DASHBOARD

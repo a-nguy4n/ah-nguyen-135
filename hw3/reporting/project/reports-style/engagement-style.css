@@ -37,7 +37,6 @@ section{
 
 #network-type-chart-section{
 	grid-area: network-chart;
-    width: fit-content;
 }
 
 #time-on-page-chart-section{
