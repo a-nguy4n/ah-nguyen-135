@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="/project/error-pages-style/error-page-style.css">
 </head>
 <body>
-    <h1><b>404 - Page Not Found <b></h1>
+    <p> Ohh noooooo!!! </p>
+    <h1>404 - Page Not Found</h1>
     <img src="/project/images/error-404-image.png" alt="404 Error" class="error-image">
+    <p>The page you are looking for could not be found.</p>
     <a href="/dashboard">Back to Dashboard</a>
 </body>
 </html>
