@@ -9,123 +9,311 @@
 }
 
 :root{
-    --background-color: rgb(255, 255, 255);
-    --glassy-color: rgba(255, 255, 255, 0.568);
-    --font-color: white;
+    /* Base colors */
+    --background-color: #F9EFE5;
+    --font-color: rgb(0, 0, 0);
+    --pill-color: var(--menu-pill-bg-color);
+    --hover-role: #3060ad;
 
-    --border-val: 1px solid rgba(255, 255, 255, 0.6);
+    /* Shared control tokens */
     --button-radius: 40px; 
-    --button-color: rgb(255, 255, 255);
-    --button-padding: 3% 5%;
+    --button-padding: 2% 5%;
 
+    /* Typography */
     --header-font: "Space Mono", monospace;
     --archivo-font: "Archivo Black";
-    
     --text-small:  clamp(12px, 1.1vw, 14px);
     --text-medium: clamp(14px, 1.4vw, 18px);
-    --text-large:  clamp(16px, 1.7vw, 22px);
     --text-xlarge:  clamp(20px, 2vw, 24px);
 
+    /* Header layout */
+    --header-gap: clamp(0.5rem, 1.2vw, 1.5rem);
+    --header-padding-y: clamp(0.65rem, 1.5vw, 1rem);
+    --header-padding-x: clamp(0.9rem, 3vw, 2rem);
+    --header-margin-bottom: clamp(1rem, 4vw, 3rem);
+
+    /* Header + nav colors */
+    --header-bg-color: var(--background-color);
+    --header-text-color: var(--font-color);
+    --header-bottom-border-color: #e6dbd3;
+    --nav-bg-color: #fffbf8;
+    --nav-border-color: #e6dbd3;
+    --nav-link-text-color: black;
+    --nav-link-active-text-color: #ffffff;
+    --menu-pill-bg-color: #72a1eb;
+    --menu-pill-text-color: #ffffff;
+
+    /* Nav spacing + sizing */
+    --nav-pill-padding: clamp(0.18rem, 0.5vw, 0.32rem);
+    --nav-pill-gap: clamp(0.15rem, 0.5vw, 0.35rem);
+    --nav-link-padding-y: clamp(0.5rem, 0.9vw, 0.7rem);
+    --nav-link-padding-x: clamp(0.85rem, 1.4vw, 1.25rem);
+
+    /* User-menu tokens */
+    --menu-pill-padding-y: clamp(0.45rem, 1vw, 0.6rem);
+    --menu-pill-padding-x: clamp(0.8rem, 1.8vw, 1rem);
+    --menu-pill-text: clamp(0.75rem, 1vw, 0.875rem);
+    --menu-caret-text: clamp(0.65rem, 0.9vw, 0.75rem);
+
+    /* Dropdown tokens */
+    --dropdown-bg-color: #ffffff;
+    --dropdown-border-color: #e5e7eb;
+    --dropdown-link-text-color: #000000;
+    --dropdown-link-hover-bg: rgb(237, 237, 237);
+    --dropdown-top: calc(100% + clamp(0.35rem, 1vw, 0.6rem));
+    --dropdown-width: clamp(9rem, 18vw, 10.75rem);
+    --dropdown-radius: clamp(0.45rem, 0.9vw, 0.625rem);
+    --dropdown-item-text: clamp(0.72rem, 0.95vw, 0.875rem);
+
+    /* Card tokens */
     --card-padding: 5%;
     --card-radius: 15px;
-
     --box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-
---performance-background: radial-gradient(
-                            circle at top center,
-                            rgb(45, 195, 140) 0%,
-                            white 75%
-                        );
-
---behavior-background: radial-gradient(
-                            circle at top left,
-                              rgb(80, 164, 228) 0%,
-                              white 75%
-                            );
---engagement-background: radial-gradient(
-                            circle at bottom center,
-                            rgb(255, 200, 249) 0%,
-                            white 75%
-                        );
-}
-
-#performance-analytics{
-    background: var(--performance-background);
-    --card-font-color: rgb(1, 56, 36);
-    --card-border-color: rgba(197, 233, 220, 0.349);
-    --card-button-bg: rgba(255, 255, 255, 0.92);
-    --card-button-border-color: rgba(112, 188, 160, 0.407);
-    --card-button-text-color: rgb(1, 56, 36);
-    --card-button-hover-bg: rgb(0, 150, 95);
-    --card-button-hover-border-color: rgb(10, 148, 100);
-    --card-button-hover-text-color: white;
-}   
-
-#behavior-analytics{
-    background: var(--behavior-background);
-    --card-font-color: rgb(2, 9, 37);
-    --card-border-color: rgba(104, 129, 195, 0.6);
-    --card-button-bg: rgba(255, 255, 255, 0.92);
-    --card-button-border-color: rgba(170, 186, 229, 0.85);
-    --card-button-text-color: rgb(2, 9, 37);
-    --card-button-hover-bg: rgb(8, 107, 169);
-    --card-button-hover-border-color: rgb(8, 107, 169);
-    --card-button-hover-text-color: white;
-}   
-
-#engagement-analytics{
-    background: var(--engagement-background);
-    --card-font-color: rgb(34, 3, 28);
-    --card-border-color: rgba(249, 188, 250, 0.55);
-    --card-button-bg: rgba(255, 255, 255, 0.92);
-    --card-button-border-color: rgba(255, 213, 239, 0.8);
-    --card-button-text-color: rgb(34, 3, 28);
-    --card-button-hover-bg: rgb(200, 117, 196);
-    --card-button-hover-border-color: rgb(200, 117, 196);
-    --card-button-hover-text-color: white;
+    --performance-background: #41b254;
+    --behavior-background: #72a1eb;
+    --engagement-background: #EFBACC;
 }
 
 body{
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin: 0;
     width: 100%;
     height: 100vh;
     background: var(--background-color);
     color: var(--font-color);
 }
 
-header{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    font-family: var(--header-font);
-}
-
 main{
     display: grid;
     grid-template-areas: 
-                "header      header   header"
-                "performance behavior engagement"
-                "footer      footer   footer";
+            "overview    overview overview"
+            "performance behavior engagement";
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto 1fr;
     gap: 3%;
-    margin: 3%;
+    margin: 0 3% 3%;
+}
+
+header{
+    width: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-areas: "title nav menu";
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: var(--header-gap);
+    padding: var(--header-padding-y) var(--header-padding-x);
+    margin: 0 0 var(--header-margin-bottom) 0;
+    background: var(--header-bg-color);
+    border-bottom: 1px solid var(--header-bottom-border-color);
+    color: var(--header-text-color);
+    font-family: var(--header-font);
+}
+
+.site-title{
+    grid-area: title;
+    margin: 0;
+    justify-self: start;
+    font-size: var(--text-medium);
+    letter-spacing: 0.06em;
+}
+
+footer{
+    margin: 1% 2% 4% 0;
+    text-align: right;
+    font-family: var(--header-font);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.45);
+}
+
+.main-navigation{
+    grid-area: nav;
+    justify-self: center;
+    display: inline-flex;
+}
+
+.nav-list{
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    list-style: none;
+    gap: var(--nav-pill-gap);
+    margin: 0;
+    padding: var(--nav-pill-padding);
+    width: fit-content;
+    background: var(--nav-bg-color);
+    border-radius: 999px;
+    border: 1px solid var(--nav-border-color);
+}
+
+.nav-link{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--nav-link-padding-y) var(--nav-link-padding-x);
+    text-decoration: none;
+    border-radius: 999px;
+    color: var(--nav-link-text-color);
+    font-weight: 500;
+    line-height: 1;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+}
+
+.nav-link:hover{
+    background: var(--pill-color);
+    color: var(--nav-link-active-text-color);
+}
+
+.nav-link.active{
+    background: var(--pill-color);
+    color: var(--nav-link-active-text-color);
+}
+
+.user-menu{
+    position: relative;
+    justify-self: end;
+}
+
+.user-menu[open] .dropdown{
+    display: block;
+}
+
+.role-pill{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    list-style: none;
+    border: none;
+    background: var(--menu-pill-bg-color);
+    color: var(--menu-pill-text-color);
+    padding: var(--menu-pill-padding-y) var(--menu-pill-padding-x);
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: var(--menu-pill-text);
+}
+
+.role-pill::after{
+    content: "▾";
+    font-size: var(--menu-caret-text);
+}
+
+.role-pill::-webkit-details-marker{
+    display: none;
+}
+
+.role-pill:hover{
+    background: var(--hover-role);
+}
+
+.dropdown{
+    position: absolute;
+    right: 0;
+    top: var(--dropdown-top);
+    width: var(--dropdown-width);
+    background: var(--dropdown-bg-color);
+    border-radius: var(--dropdown-radius);
+    border: 1px solid var(--dropdown-border-color);
+    list-style: none;
+    padding: var(--nav-pill-padding) 0;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    display: none;
+}
+
+.dropdown li a{
+    display: block;
+    padding: 3%;
+    grid-area: menu;
+    text-decoration: none;
+    color: var(--dropdown-link-text-color);
+    font-size: var(--dropdown-item-text);
+}
+
+.dropdown li a:hover{
+    background: var(--dropdown-link-hover-bg);
+}
+
+
+#overview{
+    grid-area: overview;
+    border-radius: var(--card-radius);
+    padding: var(--card-padding, 3%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#overview h1{
+    margin: 0 0 2% 0;
+    padding: 0;
+    font-size: var(--text-xlarge);
+    font-family: var(--header-font);
+    font-weight: 400;
+}
+
+#overview p{
+    margin: 0;
+    font-size: var(--text-medium);
+    font-family: var(--archivo-font);
+    line-height: 1.75;  
+}
+
+#performance-analytics{
+    grid-area: performance;
+    background: var(--performance-background);
+    --card-font-color: rgb(0, 0, 0);
+    --card-border-color: rgba(197, 233, 220, 0.349);
+    --card-button-bg: rgba(255, 255, 255, 0.92);
+    --card-button-border-color: rgba(112, 188, 160, 0.407);
+    --card-button-text-color: black;
+    --card-button-hover-bg: #0e7820;
+    --card-button-hover-border-color: #41b254;
+    --card-button-hover-text-color: white;
+}
+
+#behavior-analytics{
+    grid-area: behavior;
+    background: var(--behavior-background);
+    --card-font-color: rgb(0, 0, 0);
+    --card-border-color: rgba(104, 129, 195, 0.6);
+    --card-button-bg: rgba(255, 255, 255, 0.92);
+    --card-button-border-color: rgba(170, 186, 229, 0.85);
+    --card-button-text-color: black;
+    --card-button-hover-bg: #3060ad;
+    --card-button-hover-border-color: #3060ad;
+    --card-button-hover-text-color: white;
+}
+
+#engagement-analytics{
+    grid-area: engagement;
+    background: var(--engagement-background);
+    --card-font-color: rgb(0, 0, 0);
+    --card-border-color: rgba(249, 188, 250, 0.55);
+    --card-button-bg: rgba(255, 255, 255, 0.92);
+    --card-button-border-color: rgba(255, 213, 239, 0.8);
+    --card-button-text-color: black;
+    --card-button-hover-bg: #de90c4;
+    --card-button-hover-border-color: #de90c4;
+    --card-button-hover-text-color: white;
 }
 
 .analytics-card{
     place-self: stretch;
-    width: 100%;
+    width: 95%;
     box-sizing: border-box;
-
     display: grid;
     grid-template-areas:
+                "icon"
                 "title"
                 "content"
                 "button";
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto auto 1fr auto;
     row-gap: 1rem;
-
     background: var(--glassy-color);
     border: 1px solid var(--card-border-color, rgba(255, 255, 255, 0.6));
     border-radius: var(--card-radius);
@@ -134,11 +322,17 @@ main{
     padding: var(--card-padding, 3%);
 }
 
+.analytics-card img{
+    grid-area: icon;
+    width: var(--image-width, 25%);
+    margin-bottom: 10%;
+}
+
 .analytics-card h1{
     grid-area: title;
-    place-self: center;
-
-    margin: 0;
+    place-self: start;
+    
+    margin: 0 0 3% 0;
     font-size: var(--text-xlarge);
     font-family: var(--header-font);
     font-weight: 400;
@@ -147,8 +341,9 @@ main{
 .analytics-card p{
     grid-area: content;
     place-self: center;
+
     margin: 0;
-    font-size: var(--text-small);
+    font-size: var(--text-medium);
     font-family: var(--archivo-font);
     line-height: 1.75;
 }
@@ -160,10 +355,9 @@ main{
     background: var(--card-button-bg, rgb(255, 255, 255));
     color: var(--card-button-text-color, var(--card-font-color, rgb(0, 0, 0)));
     transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-
-
     padding: var(--button-padding);
     width: fit-content;
+    max-width: 100%;
     white-space: nowrap;
 }
 
@@ -175,11 +369,13 @@ main{
 
 .button-row{
     grid-area: button;
-    place-self: center;
+    justify-self: stretch;
+    align-self: end;
 
     display: flex;
-    flex-direction: row;
-    gap: 3%;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .pdf-button{
@@ -187,5 +383,7 @@ main{
     align-items: center;
     gap: 5px;
 }
+
+
 
 
