@@ -2,11 +2,15 @@ The GRADER.md file contains credentials for all levels of login (super admin, an
 
 Credentials
 
-- Super Admin: 
+- Super Admin:
+  - Username: haley; password: iLovecse135
+  - Username: allison; password: c0deR0ck$
 
 - Analyst:
+  - Username: grader; password: password
 
 - Viewer: 
+  - Username: guest; password: guest
 
 Our Scenario: 
 
