@@ -5,7 +5,8 @@
     <title>Behavior Report PDF</title>
     <style><?php echo $pdfStyles; ?></style>
 </head>
-<body>
+<body data-pdf="behavior">
+
     <h1>Behavior Report</h1>
     <p>Generated at: <?php echo htmlspecialchars($generatedAt, ENT_QUOTES, 'UTF-8'); ?></p>
 
@@ -62,27 +63,27 @@
             <?php foreach ($activityData as $row): ?>
                 <?php
                     $sessionId = '';
-                    if (isset($row['session_id'])) {
+                    if(isset($row['session_id'])){
                         $sessionId = (string)$row['session_id'];
                     }
 
                     $mouseMoves = '';
-                    if (isset($row['mouse_moves'])) {
+                    if(isset($row['mouse_moves'])){
                         $mouseMoves = (string)$row['mouse_moves'];
                     }
 
                     $errorCount = '';
-                    if (isset($row['error_count'])) {
+                    if(isset($row['error_count'])){
                         $errorCount = (string)$row['error_count'];
                     }
 
                     $clicksRaw = '[]';
-                    if (isset($row['clicks'])) {
+                    if(isset($row['clicks'])){
                         $clicksRaw = (string)$row['clicks'];
                     }
 
                     $keysRaw = '[]';
-                    if (isset($row['key_presses'])) {
+                    if(isset($row['key_presses'])){
                         $keysRaw = (string)$row['key_presses'];
                     }
 
@@ -90,12 +91,12 @@
                     $keys = json_decode($keysRaw, true);
 
                     $clickCount = 0;
-                    if (is_array($clicks)) {
+                    if(is_array($clicks)){
                         $clickCount = count($clicks);
                     }
 
                     $keyPressCount = 0;
-                    if (is_array($keys)) {
+                    if(is_array($keys)){
                         $keyPressCount = count($keys);
                     }
                 ?>

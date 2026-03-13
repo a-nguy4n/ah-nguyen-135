@@ -18,23 +18,19 @@ if(!file_exists($autoloadPath)){
 require_once $autoloadPath;
 
 $requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$reportType = '';
+$routeToReportType = [
+    '/reports/performance/export/pdf' => 'performance',
+    '/reports/behavior/export/pdf' => 'behavior',
+    '/reports/engagement/export/pdf' => 'engagement',
+];
 
-if(strpos($requestPath, '/reports/performance/export/pdf') !== false){
-    $reportType = 'performance';
-} 
-elseif(strpos($requestPath, '/reports/behavior/export/pdf') !== false){
-    $reportType = 'behavior';
-} 
-elseif(strpos($requestPath, '/reports/engagement/export/pdf') !== false){
-    $reportType = 'engagement';
-}
-
-if ($reportType === ''){
+if(!isset($routeToReportType[$requestPath])){
     http_response_code(404);
     echo 'Unknown export route.';
     exit;
 }
+
+$reportType = $routeToReportType[$requestPath];
 
 $generatedAt = date('Y-m-d H:i:s');
 $pdfStylesPath = ROOT . '/project/pdfs-style/pdf-style.css';
@@ -51,19 +47,37 @@ $viewPath = '';
 $filePrefix = '';
 $paperOrientation = 'portrait';
 
+$reportConfig = [
+    'performance' => [
+        'viewPath' => APP . '/views/reports/for-exports/performance-pdf.php',
+        'filePrefix' => 'performance-report-',
+        'paperOrientation' => 'portrait',
+    ],
+    'behavior' => [
+        'viewPath' => APP . '/views/reports/for-exports/behavior-pdf.php',
+        'filePrefix' => 'behavior-report-',
+        'paperOrientation' => 'portrait',
+    ],
+    'engagement' => [
+        'viewPath' => APP . '/views/reports/for-exports/engagement-pdf.php',
+        'filePrefix' => 'engagement-report-',
+        'paperOrientation' => 'landscape',
+    ],
+];
+
+$viewPath = $reportConfig[$reportType]['viewPath'];
+$filePrefix = $reportConfig[$reportType]['filePrefix'];
+$paperOrientation = $reportConfig[$reportType]['paperOrientation'];
+
 if($reportType === 'performance'){
     require APP . '/models/performanceData.php';
     $performanceModel = new performanceData();
     $performanceData = $performanceModel->getAll();
-    $viewPath = APP . '/views/reports/for-exports/performance-pdf.php';
-    $filePrefix = 'performance-report-';
 }
 elseif($reportType === 'behavior'){
     require APP . '/models/activityData.php';
     $activityModel = new activityData();
     $activityData = $activityModel->getAll();
-    $viewPath = APP . '/views/reports/for-exports/behavior-pdf.php';
-    $filePrefix = 'behavior-report-';
 }
 else{
     require APP . '/models/activityData.php';
@@ -74,10 +88,6 @@ else{
 
     $staticModel = new staticData();
     $staticData = $staticModel->getAll();
-
-    $viewPath = APP . '/views/reports/for-exports/engagement-pdf.php';
-    $filePrefix = 'engagement-report-';
-    $paperOrientation = 'landscape';
 }
 
 if(!file_exists($viewPath)){
