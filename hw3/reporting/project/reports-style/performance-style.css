@@ -3,6 +3,7 @@ main{
     display: grid;
     grid-template-areas: 
             "report-title pdf-button"
+            "analyst-card analyst-card"
             "card-one     card-two";
     grid-template-columns: minmax(0, 35%) minmax(0, 1fr);
     gap: 5%;
@@ -43,4 +44,9 @@ section{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+#analyst-comments{
+    grid-area: analyst-card;
+    place-self: start;
 }
