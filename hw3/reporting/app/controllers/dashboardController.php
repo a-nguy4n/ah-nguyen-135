@@ -16,8 +16,6 @@ require APP . '/models/activityData.php';
 $model = new activityData();
 $activityData = $model->getAll();
 
-$activityData = $model->getAll();
-
 # require APP . '/views/dashboard.php';
 require ROOT . '/final-project/dashboard.html';
 ?>
