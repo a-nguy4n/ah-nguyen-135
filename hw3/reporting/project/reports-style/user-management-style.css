@@ -1,0 +1,113 @@
+main{
+    display: grid;
+    grid-template-areas:
+            "report-title report-title"
+            "add-user users-table";
+    grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.4fr);
+    gap: 2rem;
+    padding: 0 1% 2rem;
+}
+
+main > h1{
+    grid-area: report-title;
+    margin: 0;
+}
+
+section{
+    min-width: 0;
+    height: fit-content;
+}
+
+#user-add-section{
+    grid-area: add-user;
+}
+
+#user-list-section{
+    grid-area: users-table;
+}
+
+#user-add-section form,
+.user-role-form,
+.user-delete-form{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+#user-add-section form{
+    flex-direction: column;
+    align-items: stretch;
+}
+
+#user-add-section input,
+#user-add-section select,
+.user-role-form select{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid rgba(255,255,255,0.72);
+    border-radius: 12px;
+    font-family: var(--archivo-font);
+    font-size: var(--text-small);
+    background: rgba(255,255,255,0.95);
+    color: var(--font-color);
+}
+
+#user-add-section input:focus,
+#user-add-section select:focus,
+.user-role-form select:focus{
+    outline: 2px solid #9D4CDB;
+    outline-offset: 2px;
+}
+
+#user-add-section button,
+.user-role-form button,
+.user-delete-form button{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 1rem;
+    border: none;
+    border-radius: var(--button-radius);
+    background: #9D4CDB;
+    color: #ffffff;
+    cursor: pointer;
+    font-family: var(--header-font);
+    font-size: var(--text-small);
+    white-space: nowrap;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+#user-add-section button:hover,
+.user-role-form button:hover,
+.user-delete-form button:hover{
+    background: #6f2fa3;
+}
+
+#user-list-section .table-scroll{
+    overflow-x: auto;
+}
+
+#user-list-section table{
+    min-width: 760px;
+}
+
+#user-list-section th,
+#user-list-section td{
+    white-space: nowrap;
+}
+
+#user-list-section td form{
+    margin: 0;
+}
+
+@media (max-width: 900px){
+    main{
+        grid-template-areas:
+                "report-title"
+                "add-user"
+                "users-table";
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

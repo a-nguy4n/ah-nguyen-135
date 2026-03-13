@@ -4,8 +4,9 @@
     <title>User Management</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/project/reports-style/shared-style.css">
+    <link rel="stylesheet" href="/project/reports-style/user-management-style.css">
 </head>
-<body>
+<body data-report-type="user-management">
     <header>
         <a href="/dashboard" class="site-title">
             <h1>
@@ -30,64 +31,68 @@
         </details>
     </header>
 
-    <main style="display:block; padding: 2%">
+    <main>
         <h1>User Management</h1>
 
-        <!-- Add User -->
-        <h2>Add New User</h2>
-        <form method="POST" action="/admin/users">
-            <input type="hidden" name="action" value="add">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <select name="role">
-                <option value="viewer">Viewer</option>
-                <option value="analyst">Analyst</option>
-                <option value="super_admin">Super Admin</option>
-            </select>
-            <button type="submit">Add User</button>
-        </form>
+        <section id="user-add-section">
+            <h2>Add New User</h2>
+            <form method="POST" action="/admin/users">
+                <input type="hidden" name="action" value="add">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <select name="role">
+                    <option value="viewer">Viewer</option>
+                    <option value="analyst">Analyst</option>
+                    <option value="super_admin">Super Admin</option>
+                </select>
+                <button type="submit">Add User</button>
+            </form>
+        </section>
 
-        <!-- Users Table -->
-        <h2>Existing Users</h2>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Username</th>
-                    <th>Role</th>
-                    <th>Update Role</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($users as $user): ?>
-                <tr>
-                    <td><?= $user['id'] ?></td>
-                    <td><?= htmlspecialchars($user['username']) ?></td>
-                    <td><?= htmlspecialchars($user['role']) ?></td>
-                    <td>
-                        <form method="POST" action="/admin/users">
-                            <input type="hidden" name="action" value="update_role">
-                            <input type="hidden" name="id" value="<?= $user['id'] ?>">
-                            <select name="role">
-                                <option value="viewer" <?= $user['role'] === 'viewer' ? 'selected' : '' ?>>Viewer</option>
-                                <option value="analyst" <?= $user['role'] === 'analyst' ? 'selected' : '' ?>>Analyst</option>
-                                <option value="super_admin" <?= $user['role'] === 'super_admin' ? 'selected' : '' ?>>Super Admin</option>
-                            </select>
-                            <button type="submit">Update</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form method="POST" action="/admin/users">
-                            <input type="hidden" name="action" value="delete">
-                            <input type="hidden" name="id" value="<?= $user['id'] ?>">
-                            <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+        <section id="user-list-section">
+            <h2>Existing Users</h2>
+            <div class="table-scroll">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Role</th>
+                            <th>Update Role</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($users as $user): ?>
+                        <tr>
+                            <td><?= $user['id'] ?></td>
+                            <td><?= htmlspecialchars($user['username']) ?></td>
+                            <td><?= htmlspecialchars($user['role']) ?></td>
+                            <td>
+                                <form method="POST" action="/admin/users" class="user-role-form">
+                                    <input type="hidden" name="action" value="update_role">
+                                    <input type="hidden" name="id" value="<?= $user['id'] ?>">
+                                    <select name="role">
+                                        <option value="viewer" <?= $user['role'] === 'viewer' ? 'selected' : '' ?>>Viewer</option>
+                                        <option value="analyst" <?= $user['role'] === 'analyst' ? 'selected' : '' ?>>Analyst</option>
+                                        <option value="super_admin" <?= $user['role'] === 'super_admin' ? 'selected' : '' ?>>Super Admin</option>
+                                    </select>
+                                    <button type="submit">Update</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form method="POST" action="/admin/users" class="user-delete-form">
+                                    <input type="hidden" name="action" value="delete">
+                                    <input type="hidden" name="id" value="<?= $user['id'] ?>">
+                                    <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </section>
     </main>
 </body>
 </html>

@@ -57,6 +57,7 @@
     --performance-background: #41b254;
     --behavior-background: #72a1eb;
     --engagement-background: #de83a1;
+    --user-management-background: #9D4CDB;
 
     --report-title-font: var(--header-font);
     --report-title-size: clamp(20px, 2vw, 24px);
@@ -181,7 +182,8 @@ header{
 .nav-link[aria-current="page"],
 body[data-report-type="performance"] .nav-link[href="/reports/performance"],
 body[data-report-type="behavior"] .nav-link[href="/reports/behavior"],
-body[data-report-type="engagement"] .nav-link[href="/reports/engagement"]{
+body[data-report-type="engagement"] .nav-link[href="/reports/engagement"],
+body[data-report-type="user-management"] .nav-link[href="/admin/users"]{
 	background: var(--pill-color);
 	color: var(--nav-link-active-text-color);
 }
@@ -275,6 +277,13 @@ body[data-report-type="engagement"]{
     --section-card-color: var(--engagement-background);
     --comment-button-bg: #EFBACC;
     --comment-button-hover-bg: #5f1245;
+}
+
+body[data-report-type="user-management"]{
+    --report-title-color: var(--user-management-background);
+    --section-card-color: var(--user-management-background);
+    --comment-button-bg: #9D4CDB;
+    --comment-button-hover-bg: #6f2fa3;
 }
 
 main > h1{
