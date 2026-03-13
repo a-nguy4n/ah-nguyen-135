@@ -339,9 +339,9 @@ footer{
     place-self: start;
     
     margin: 0 0 3% 0;
-    font-size: var(--text-large);
+    font-size: var(--text-xlarge);
     font-family: var(--header-font);
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .analytics-card p{
