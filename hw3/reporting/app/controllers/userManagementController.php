@@ -15,5 +15,9 @@ if ($_SESSION['role'] !== 'super_admin') {
     exit;
 }
 
+require APP . '/models/userModel.php';
+$model = new UserModel();
+$users = $model->getAll();
+
 require APP . '/views/admin/users.php';
 ?>
