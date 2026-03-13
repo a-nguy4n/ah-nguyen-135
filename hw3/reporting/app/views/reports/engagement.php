@@ -86,40 +86,42 @@
     <canvas id="timeChart" style="max-width:800px"></canvas>
 
     <script>
-    new Chart(document.getElementById('networkChart'), {
-        type: 'doughnut',
-        data: {
-            labels: <?= json_encode(array_keys($networkCounts)) ?>,
-            datasets: [{
-                data: <?= json_encode(array_values($networkCounts)) ?>,
-                backgroundColor: ['#4e79a7','#f28e2b','#e15759','#76b7b2'],
-                borderWidth: 2,
-                borderColor: '#fff'
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: { legend: { position: 'bottom' } }
-        }
-    });
+        new Chart(document.getElementById('networkChart'), {
+            type: 'bar',
+            data: {
+                labels: <?= json_encode(array_keys($networkCounts)) ?>,
+                datasets: [{
+                    label: 'Sessions',
+                    data: <?= json_encode(array_values($networkCounts)) ?>,
+                    backgroundColor: ['#4e79a7','#f28e2b','#e15759','#76b7b2'],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                indexAxis: 'y',
+                plugins: { legend: { display: false } },
+                scales: { x: { beginAtZero: true } }
+            }
+        });
 
-    new Chart(document.getElementById('timeChart'), {
-        type: 'bar',
-        data: {
-            labels: <?= json_encode($sessionLabels) ?>,
-            datasets: [{
-                label: 'Time On Page (s)',
-                data: <?= json_encode($timeOnPage) ?>,
-                backgroundColor: '#4e79a7',
-                borderRadius: 4
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: { legend: { display: false } },
-            scales: { y: { beginAtZero: true } }
-        }
-    });
+        new Chart(document.getElementById('timeChart'), {
+            type: 'bar',
+            data: {
+                labels: <?= json_encode($sessionLabels) ?>,
+                datasets: [{
+                    label: 'Time On Page (s)',
+                    data: <?= json_encode($timeOnPage) ?>,
+                    backgroundColor: '#4e79a7',
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true } }
+            }
+        });
     </script>
 
 </body>
