@@ -120,6 +120,7 @@ header{
     justify-self: start;
     font-size: var(--text-medium);
     letter-spacing: 0.06em;
+    text-decoration: none;
 }
 
 .site-title-icon{
