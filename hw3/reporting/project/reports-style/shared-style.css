@@ -11,6 +11,7 @@
 :root{
     --background-color: #F9EFE5;
     --font-color: rgb(0, 0, 0);
+    --subheader-font-color: white;
 
     --header-font: "Space Mono", monospace;
     --text-medium: clamp(14px, 1.4vw, 18px);
@@ -54,7 +55,7 @@
 
     --performance-background: #41b254;
     --behavior-background: #72a1eb;
-    --engagement-background: #EFBACC;
+    --engagement-background: #de83a1;
 
     --report-title-font: var(--header-font);
     --report-title-size: clamp(20px, 2vw, 24px);
@@ -225,13 +226,10 @@ main{
     margin: 0 3% 3%;
 }
 
-main > h1{
-    margin: 0 0 1rem 0;
-    font-family: var(--report-title-font);
-    font-size: var(--report-title-size);
-    font-weight: 500;
-    color: var(--report-title-color);
-}
+
+
+/** General Shared Styles for all Reports **/
+
 
 body[data-report-type="performance"]{
     --report-title-color: var(--performance-background);
@@ -245,4 +243,20 @@ body[data-report-type="engagement"]{
     --report-title-color: var(--engagement-background);
 }
 
-/** General Shared Styles for all Reports **/
+main > h1{
+    margin: 0 0 1.5% 0;
+    font-family: var(--report-title-font);
+    font-size: var(--report-title-size);
+    font-weight: 500;
+    color: var(--report-title-color);
+}
+
+main > h2{
+    margin: 0 0 1.5% 0;
+    font-family: var(--report-title-font);
+    font-size: var(--report-title-size);
+    font-weight: 500;
+    color: var(--subheader-font-color);
+}
+
+

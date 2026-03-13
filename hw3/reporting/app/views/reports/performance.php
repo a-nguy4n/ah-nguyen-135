@@ -41,56 +41,62 @@
         <a href="/dashboard">Back to Dashboard</a> </br>
         <a href="/logout">Logout</a>
 
-        <h2>Page Load Times</h2>
+        <section id="performance-load-time"> 
+            <h2>Page Load Times</h2>
+    
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Session ID</th>
+                        <th>Total Load Time (ms)</th>
+                        <th>Created At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($performanceData as $row): ?>
+                    <tr>
+                        <td><?= $row['session_id'] ?></td>
+                        <td><?= $row['total_load_time'] ?></td>
+                        <td><?= $row['created_at'] ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
 
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Session ID</th>
-                    <th>Total Load Time (ms)</th>
-                    <th>Created At</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($performanceData as $row): ?>
-                <tr>
-                    <td><?= $row['session_id'] ?></td>
-                    <td><?= $row['total_load_time'] ?></td>
-                    <td><?= $row['created_at'] ?></td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+            <?php
+                $perfLabels = array_map(function($r){
+                    return date('m/d H:i', strtotime($r['created_at']));
+                }, $performanceData);
 
-        <?php
-            $perfLabels = array_map(function($r) {
-                return date('m/d H:i', strtotime($r['created_at']));
-            }, $performanceData);
-            $perfValues = array_map(function($r) {
-                return (float)$r['total_load_time'];
-            }, $performanceData);
-        ?>
+                $perfValues = array_map(function($r){
+                    return (float)$r['total_load_time'];
+                }, $performanceData);
+            ?>
+        </section>
 
-        <h2>Load Time Over Time</h2>
-        <canvas id="perfChart" style="max-width:800px"></canvas>
+        <section id="performance-load-over-time">
+            <h2>Load Time Over Time</h2>
+            
+            <canvas id="perfChart" style="max-width:800px"></canvas>
 
-        <script>
-            new Chart(document.getElementById('perfChart'), {
-                type: 'line',
-                data: {
-                    labels: <?= json_encode($perfLabels) ?>,
-                    datasets: [{
-                        label: 'Total Load Time (ms)',
-                        data: <?= json_encode($perfValues) ?>,
-                        borderColor: '#0f6a9a',
-                        backgroundColor: 'rgba(15,106,154,0.15)',
-                        tension: 0.25,
-                        fill: true
-                    }]
-                },
-                options: { responsive: true }
-            });
-        </script>
+            <script>
+                new Chart(document.getElementById('perfChart'), {
+                    type: 'line',
+                    data: {
+                        labels: <?= json_encode($perfLabels) ?>,
+                        datasets: [{
+                            label: 'Total Load Time (ms)',
+                            data: <?= json_encode($perfValues) ?>,
+                            borderColor: '#0f6a9a',
+                            backgroundColor: 'rgba(15,106,154,0.15)',
+                            tension: 0.25,
+                            fill: true
+                        }]
+                    },
+                    options: { responsive: true }
+                });
+            </script>
+        </section>
     </main>
 </body>
 </html>
