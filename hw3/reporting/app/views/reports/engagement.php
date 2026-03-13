@@ -47,6 +47,7 @@
         $networkCounts = [];
         foreach ($staticData as $row) {
             $type = $row['network_type'] ?: 'unknown';
+            if ($type === '4') $type = '4g';
             $networkCounts[$type] = ($networkCounts[$type] ?? 0) + 1;
         }
 
