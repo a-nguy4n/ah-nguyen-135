@@ -6,7 +6,8 @@
 </head>
 <body>
     <h1>Behavior Report</h1>
-    <a href="/dashboard">← Back</a> | <a href="/logout">Logout</a>
+    <a href="/dashboard"> Back to Dashboard </a> </br>
+    <a href="/logout">Logout</a>
 
     <h2>Activity Data</h2>
     <table border="1">
@@ -15,12 +16,9 @@
                 <th>Session ID</th>
                 <th>Time On Page (ms)</th>
                 <th>Mouse Moves</th>
-                <th>Clicks</th>
-                <th>Scroll</th>
+                <th>Click Count</th>
                 <th>Key Presses</th>
-                <th>Key Releases</th>
                 <th>Error Count</th>
-                <th>Idle Breaks</th>
                 <th>Total Idle Time (s)</th>
             </tr>
         </thead>
@@ -30,12 +28,9 @@
                 <td><?= $row['session_id'] ?></td>
                 <td><?= $row['time_on_page_ms'] ?></td>
                 <td><?= $row['mouse_moves'] ?></td>
-                <td><?= $row['clicks'] ?></td>
-                <td><?= $row['scroll'] ?></td>
-                <td><?= $row['key_presses'] ?></td>
-                <td><?= $row['key_releases'] ?></td>
+                <td><?= count(json_decode($row['clicks'], true) ?? []) ?></td>
+                <td><?= count(json_decode($row['key_presses'], true) ?? []) ?></td>
                 <td><?= $row['error_count'] ?></td>
-                <td><?= $row['idle_breaks'] ?></td>
                 <td><?= round($row['total_idle_time_ms'] / 1000, 1) ?></td>
             </tr>
             <?php endforeach; ?>
