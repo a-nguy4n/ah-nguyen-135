@@ -3,7 +3,7 @@
 <head>
     <title>User Management</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="/project/dashboard.css">
+    <link rel="stylesheet" href="/project/reports-style/shared-style.css">
 </head>
 <body>
     <header>
