@@ -251,7 +251,7 @@ main > h1{
     color: var(--report-title-color);
 }
 
-main > h2{
+section > h2{
     margin: 0 0 1.5% 0;
     font-family: var(--report-title-font);
     font-size: var(--report-title-size);
