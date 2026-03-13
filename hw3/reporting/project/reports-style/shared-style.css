@@ -58,6 +58,7 @@
     --behavior-background: #72a1eb;
     --engagement-background: #de83a1;
     --user-management-background: #FF9063;
+    --saved-reports-background: #72a1eb;
 
     --report-title-font: var(--header-font);
     --report-title-size: clamp(20px, 2vw, 24px);
@@ -183,7 +184,8 @@ header{
 body[data-report-type="performance"] .nav-link[href="/reports/performance"],
 body[data-report-type="behavior"] .nav-link[href="/reports/behavior"],
 body[data-report-type="engagement"] .nav-link[href="/reports/engagement"],
-body[data-report-type="user-management"] .nav-link[href="/admin/users"]{
+body[data-report-type="user-management"] .nav-link[href="/admin/users"],
+body[data-report-type="saved-reports"] .nav-link[href="/saved-reports"]{
 	background: var(--pill-color);
 	color: var(--nav-link-active-text-color);
 }
@@ -286,6 +288,11 @@ body[data-report-type="user-management"]{
     --comment-button-hover-bg: #c04020;
 }
 
+body[data-report-type="saved-reports"]{
+    --report-title-color: var(--saved-reports-background);
+    --section-card-color: var(--saved-reports-background);
+}
+
 main > h1{
     margin: 0 0 1.5% 0;
     font-family: var(--report-title-font);
@@ -329,6 +336,34 @@ section > h2{
 }
 
 .pdf-button:hover{
+    color: var(--report-title-color);
+}
+
+.report-actions{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.save-report-form{
+    margin: 0;
+    display: inline-flex;
+}
+
+.save-report-button{
+    box-sizing: border-box;
+    height: var(--pdf-button-height);
+    padding: 0 var(--pdf-button-padding-x);
+    border: none;
+    border-radius: 99px;
+    cursor: pointer;
+    background: white;
+    color: var(--font-color);
+    font-family: var(--header-font);
+    font-size: var(--text-small);
+}
+
+.save-report-button:hover{
     color: var(--report-title-color);
 }
 

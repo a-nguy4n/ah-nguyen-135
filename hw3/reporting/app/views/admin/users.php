@@ -20,6 +20,7 @@
                 <li><a class="nav-link" href="/reports/performance">Performance</a></li>
                 <li><a class="nav-link" href="/reports/behavior">Behavior</a></li>
                 <li><a class="nav-link" href="/reports/engagement">Engagement</a></li>
+                <li><a class="nav-link" href="/saved-reports">Saved Reports</a></li>
                 <li><a class="nav-link active" href="/admin/users">User Management</a></li>
             </ul>
         </nav>

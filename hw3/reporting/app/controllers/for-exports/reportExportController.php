@@ -8,6 +8,12 @@ if(empty($_SESSION['user']) || empty($_SESSION['role'])){
     exit;
 }
 
+if($_SESSION['role'] === 'viewer'){
+    http_response_code(403);
+    require APP . '/views/403.php';
+    exit;
+}
+
 $autoloadPath = ROOT . '/vendor/autoload.php';
 if(!file_exists($autoloadPath)){
     http_response_code(500);
@@ -18,19 +24,33 @@ if(!file_exists($autoloadPath)){
 require_once $autoloadPath;
 
 $requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$routeToReportType = [
-    '/reports/performance/export/pdf' => 'performance',
-    '/reports/behavior/export/pdf' => 'behavior',
-    '/reports/engagement/export/pdf' => 'engagement',
+$routeToReportConfig = [
+    '/reports/performance/export/pdf' => ['reportType' => 'performance', 'mode' => 'export'],
+    '/reports/behavior/export/pdf' => ['reportType' => 'behavior', 'mode' => 'export'],
+    '/reports/engagement/export/pdf' => ['reportType' => 'engagement', 'mode' => 'export'],
+    '/reports/performance/save' => ['reportType' => 'performance', 'mode' => 'save'],
+    '/reports/behavior/save' => ['reportType' => 'behavior', 'mode' => 'save'],
+    '/reports/engagement/save' => ['reportType' => 'engagement', 'mode' => 'save'],
 ];
 
-if(!isset($routeToReportType[$requestPath])){
+if(!isset($routeToReportConfig[$requestPath])){
     http_response_code(404);
     echo 'Unknown export route.';
     exit;
 }
 
-$reportType = $routeToReportType[$requestPath];
+$currentRouteConfig = $routeToReportConfig[$requestPath];
+$reportType = $currentRouteConfig['reportType'];
+$mode = $currentRouteConfig['mode'];
+
+if($_SESSION['role'] === 'analyst'){
+    $allowed = explode(',', $_SESSION['sections'] ?? '');
+    if(!in_array($reportType, $allowed)){
+        http_response_code(403);
+        require APP . '/views/403.php';
+        exit;
+    }
+}
 
 $generatedAt = date('Y-m-d H:i:s');
 $pdfStylesPath = ROOT . '/project/pdfs-style/pdf-style.css';
@@ -117,30 +137,48 @@ $dompdf->render();
 $pdfOutput = $dompdf->output();
 
 $exportsDir = ROOT . '/project/exports';
-$canSave = false;
+if(!is_dir($exportsDir) && !@mkdir($exportsDir, 0755, true)){
+    http_response_code(500);
+    echo 'Could not create exports directory.';
+    exit;
+}
 
-if(is_dir($exportsDir) || @mkdir($exportsDir, 0755, true)){
-    if(is_writable($exportsDir)){
-        $canSave = true;
-    }
+if(!is_writable($exportsDir)){
+    http_response_code(500);
+    echo 'Exports directory is not writable.';
+    exit;
 }
 
 $fileName = $filePrefix . date('Ymd-His') . '-' . bin2hex(random_bytes(4)) . '.pdf';
+$filePath = $exportsDir . '/' . $fileName;
 
-if($canSave){
-    $filePath = $exportsDir . '/' . $fileName;
-    $saved = @file_put_contents($filePath, $pdfOutput);
-
-    if($saved !== false){
-        header('Location: /project/exports/' . rawurlencode($fileName));
-        exit;
-    }
+if(@file_put_contents($filePath, $pdfOutput) === false){
+    http_response_code(500);
+    echo 'Failed to save generated PDF.';
+    exit;
 }
 
-header('Content-Type: application/pdf');
-header('Content-Disposition: attachment; filename="' . $fileName . '"');
-header('Cache-Control: private, max-age=0, must-revalidate');
+if($mode === 'save'){
+    require APP . '/models/savedReportModel.php';
+    $savedReportModel = new savedReportModel();
+    $title = ucfirst($reportType) . ' Report - ' . date('Y-m-d H:i');
+    $savedReportModel->create($reportType, $title, $fileName, '/project/exports/' . $fileName, $_SESSION['user']);
 
-echo $pdfOutput;
+    header('Location: /saved-reports');
+    exit;
+}
+
+if(isset($_GET['download']) && $_GET['download'] === '1'){
+    header('Content-Type: application/pdf');
+    header('Content-Disposition: attachment; filename="' . $fileName . '"');
+    header('Cache-Control: private, max-age=0, must-revalidate');
+    echo $pdfOutput;
+    exit;
+}
+
+if($mode === 'export'){
+        header('Location: /project/exports/' . rawurlencode($fileName));
+        exit;
+}
 
 exit;

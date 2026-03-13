@@ -9,6 +9,12 @@ if (empty($_SESSION['role'])) {
     exit;
 }
 
+if ($_SESSION['role'] === 'viewer') {
+    http_response_code(403);
+    require APP . '/views/403.php';
+    exit;
+}
+
 if ($_SESSION['role'] === 'analyst') {
     $allowed = explode(',', $_SESSION['sections'] ?? '');
     if (!in_array('engagement', $allowed)) {

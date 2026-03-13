@@ -22,10 +22,20 @@ switch ($uri) {
         require APP . '/controllers/dashboardController.php';
         break;
 
+    case '/saved-reports':
+        require APP . '/controllers/savedReportsController.php';
+        break;
+    case '/saved-reports/download':
+        require APP . '/controllers/savedReportsController.php';
+        break;
+
     case '/reports/performance':
         require APP . '/controllers/performanceController.php';
         break;
     case '/reports/performance/export/pdf':
+        require APP . '/controllers/for-exports/reportExportController.php';
+        break;
+    case '/reports/performance/save':
         require APP . '/controllers/for-exports/reportExportController.php';
         break;
 
@@ -35,11 +45,17 @@ switch ($uri) {
     case '/reports/engagement/export/pdf':
         require APP . '/controllers/for-exports/reportExportController.php';
         break;
+    case '/reports/engagement/save':
+        require APP . '/controllers/for-exports/reportExportController.php';
+        break;
 
     case '/reports/behavior':
         require APP . '/controllers/behaviorController.php';
         break;
     case '/reports/behavior/export/pdf':
+        require APP . '/controllers/for-exports/reportExportController.php';
+        break;
+    case '/reports/behavior/save':
         require APP . '/controllers/for-exports/reportExportController.php';
         break;
 

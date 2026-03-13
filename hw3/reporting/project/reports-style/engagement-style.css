@@ -17,7 +17,7 @@ h1{
 	margin: 0;
 }
 
-.pdf-button{
+.report-actions{
 	grid-area: pdf-button;
 	justify-self: end;
 	display: inline-flex;

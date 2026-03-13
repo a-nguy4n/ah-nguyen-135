@@ -21,6 +21,7 @@
                 <li><a class="nav-link active" href="/reports/performance">Performance</a></li>
                 <li><a class="nav-link" href="/reports/behavior">Behavior</a></li>
                 <li><a class="nav-link" href="/reports/engagement">Engagement</a></li>
+                <li><a class="nav-link" href="/saved-reports">Saved Reports</a></li>
                 <li><a class="nav-link" href="/admin/users">User Management</a></li>
             </ul>
         </nav>
@@ -35,10 +36,15 @@
     <main>
         <h1>Performance Report</h1>
 
-        <button type="button" class="pdf-button" onclick="window.location.href='/reports/performance/export/pdf'">
-            <span class="material-icons">download</span>
-            PDF
-        </button>
+        <div class="report-actions">
+            <form class="save-report-form" method="POST" action="/reports/performance/save">
+                <button type="submit" class="save-report-button">Save Report</button>
+            </form>
+            <button type="button" class="pdf-button" onclick="window.location.href='/reports/performance/export/pdf'">
+                <span class="material-icons">download</span>
+                PDF
+            </button>
+        </div>
 
         <section class="analyst-comments-card" id="performance-analyst-comments">
             <h2>Analyst Comments<?php if (!empty($comments)) echo ' (' . count($comments) . ')'; ?></h2>

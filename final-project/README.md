@@ -6,7 +6,7 @@ Link to Repo:
 Link to Deployed Site: 
 - https://ah-nguyen.site/ 
 
-Link to Reporting Site:
+Link to Reporting Site (fast access):
 - https://reporting.ah-nguyen.site/
 
 AI Usage Mentions 
