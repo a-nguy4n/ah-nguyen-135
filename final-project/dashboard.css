@@ -1,4 +1,96 @@
+@font-face {
+    font-family: "Space Mono";
+    src: url("fonts/Space_Mono/SpaceMono-Bold.ttf");
+}
+
+@font-face{
+    font-family: "Noto Sans Mono";
+    src: url("fonts/Noto_Sans_Mono/NotoSansMono-VariableFont_wdth,wght.ttf");
+}
+
+:root{
+    --background-color: rgb(236, 236, 236);
+    --background-gradient:
+        radial-gradient(
+            circle at 30% 10%,
+            #0e5a60 0%,
+            #1f8b92 20%,
+            #5ea9ad 40%,
+            #eae5c9 65%,
+            #e0e0e0 100%
+        );
+
+    --glassy-color: rgba(255, 255, 255, 0.568);
+    --font-color: #0e5a60;
+
+    --border-val: 1px solid rgba(255, 255, 255, 0.6);
+    --button-radius: 40px; 
+    --button-color: rgb(10, 84, 84);
+    --button-padding: 3% 5%;
+
+    --general-font: "Space Mono", monospace;
+    --secondary-font: "Noto Sans Mono", monospace;
+    --text-small:  clamp(12px, 1.1vw, 14px);
+    --text-medium: clamp(14px, 1.4vw, 18px);
+    --text-large:  clamp(16px, 1.7vw, 22px);
+    --text-xlarge:  clamp(20px, 2vw, 24px);
+
+    --card-padding: 5%;
+    --card-radius: 15px;
+
+    --image-width: clamp(20%, 25%, 30%);
+}
+
 body{
     overflow: hidden;
-    background: rgb(243, 243, 243);
+    width: 100%;
+    height: 100vh;
+    background: var(--background-color);
+    background-image: var(--background-gradient);
+    color: var(--font-color);
+}
+
+main{
+    display: grid;
+    grid-template-areas: 
+                "header      header   header"
+                "performance behavior engagement"
+                "footer      footer   footer";
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: auto 1fr auto;
+    gap: 3%;
+    margin: 3%;
+}
+
+.analytics-card{
+    place-self: stretch;
+    width: 100%;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background: var(--glassy-color);
+    border-radius: var(--card-radius);
+    padding: var(--card-padding, 3%);
+}
+
+.analytics-card h1{
+    margin: 0;
+    font-size: var(--text-xlarge);
+    font-family: var(--secondary-font);
+    font-weight: 500;
+}
+
+.analytics-card button{
+    cursor: pointer;
+    border-radius: var(--button-radius);
+    padding: var(--button-padding);
+    width: fit-content;
+
+}
+
+.analytics-card img{
+    width: var(--image-size, 25%);
 }
