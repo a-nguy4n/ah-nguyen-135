@@ -1,14 +1,49 @@
+@font-face{
+    font-family: "Space Mono";
+    src: url("/fonts/Space_Mono/SpaceMono-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Archivo Black";
+    src: url("/fonts/Archivo_Black/ArchivoBlack-Regular.ttf") format("truetype");
+}
+
 body{
     width: 100%;
     height: 100vh;
+    background: #F9EFE5;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+
+    --text-small:  clamp(12px, 1.1vw, 14px);
+    --text-medium: clamp(14px, 1.4vw, 18px);
+    --text-large:  clamp(17px, 1.55vw, 21px);
+}
+
+h1{
+    font-family: "Space Mono", monospace;
+    font-size: var(--text-large);
 }
 
 .error-image{
     width: clamp(150px, 30vw, 300px);
     margin: 1%;
+}
+
+p{
+    font-family: "Archivo Black", sans-serif;
+    font-size: var(--text-medium);
+    color: #444;
+    margin: 1% 0;
+}
+
+a{
+    font-family: "Space Mono", monospace;
+    font-size: var(--text-small);
+    color: #007bff;
+    text-decoration: none;
 }

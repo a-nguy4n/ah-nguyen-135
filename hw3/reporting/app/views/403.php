@@ -11,4 +11,4 @@
     <p>You do not have permission to view this page.</p>
     <a href="/dashboard">Back to Dashboard</a>
 </body>
-</html>`
+</html>
