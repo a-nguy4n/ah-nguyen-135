@@ -1,9 +1,10 @@
 main{
     display: grid;
     grid-template-areas:
-            "report-title report-title"
-            "add-user users-table";
-    grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.4fr);
+            "report-title"
+            "add-user"
+            "users-table";
+    grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
     padding: 0 1% 2rem;
 }
@@ -62,8 +63,7 @@ section{
 }
 
 #user-add-section button,
-.user-role-form button,
-.user-delete-form button{
+#user-list-section button{
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -79,10 +79,24 @@ section{
     transition: background 0.2s ease, color 0.2s ease;
 }
 
-#user-add-section button:hover,
-.user-role-form button:hover,
-.user-delete-form button:hover{
+#user-add-section button:hover{
     background: #6f2fa3;
+}
+
+.user-role-form button{
+    background: #2f9e44;
+}
+
+.user-role-form button:hover{
+    background: #1f6f2f;
+}
+
+.user-delete-form button{
+    background: #d64545;
+}
+
+.user-delete-form button:hover{
+    background: #8f1f1f;
 }
 
 #user-list-section .table-scroll{
@@ -102,12 +116,3 @@ section{
     margin: 0;
 }
 
-@media (max-width: 900px){
-    main{
-        grid-template-areas:
-                "report-title"
-                "add-user"
-                "users-table";
-        grid-template-columns: minmax(0, 1fr);
-    }
-}
