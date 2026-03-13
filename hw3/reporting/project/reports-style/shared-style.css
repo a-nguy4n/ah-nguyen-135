@@ -273,7 +273,7 @@ body[data-report-type="behavior"]{
 body[data-report-type="engagement"]{
     --report-title-color: var(--engagement-background);
     --section-card-color: var(--engagement-background);
-    --comment-button-bg: #da75b8;
+    --comment-button-bg: #EFBACC;
     --comment-button-hover-bg: #5f1245;
 }
 
