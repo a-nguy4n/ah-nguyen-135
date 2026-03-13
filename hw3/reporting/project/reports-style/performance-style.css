@@ -58,4 +58,8 @@ td{
 
 #performance-load-over-time{
     grid-area: card-two;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
