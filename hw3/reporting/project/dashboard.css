@@ -1,15 +1,15 @@
 @font-face {
     font-family: "Space Mono";
-    src: url("fonts/Space_Mono/SpaceMono-Bold.ttf");
+    src: url("/fonts/Space_Mono/SpaceMono-Bold.ttf") format("truetype");
 }
 
-@font-face{
-    font-family: "Noto Sans Mono";
-    src: url("fonts/Noto_Sans_Mono/NotoSansMono-VariableFont_wdth,wght.ttf");
+@font-face {
+    font-family: "Archivo Black";
+    src: url("/fonts/Archivo/Archivo-VariableFont_wdth,wght.ttf") format("truetype");
 }
 
 :root{
-    --background-color: rgb(241, 241, 241);
+    --background-color: rgb(255, 255, 255);
     --glassy-color: rgba(255, 255, 255, 0.568);
     --font-color: white;
 
@@ -18,8 +18,9 @@
     --button-color: rgb(255, 255, 255);
     --button-padding: 3% 5%;
 
-    --general-font: "Space Mono", monospace;
-    --secondary-font: "Noto Sans Mono", monospace;
+    --header-font: "Space Mono", monospace;
+    --archivo-font: "Archivo Black";
+    
     --text-small:  clamp(12px, 1.1vw, 14px);
     --text-medium: clamp(14px, 1.4vw, 18px);
     --text-large:  clamp(16px, 1.7vw, 22px);
@@ -27,6 +28,8 @@
 
     --card-padding: 5%;
     --card-radius: 15px;
+
+    --box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 
 --performance-background: radial-gradient(
                             circle at top center,
@@ -46,12 +49,56 @@
                         );
 }
 
+#performance-analytics{
+    background: var(--performance-background);
+    --card-font-color: rgb(1, 56, 36);
+    --card-border-color: rgba(197, 233, 220, 0.349);
+    --card-button-bg: rgba(255, 255, 255, 0.92);
+    --card-button-border-color: rgba(112, 188, 160, 0.407);
+    --card-button-text-color: rgb(1, 56, 36);
+    --card-button-hover-bg: rgb(0, 150, 95);
+    --card-button-hover-border-color: rgb(10, 148, 100);
+    --card-button-hover-text-color: white;
+}   
+
+#behavior-analytics{
+    background: var(--behavior-background);
+    --card-font-color: rgb(2, 9, 37);
+    --card-border-color: rgba(104, 129, 195, 0.6);
+    --card-button-bg: rgba(255, 255, 255, 0.92);
+    --card-button-border-color: rgba(170, 186, 229, 0.85);
+    --card-button-text-color: rgb(2, 9, 37);
+    --card-button-hover-bg: rgb(8, 107, 169);
+    --card-button-hover-border-color: rgb(8, 107, 169);
+    --card-button-hover-text-color: white;
+}   
+
+#engagement-analytics{
+    background: var(--engagement-background);
+    --card-font-color: rgb(34, 3, 28);
+    --card-border-color: rgba(249, 188, 250, 0.55);
+    --card-button-bg: rgba(255, 255, 255, 0.92);
+    --card-button-border-color: rgba(255, 213, 239, 0.8);
+    --card-button-text-color: rgb(34, 3, 28);
+    --card-button-hover-bg: rgb(200, 117, 196);
+    --card-button-hover-border-color: rgb(200, 117, 196);
+    --card-button-hover-text-color: white;
+}
+
 body{
     overflow: hidden;
     width: 100%;
     height: 100vh;
     background: var(--background-color);
     color: var(--font-color);
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-family: var(--header-font);
 }
 
 main{
@@ -64,33 +111,6 @@ main{
     grid-template-rows: auto 1fr auto;
     gap: 3%;
     margin: 3%;
-}
-
-#performance-analytics{
-    background: var(--performance-background);
-    --card-font-color: rgb(1, 56, 36);
-    --card-border-color: rgba(197, 233, 220, 0.349);
-    --card-button-bg: rgba(255, 255, 255, 0.92);
-    --card-button-border-color: rgba(4, 179, 115, 0.407);
-    --card-button-text-color: rgb(1, 56, 36);
-}   
-
-#behavior-analytics{
-    background: var(--behavior-background);
-    --card-font-color: rgb(2, 9, 37);
-    --card-border-color: rgba(104, 129, 195, 0.6);
-    --card-button-bg: rgba(255, 255, 255, 0.92);
-    --card-button-border-color: rgba(104, 129, 195, 0.85);
-    --card-button-text-color: rgb(2, 9, 37);
-}   
-
-#engagement-analytics{
-    background: var(--engagement-background);
-    --card-font-color: rgb(34, 3, 28);
-    --card-border-color: rgba(249, 188, 250, 0.55);
-    --card-button-bg: rgba(255, 255, 255, 0.92);
-    --card-button-border-color: rgba(255, 213, 239, 0.8);
-    --card-button-text-color: rgb(34, 3, 28);
 }
 
 .analytics-card{
@@ -107,9 +127,10 @@ main{
     row-gap: 1rem;
 
     background: var(--glassy-color);
-    color: var(--card-font-color, var(--font-color));
     border: 1px solid var(--card-border-color, rgba(255, 255, 255, 0.6));
     border-radius: var(--card-radius);
+    box-shadow: var(--box-shadow);
+    color: var(--card-font-color, var(--font-color));
     padding: var(--card-padding, 3%);
 }
 
@@ -119,8 +140,8 @@ main{
 
     margin: 0;
     font-size: var(--text-xlarge);
-    font-family: var(--secondary-font);
-    font-weight: 500;
+    font-family: var(--header-font);
+    font-weight: 400;
 }
 
 .analytics-card p{
@@ -128,7 +149,8 @@ main{
     place-self: center;
     margin: 0;
     font-size: var(--text-small);
-    font-family: var(--general-font);
+    font-family: var(--archivo-font);
+    line-height: 1.75;
 }
 
 .analytics-card button{
@@ -137,11 +159,18 @@ main{
     border: 1px solid var(--card-button-border-color, rgba(255, 255, 255, 0.6));
     background: var(--card-button-bg, rgb(255, 255, 255));
     color: var(--card-button-text-color, var(--card-font-color, rgb(0, 0, 0)));
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 
 
     padding: var(--button-padding);
     width: fit-content;
     white-space: nowrap;
+}
+
+.analytics-card button:hover{
+    background: var(--card-button-hover-bg);
+    border-color: var(--card-button-hover-border-color, var(--card-button-border-color));
+    color: var(--card-button-hover-text-color, var(--card-button-text-color));
 }
 
 .button-row{
@@ -158,4 +187,5 @@ main{
     align-items: center;
     gap: 5px;
 }
+
 
