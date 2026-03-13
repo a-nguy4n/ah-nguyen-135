@@ -5,7 +5,7 @@ if (empty($_SESSION['user'])) {
 }
 
 require APP . '/models/activity.php';
-$model = new ActivityModel();
+$model = new $activityData();
 $activityData = $model->getAll();
 
 require APP . '/views/reports/behavior.php';
