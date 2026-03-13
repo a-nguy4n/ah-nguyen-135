@@ -15,8 +15,8 @@ if ($_SESSION['role'] !== 'super_admin') {
     exit;
 }
 
-require APP . '/models/UserModel.php';
-$model = new UserModel();
+require APP . '/models/userModel.php';
+$model = new userModel();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     if ($_POST['action'] === 'add') {
