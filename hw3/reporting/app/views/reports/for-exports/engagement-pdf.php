@@ -1,29 +1,50 @@
 <?php
-if (!isset($engagementData) || !is_array($engagementData)) {
-    $engagementData = [];
-}
+    if(!isset($engagementData) || !is_array($engagementData)){
+        $engagementData = [];
+    }
 
-if (!isset($generatedAt)) {
-    $generatedAt = '';
-}
+    if(!isset($generatedAt)){
+        $generatedAt = '';
+    }
 
-if (!isset($pdfStyles)) {
-    $pdfStyles = '';
-}
+    if(!isset($pdfStyles)){
+        $pdfStyles = '';
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Engagement Report PDF</title>
-    <style><?php echo $pdfStyles; ?></style>
+    <style>
+        <?php echo $pdfStyles; ?>
+
+        .engagement-table {
+            table-layout: fixed;
+        }
+
+        .engagement-table th,
+        .engagement-table td {
+            overflow-wrap: anywhere;
+            word-break: break-all;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
     <h1>Engagement Report</h1>
     <p>Generated at: <?php echo htmlspecialchars($generatedAt, ENT_QUOTES, 'UTF-8'); ?></p>
 
     <h2>Session Engagement Details</h2>
-    <table>
+    <table class="engagement-table">
+        <colgroup>
+            <col style="width: 18%;">
+            <col style="width: 12%;">
+            <col style="width: 14%;">
+            <col style="width: 14%;">
+            <col style="width: 14%;">
+            <col style="width: 28%;">
+        </colgroup>
         <thead>
             <tr>
                 <th>Session ID</th>

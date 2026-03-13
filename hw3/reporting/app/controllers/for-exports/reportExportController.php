@@ -49,6 +49,7 @@ if (file_exists($pdfStylesPath)){
 
 $viewPath = '';
 $filePrefix = '';
+$paperOrientation = 'portrait';
 
 if($reportType === 'performance'){
     require APP . '/models/performanceData.php';
@@ -76,6 +77,7 @@ else{
 
     $viewPath = APP . '/views/reports/for-exports/engagement-pdf.php';
     $filePrefix = 'engagement-report-';
+    $paperOrientation = 'landscape';
 }
 
 if(!file_exists($viewPath)){
@@ -99,7 +101,7 @@ $options->set('isRemoteEnabled', true);
 
 $dompdf = new Dompdf($options);
 $dompdf->loadHtml($html);
-$dompdf->setPaper('A4', 'portrait');
+$dompdf->setPaper('A4', $paperOrientation);
 $dompdf->render();
 $pdfOutput = $dompdf->output();
 
