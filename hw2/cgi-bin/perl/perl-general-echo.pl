@@ -22,6 +22,4 @@ print "<p><b>Query String:</b> $ENV{QUERY_STRING}</p>";
 my $bytes_read = read STDIN, my $form_data, $ENV{CONTENT_LENGTH};
 
 print "<p><b>Message Body:</b> $form_data</p>";
-
-# Print the HTML file bottom
 print "</body></html>\n";

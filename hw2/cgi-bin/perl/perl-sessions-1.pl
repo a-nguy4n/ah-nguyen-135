@@ -12,7 +12,7 @@ $cgi = CGI->new;
 $cookie = $cgi->cookie(CGISESSID => $session->id);
 print $cgi->header( -cookie=>$cookie );
 
-#Store Data in that Perl Session
+# Store Data in that Perl Session
 my $name = $session->param('username') || $cgi->param('username');
 $session->param("username", $name);
 

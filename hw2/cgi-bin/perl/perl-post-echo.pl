@@ -2,7 +2,6 @@
 print "Cache-Control: no-cache\n";
 print "Content-type: text/html \n\n";
 
-# print HTML file top
 print <<END;
 <!DOCTYPE html>
 <html><head><title>POST Request Echo</title>
@@ -31,7 +30,6 @@ if (length ($form_data) > 0){
 print "<b>Message Body:</b><br />\n";
 print "<ul>\n";
 
-#Print out the Query string
 $loop = 0;
 foreach my $key (%in) {
   $loop += 1;
@@ -41,5 +39,4 @@ foreach my $key (%in) {
 }
 
 print "</ul>\n";
-# Print the HTML file bottom
 print "</body></html>\n";

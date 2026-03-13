@@ -27,7 +27,7 @@ if (length ($ENV{'QUERY_STRING'}) > 0){
 
 #Print out the Query String
 $loop = 0;
-foreach my $key (%in) {
+foreach my $key (%in){
   $loop += 1;
   if($loop % 2 != 0) {
     print "$key = $in{$key}<br/>\n";

@@ -55,31 +55,33 @@
             const language = document.getElementById('language-type').value;
             const encoding = document.getElementById('encoding-type').value;
 
-            if (language == 'python') {
+            if(language == 'python') {
                 var actionURL = `cgi-bin/${language}/echo-${language}.py`;
-            } else if (language == 'c') {
+            } 
+            else if(language == 'c'){
                 var actionURL = `cgi-bin/${language}/echo-${language}.cgi`;
-            } else if (language == 'php') {
+            } 
+            else if (language == 'php'){
                 var actionURL = `cgi-bin/${language}/echo-${language}.php`;
             }
 
-            if (method == 'GET') {
+            if(method == 'GET'){
                 actionURL += `?username=${encodeURIComponent(form.username.value)}`;
             }
-            if (encoding == 'application/json' && method != 'GET') {
+            if(encoding == 'application/json' && method != 'GET'){
                 var body = JSON.stringify({
                     username: form.username.value
                 });
             }
-            else {
+            else{
                 var body = `username=${encodeURIComponent(form.username.value)}`;
             }
-            if (method == 'GET') {
+            if(method == 'GET'){
                 fetch(actionURL, {method: method})
                 .then(response =>  response.text())
                 .then(text => document.getElementById('result').innerHTML = text);
             }
-            else {
+            else{
                 fetch(actionURL, {
                     method: method,
                     headers: {

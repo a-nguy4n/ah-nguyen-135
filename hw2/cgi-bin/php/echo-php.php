@@ -22,10 +22,10 @@
     // Username logic
     $name = "";
 
-    if ($method === "GET" && isset($parsed_query['username'])) {
+    if($method === "GET" && isset($parsed_query['username'])){
       $name = $parsed_query['username'];
     }
-    elseif ($method === "POST" || $method === "PUT" || $method === "DELETE") {
+    elseif($method === "POST" || $method === "PUT" || $method === "DELETE"){
       $content_type = $_SERVER['CONTENT_TYPE'] ?? '';
 
       // Check if it's JSON
@@ -36,10 +36,10 @@
         }
       }
       else {
-        if ($method === "POST" && isset($_POST['username'])) {
+        if($method === "POST" && isset($_POST['username'])){
           $name = $_POST['username'];
-        } else {
-            // Manually parse form data from raw body
+        } 
+        else{
             parse_str($raw_body, $parsed_data);
             if (isset($parsed_data['username'])) {
                 $name = $parsed_data['username'];

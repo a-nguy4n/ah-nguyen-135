@@ -13,7 +13,7 @@ echo "<hr>";
 
 $env = $_SERVER;
 
-ksort($env); // sorting by key
+ksort($env);
 
 foreach ($env as $key => $value){
     echo "<b>$key:</b> $value<br />";
