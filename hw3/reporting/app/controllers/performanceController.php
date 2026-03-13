@@ -20,6 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment'])) {
         $stmt->bind_param("sss", $report, $_SESSION['user'], $_POST['comment']);
         $stmt->execute();
     }
+    header('Location: /reports/performance');
+    exit;
 }
 
 // fetch performance data
