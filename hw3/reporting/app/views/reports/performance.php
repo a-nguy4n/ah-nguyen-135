@@ -6,14 +6,14 @@
 </head>
 <body>
     <h1>Performance Report</h1>
-    <a href="/dashboard">← Back</a> | <a href="/logout">Logout</a>
+    <a href="/dashboard">Back to Dashboard</a> </br>
+    <a href="/logout">Logout</a>
 
     <h2>Page Load Times</h2>
     <table border="1">
         <thead>
             <tr>
                 <th>Session ID</th>
-                <th>Raw Timing</th>
                 <th>Total Load Time (ms)</th>
                 <th>Created At</th>
             </tr>
@@ -22,7 +22,6 @@
             <?php foreach ($performanceData as $row): ?>
             <tr>
                 <td><?= $row['session_id'] ?></td>
-                <td><?= $row['raw_timing'] ?></td>
                 <td><?= $row['total_load_time'] ?></td>
                 <td><?= $row['created_at'] ?></td>
             </tr>
