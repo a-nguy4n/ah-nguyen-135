@@ -3,7 +3,7 @@
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
-if (empty($_SESSION['user']) || empty($_SESSION['role'])) {
+if(empty($_SESSION['user']) || empty($_SESSION['role'])) {
     header('Location: /login');
     exit;
 }
@@ -36,18 +36,25 @@ $dompdf = new Dompdf($options);
 $dompdf->loadHtml($html);
 $dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
+$pdfOutput = $dompdf->output();
 
 $exportsDir = ROOT . '/project/exports';
-if (!is_dir($exportsDir) && !mkdir($exportsDir, 0755, true) && !is_dir($exportsDir)) {
-    http_response_code(500);
-    echo 'Unable to create exports directory.';
-    exit;
-}
+$canSave = (is_dir($exportsDir) || @mkdir($exportsDir, 0755, true)) && is_writable($exportsDir);
 
 $fileName = 'performance-report-' . date('Ymd-His') . '-' . bin2hex(random_bytes(4)) . '.pdf';
-$filePath = $exportsDir . '/' . $fileName;
 
-file_put_contents($filePath, $dompdf->output());
+if ($canSave) {
+    $filePath = $exportsDir . '/' . $fileName;
+    $saved = @file_put_contents($filePath, $pdfOutput);
 
-header('Location: /project/exports/' . rawurlencode($fileName));
+    if ($saved !== false) {
+        header('Location: /project/exports/' . rawurlencode($fileName));
+        exit;
+    }
+}
+
+header('Content-Type: application/pdf');
+header('Content-Disposition: attachment; filename="' . $fileName . '"');
+header('Cache-Control: private, max-age=0, must-revalidate');
+echo $pdfOutput;
 exit;
