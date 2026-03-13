@@ -17,16 +17,12 @@
 
         <nav class="main-navigation" aria-label="Main Navigation">
             <ul class="nav-list">
-                <?php if ($_SESSION['role'] !== 'viewer'): ?>
-                    <li><a class="nav-link" href="/dashboard">Dashboard</a></li>
-                    <li><a class="nav-link" href="/reports/performance">Performance</a></li>
-                    <li><a class="nav-link" href="/reports/behavior">Behavior</a></li>
-                    <li><a class="nav-link" href="/reports/engagement">Engagement</a></li>
-                <?php endif; ?>
+                <li><a class="nav-link" href="/dashboard">Dashboard</a></li>
+                <li><a class="nav-link" href="/reports/performance">Performance</a></li>
+                <li><a class="nav-link" href="/reports/behavior">Behavior</a></li>
+                <li><a class="nav-link" href="/reports/engagement">Engagement</a></li>
                 <li><a class="nav-link active" href="/saved-reports">Saved Reports</a></li>
-                <?php if ($_SESSION['role'] === 'super_admin'): ?>
-                    <li><a class="nav-link" href="/admin/users">User Management</a></li>
-                <?php endif; ?>
+                <li><a class="nav-link" href="/admin/users">User Management</a></li>
             </ul>
         </nav>
 
