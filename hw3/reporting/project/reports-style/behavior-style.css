@@ -2,9 +2,9 @@ main{
 	display: grid;
 	grid-template-areas:
 			"report-title pdf-button"
-			"card-top     card-top"
-			"card-bottom  card-bottom";
-	grid-template-columns: minmax(0, 1fr) auto;
+			"links       links"
+			"card-left   card-right";
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 	gap: 3%;
 	margin: 1%;
 	padding: 0% 4% 0% 0.5%;
@@ -22,10 +22,41 @@ h1{
 	align-items: center;
 }
 
+.report-links{
+	grid-area: links;
+	white-space: nowrap;
+}
+
 section{
 	min-width: 0;
 	width: 100%;
 	height: fit-content;
+}
+
+.table-scroll{
+	overflow-x: auto;
+}
+
+#activity-data-table table{
+	min-width: 820px;
+}
+
+#activity-data-table th,
+#activity-data-table td{
+	white-space: nowrap;
+	overflow-wrap: normal;
+}
+
+.table-more-btn{
+	margin-top: 0.75rem;
+	padding: 0.35rem 0.8rem;
+	border: none;
+	border-radius: 999px;
+	cursor: pointer;
+	font-family: var(--header-font);
+	font-size: var(--text-small);
+	background: white;
+	color: var(--font-color);
 }
 
 #activityChart{
@@ -34,7 +65,7 @@ section{
 }
 
 #activity-totals-chart{
-	grid-area: card-top;
+	grid-area: card-left;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -42,6 +73,6 @@ section{
 }
 
 #activity-data-table{
-	grid-area: card-bottom;
+	grid-area: card-right;
 }
 

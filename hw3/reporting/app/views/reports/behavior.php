@@ -44,37 +44,43 @@
             PDF
         </button>
 
-        <a href="/dashboard"> Back to Dashboard </a> </br>
-        <a href="/logout">Logout</a>
+        <div class="report-links">
+            <a href="/dashboard">Back to Dashboard</a>
+            &nbsp;|&nbsp;
+            <a href="/logout">Logout</a>
+        </div>
 
         <section id="activity-data-table"> 
             <h2>Activity Data</h2>
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>Session ID</th>
-                        <th>Time On Page (ms)</th>
-                        <th>Mouse Moves</th>
-                        <th>Click Count</th>
-                        <th>Key Presses</th>
-                        <th>Error Count</th>
-                        <th>Total Idle Time (s)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($activityData as $row): ?>
-                    <tr>
-                        <td><?= $row['session_id'] ?></td>
-                        <td><?= $row['time_on_page_ms'] ?></td>
-                        <td><?= $row['mouse_moves'] ?></td>
-                        <td><?= count(json_decode($row['clicks'], true) ?? []) ?></td>
-                        <td><?= count(json_decode($row['key_presses'], true) ?? []) ?></td>
-                        <td><?= $row['error_count'] ?></td>
-                        <td><?= round($row['total_idle_time_ms'] / 1000, 1) ?></td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+            <div class="table-scroll">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Session ID</th>
+                            <th>Time On Page (ms)</th>
+                            <th>Mouse Moves</th>
+                            <th>Click Count</th>
+                            <th>Key Presses</th>
+                            <th>Error Count</th>
+                            <th>Total Idle Time (s)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="activity-table-rows">
+                        <?php foreach ($activityData as $row): ?>
+                        <tr>
+                            <td><?= $row['session_id'] ?></td>
+                            <td><?= $row['time_on_page_ms'] ?></td>
+                            <td><?= $row['mouse_moves'] ?></td>
+                            <td><?= count(json_decode($row['clicks'], true) ?? []) ?></td>
+                            <td><?= count(json_decode($row['key_presses'], true) ?? []) ?></td>
+                            <td><?= $row['error_count'] ?></td>
+                            <td><?= round($row['total_idle_time_ms'] / 1000, 1) ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <button type="button" id="activity-show-more" class="table-more-btn">Show More</button>
 
             <?php
                 $totalMouse = array_sum(array_column($activityData, 'mouse_moves'));
@@ -128,6 +134,25 @@
                     }
                 }
             });
+
+            const activityRows = Array.from(document.querySelectorAll('#activity-table-rows tr'));
+            const showMoreButton = document.getElementById('activity-show-more');
+            const defaultVisibleRows = 8;
+            let expanded = false;
+
+            const applyTableRows = () => {
+                activityRows.forEach((row, index) => {
+                    row.style.display = expanded || index < defaultVisibleRows ? '' : 'none';
+                });
+                showMoreButton.textContent = expanded ? 'Show Less' : 'Show More';
+            };
+
+            showMoreButton.addEventListener('click', () => {
+                expanded = !expanded;
+                applyTableRows();
+            });
+
+            applyTableRows();
             </script>
         </section>
     </main>
