@@ -2,10 +2,16 @@
 main{
     display: grid;
     grid-template-areas: 
-            "card-one card-two";
-    grid-template-columns: auto;
+            "report-title report-title"
+            "card-one     card-two";
+    grid-template-columns: 30% 70%;
+    gap: 1.5%;
 }
 
+h1{
+    grid-area: report-title;
+    margin: 0;
+}
 
 section{
     width: fit-content;
