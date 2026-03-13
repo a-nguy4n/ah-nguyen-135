@@ -4,7 +4,7 @@ main{
 			"report-title pdf-button"
 			"links       links"
 			"chart       time-table"
-			"chart       movement-table";
+			"movement-table movement-table";
 	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 	gap: 5%;
 	margin: 1%;
