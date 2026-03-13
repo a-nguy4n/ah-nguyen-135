@@ -40,6 +40,7 @@ section{
 #user-add-section form,
 .user-role-form{
     flex-direction: column;
+    flex-wrap: nowrap;
     align-items: stretch;
     width: 100%;
 }
@@ -110,37 +111,21 @@ section{
 }
 
 #user-list-section table{
-    width: max-content;
+    width: 100%;
+    table-layout: fixed;
 }
 
 #user-list-section th,
 #user-list-section td{
     white-space: nowrap;
     vertical-align: middle;
+    text-align: center;
 }
 
-/* Narrow + centered columns */
+/* Narrow ID column; remaining 4 columns share space equally */
 #user-list-section th:nth-child(1),
 #user-list-section td:nth-child(1){
-    width: 2.5rem;
-    text-align: center;
-}
-
-#user-list-section th:nth-child(3),
-#user-list-section td:nth-child(3){
-    width: 7rem;
-    text-align: center;
-}
-
-#user-list-section th:nth-child(4),
-#user-list-section td:nth-child(4){
-    width: 12rem;
-    text-align: center;
-}
-
-#user-list-section th:nth-child(5),
-#user-list-section td:nth-child(5){
-    width: 5rem;
+    width: 3rem;
     text-align: center;
 }
 
