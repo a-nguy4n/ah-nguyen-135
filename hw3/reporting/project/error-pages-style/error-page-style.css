@@ -21,7 +21,7 @@ body{
 
     --text-small:  clamp(12px, 1.1vw, 14px);
     --text-medium: clamp(14px, 1.4vw, 18px);
-    --text-large:  clamp(17px, 1.55vw, 21px);
+    --text-large:  clamp(25px, 2vw, 30px);
 }
 
 h1{
@@ -44,6 +44,9 @@ p{
 a{
     font-family: "Space Mono", monospace;
     font-size: var(--text-small);
-    color: #007bff;
+    color: #ffffff;
+    background: #5890ea;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
     text-decoration: none;
 }
