@@ -110,6 +110,33 @@
                 });
             </script>
         </section>
+
+        <!-- Analyst Comments -->
+        <section id="analyst-comments">
+            <h2>Analyst Comments</h2>
+
+            <?php if (!empty($comments)): ?>
+                <?php foreach ($comments as $c): ?>
+                    <p>
+                        <strong><?= htmlspecialchars($c['username'] ?? 'Unknown') ?></strong>
+                        (<?= htmlspecialchars($c['created_at'] ?? '') ?>):
+                        <?= nl2br(htmlspecialchars($c['comment'] ?? '')) ?>
+                    </p>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No comments yet.</p>
+            <?php endif; ?>
+
+            <?php if (!empty($_SESSION['role']) && $_SESSION['role'] !== 'viewer'): ?>
+                <form method="POST" action="/reports/performance">
+                    <textarea name="comment" rows="4" cols="50" maxlength="2000" required placeholder="Add your analysis..."></textarea>
+                    <br>
+                    <button type="submit">Save Comment</button>
+                </form>
+            <?php endif; ?>
+
+        </section>
+
     </main>
 </body>
 </html>
