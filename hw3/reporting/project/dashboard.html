@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analytics Dashboard</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/project/dashboard.css">
 </head>
 <body>
@@ -11,25 +12,59 @@
         <h1> Welcome to the Analytics Dashboard!</h1>
     </header>
     <main>
+     
+
         <section class="analytics-card" id="performance-analytics">
             <h1>Performance Analytics</h1>
-           
-            <button onclick="window.location.href='/reports/performance'"> View Performance Report</button>
-            <button class="pdf-button"> Download Report PDF </button>
+
+            <p class="analytics-content">  
+                Check out performance analytics to understand how users are progressing over time. 
+                Track key metrics, identify strengths, and spot opportunities for improvement through data-driven insights.
+            </p>
+            
+            <div class="button-row">
+                <button onclick="window.location.href='/reports/performance'"> View Performance Report</button>
+                <button class="pdf-button"> 
+                    <span class="material-icons">download</span>
+                    PDF
+                </button>
+            </div>
+    
         </section>
 
         <section class="analytics-card" id="behavior-analytics">
             <h1>Behavior Analytics</h1>
 
-            <button onclick="window.location.href='/reports/behavior'"> View Behavior Report</button>
-            <button class="pdf-button"> Download Report PDF </button>
+            <p class="analytics-content"> 
+                Explore behavior analytics to see how users interact with tasks, systems, and environments. 
+                Identify patterns and trends that help explain actions and decision-making.
+            </p>
+
+            <div class="button-row">
+                <button onclick="window.location.href='/reports/behavior'"> View Behavior Report</button>
+                <button class="pdf-button"> 
+                    <span class="material-icons">download</span>
+                    PDF
+                </button>
+            </div>
         </section>
 
         <section class="analytics-card" id="engagement-analytics">
             <h1>Engagement Analytics</h1>
-        
-            <button onclick="window.location.href='/reports/engagement'"> View Engagement Report</button>
-            <button class="pdf-button"> Download Report PDF </button>
+
+            <p class="analytics-content">
+                View engagement analytics to measure how actively users participate and stay involved. 
+                Monitor activity levels and interaction trends to better understand user motivation and interest.
+            </p>
+
+            <div class="button-row">
+                <button onclick="window.location.href='/reports/engagement'"> View Engagement Report</button>
+                <button class="pdf-button"> 
+                    <span class="material-icons">download</span>
+                    PDF
+                </button>
+            </div>
+    
         </section>
     </main>
   
