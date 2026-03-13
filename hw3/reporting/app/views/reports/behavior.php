@@ -2,9 +2,39 @@
 <html>
 <head>
     <title>Behavior Report</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/project/reports-style/shared-style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <header>
+        <a href="/project/dashboard.html" class="site-title">
+            <h1>
+                <span class="material-icons site-title-icon" aria-hidden="true">stacked_line_chart</span>
+                ANALYTICS DASHBOARD
+            </h1>
+        </a>
+
+        <nav class="main-navigation" aria-label="Main Navigation">
+            <ul class="nav-list">
+                <li><a class="nav-link" href="/dashboard">Dashboard</a></li>
+                <li><a class="nav-link" href="/reports/performance">Performance</a></li>
+                <li><a class="nav-link active" href="/reports/behavior">Behavior</a></li>
+                <li><a class="nav-link" href="/reports/engagement">Engagement</a></li>
+                <li><a class="nav-link" href="#">Saved Reports</a></li>
+            </ul>
+        </nav>
+
+        <details class="user-menu">
+            <summary class="role-pill">Super Admin</summary>
+
+            <ul class="dropdown">
+                <li><a class="logout" href="/logout">Logout</a></li>
+            </ul>
+        </details>
+    </header>
+
+    <main>
     <h1>Behavior Report</h1>
     <a href="/dashboard"> Back to Dashboard </a> </br>
     <a href="/logout">Logout</a>
@@ -77,5 +107,6 @@
         options: { responsive: true }
     });
     </script>
+    </main>
 </body>
 </html>
