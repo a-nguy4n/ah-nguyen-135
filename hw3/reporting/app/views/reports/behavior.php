@@ -50,8 +50,8 @@
             <a href="/logout">Logout</a>
         </div>
 
-        <section id="activity-data-table"> 
-            <h2>Activity Data</h2>
+        <section id="activity-time-table"> 
+            <h2>Activity Time</h2>
             <div class="table-scroll">
                 <table border="1">
                     <thead>
@@ -72,7 +72,26 @@
                     </tbody>
                 </table>
             </div>
+            <button type="button" id="activity-time-show-more" class="table-more-btn">Show More</button>
 
+            <?php
+                $totalMouse = array_sum(array_column($activityData, 'mouse_moves'));
+                $totalClicks = array_sum(array_map(function($r){
+                    $clicks = json_decode($r['clicks'], true);
+                    return is_array($clicks) ? count($clicks) : 0;
+                }, $activityData));
+
+                $totalKeys = array_sum(array_map(function($r) {
+                    $keys = json_decode($r['key_presses'], true);
+                    return is_array($keys) ? count($keys) : 0;
+                }, $activityData));
+
+                $totalIdle = round(array_sum(array_column($activityData, 'total_idle_time_ms')) / 1000);
+            ?>
+        </section>
+
+        <section id="activity-movement-table">
+            <h2>Activity Movement</h2>
             <div class="table-scroll">
                 <table border="1">
                     <thead>
@@ -97,22 +116,7 @@
                     </tbody>
                 </table>
             </div>
-            <button type="button" id="activity-show-more" class="table-more-btn">Show More</button>
-
-            <?php
-                $totalMouse = array_sum(array_column($activityData, 'mouse_moves'));
-                $totalClicks = array_sum(array_map(function($r){
-                    $clicks = json_decode($r['clicks'], true);
-                    return is_array($clicks) ? count($clicks) : 0;
-                }, $activityData));
-
-                $totalKeys = array_sum(array_map(function($r) {
-                    $keys = json_decode($r['key_presses'], true);
-                    return is_array($keys) ? count($keys) : 0;
-                }, $activityData));
-
-                $totalIdle = round(array_sum(array_column($activityData, 'total_idle_time_ms')) / 1000);
-            ?>
+            <button type="button" id="activity-movement-show-more" class="table-more-btn">Show More</button>
         </section>
 
         <section id="activity-totals-chart"> 
@@ -152,24 +156,30 @@
                 }
             });
 
-            const activityRows = Array.from(document.querySelectorAll('#activity-table-rows-time tr, #activity-table-rows-events tr'));
-            const showMoreButton = document.getElementById('activity-show-more');
             const defaultVisibleRows = 8;
-            let expanded = false;
 
-            const applyTableRows = () => {
-                activityRows.forEach((row, index) => {
-                    row.style.display = expanded || index < defaultVisibleRows ? '' : 'none';
+            const setupShowMore = (rowSelector, buttonId) => {
+                const rows = Array.from(document.querySelectorAll(rowSelector));
+                const button = document.getElementById(buttonId);
+                let expanded = false;
+
+                const applyRows = () => {
+                    rows.forEach((row, index) => {
+                        row.style.display = expanded || index < defaultVisibleRows ? '' : 'none';
+                    });
+                    button.textContent = expanded ? 'Show Less' : 'Show More';
+                };
+
+                button.addEventListener('click', () => {
+                    expanded = !expanded;
+                    applyRows();
                 });
-                showMoreButton.textContent = expanded ? 'Show Less' : 'Show More';
+
+                applyRows();
             };
 
-            showMoreButton.addEventListener('click', () => {
-                expanded = !expanded;
-                applyTableRows();
-            });
-
-            applyTableRows();
+            setupShowMore('#activity-table-rows-time tr', 'activity-time-show-more');
+            setupShowMore('#activity-table-rows-events tr', 'activity-movement-show-more');
             </script>
         </section>
     </main>

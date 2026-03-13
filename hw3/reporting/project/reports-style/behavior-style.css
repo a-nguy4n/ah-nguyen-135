@@ -3,8 +3,9 @@ main{
 	grid-template-areas:
 			"report-title pdf-button"
 			"links       links"
-			"card-left   card-right";
-	grid-template-columns: minmax(30%, 1fr) minmax(70%, 1fr);
+			"time-table  movement-table"
+			"chart       chart";
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 	gap: 3%;
 	margin: 1%;
 	padding: 0% 4% 0% 0.5%;
@@ -37,12 +38,15 @@ section{
 	overflow-x: auto;
 }
 
-#activity-data-table table{
+#activity-time-table table,
+#activity-movement-table table{
 	min-width: 820px;
 }
 
-#activity-data-table th,
-#activity-data-table td{
+#activity-time-table th,
+#activity-time-table td,
+#activity-movement-table th,
+#activity-movement-table td{
 	white-space: nowrap;
 	overflow-wrap: normal;
 }
@@ -65,7 +69,7 @@ section{
 }
 
 #activity-totals-chart{
-	grid-area: card-left;
+	grid-area: chart;
 
 	display: flex;
 	flex-direction: column;
@@ -73,7 +77,11 @@ section{
 	justify-content: center;
 }
 
-#activity-data-table{
-	grid-area: card-right;
+#activity-time-table{
+	grid-area: time-table;
+}
+
+#activity-movement-table{
+	grid-area: movement-table;
 }
 
