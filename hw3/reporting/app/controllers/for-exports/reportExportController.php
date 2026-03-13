@@ -137,28 +137,31 @@ $dompdf->render();
 $pdfOutput = $dompdf->output();
 
 $exportsDir = ROOT . '/project/exports';
+$canPersistToExports = true;
+
 if(!is_dir($exportsDir) && !@mkdir($exportsDir, 0755, true)){
-    http_response_code(500);
-    echo 'Could not create exports directory.';
-    exit;
+    $canPersistToExports = false;
 }
 
-if(!is_writable($exportsDir)){
-    http_response_code(500);
-    echo 'Exports directory is not writable.';
-    exit;
+if($canPersistToExports && !is_writable($exportsDir)){
+    $canPersistToExports = false;
 }
 
 $fileName = $filePrefix . date('Ymd-His') . '-' . bin2hex(random_bytes(4)) . '.pdf';
 $filePath = $exportsDir . '/' . $fileName;
+$didPersist = false;
 
-if(@file_put_contents($filePath, $pdfOutput) === false){
-    http_response_code(500);
-    echo 'Failed to save generated PDF.';
-    exit;
+if($canPersistToExports){
+    $didPersist = @file_put_contents($filePath, $pdfOutput) !== false;
 }
 
 if($mode === 'save'){
+    if(!$didPersist){
+        http_response_code(500);
+        echo 'Could not save report snapshot. Ensure /project/exports exists and is writable by PHP.';
+        exit;
+    }
+
     require APP . '/models/savedReportModel.php';
     $savedReportModel = new savedReportModel();
     $title = ucfirst($reportType) . ' Report - ' . date('Y-m-d H:i');
@@ -177,6 +180,14 @@ if(isset($_GET['download']) && $_GET['download'] === '1'){
 }
 
 if($mode === 'export'){
+    if(!$didPersist){
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: attachment; filename="' . $fileName . '"');
+        header('Cache-Control: private, max-age=0, must-revalidate');
+        echo $pdfOutput;
+        exit;
+    }
+
         header('Location: /project/exports/' . rawurlencode($fileName));
         exit;
 }
