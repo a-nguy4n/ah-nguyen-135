@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Engagement Report</h1>
-    <a href="/dashboard">Back to Dashboard</a> </br>
+    <a href="/dashboard">Back to Dashboard</a> <br>
     <a href="/logout">Logout</a>
 
     <h2>Device & Environment Data</h2>
@@ -69,7 +69,16 @@
         $type = $row['network_type'] ?: 'unknown';
         $networkCounts[$type] = ($networkCounts[$type] ?? 0) + 1;
     }
+
+    $sessionLabels = array_map(function($r) {
+        return substr($r['session_id'], 0, 8);
+    }, $activityData);
+
+    $timeOnPage = array_map(function($r) {
+        return (int)$r['time_on_page_ms'];
+    }, $activityData);
     ?>
+
 
     <h2>Network Type Distribution</h2>
     <canvas id="networkChart" style="max-width:500px"></canvas>
