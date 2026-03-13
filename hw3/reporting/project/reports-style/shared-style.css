@@ -51,6 +51,14 @@
     --dropdown-width: clamp(9rem, 18vw, 10.75rem);
     --dropdown-radius: clamp(0.45rem, 0.9vw, 0.625rem);
     --dropdown-item-text: clamp(0.72rem, 0.95vw, 0.875rem);
+
+    --performance-background: #41b254;
+    --behavior-background: #72a1eb;
+    --engagement-background: #EFBACC;
+
+    --report-title-font: var(--header-font);
+    --report-title-size: clamp(20px, 2vw, 24px);
+    --report-title-color: var(--font-color);
 }
 
 body{
@@ -217,3 +225,24 @@ main{
     margin: 0 3% 3%;
 }
 
+main > h1{
+    margin: 0 0 1rem 0;
+    font-family: var(--report-title-font);
+    font-size: var(--report-title-size);
+    font-weight: 500;
+    color: var(--report-title-color);
+}
+
+body[data-report-type="performance"]{
+    --report-title-color: var(--performance-background);
+}
+
+body[data-report-type="behavior"]{
+    --report-title-color: var(--behavior-background);
+}
+
+body[data-report-type="engagement"]{
+    --report-title-color: var(--engagement-background);
+}
+
+/** General Shared Styles for all Reports **/

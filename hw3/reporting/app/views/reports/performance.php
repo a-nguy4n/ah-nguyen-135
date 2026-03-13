@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/project/reports-style/performance-style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body data-report-type="performance">
     <header>
         <a href="/project/dashboard.html" class="site-title">
             <h1>
@@ -37,6 +37,7 @@
 
     <main>
         <h1>Performance Report</h1>
+        
         <a href="/dashboard">Back to Dashboard</a> </br>
         <a href="/logout">Logout</a>
 

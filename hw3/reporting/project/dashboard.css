@@ -262,7 +262,6 @@ footer{
     background: var(--dropdown-link-hover-bg);
 }
 
-
 #overview{
     grid-area: overview;
     border-radius: var(--card-radius);
