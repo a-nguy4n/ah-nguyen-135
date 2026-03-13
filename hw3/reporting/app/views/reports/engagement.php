@@ -18,17 +18,17 @@
 
         <nav class="main-navigation" aria-label="Main Navigation">
             <ul class="nav-list">
-                <li><a class="nav-link" href="/dashboard">Dashboard</a></li>
+                <li><a class="nav-link active" href="/dashboard">Dashboard</a></li>
                 <li><a class="nav-link" href="/reports/performance">Performance</a></li>
                 <li><a class="nav-link" href="/reports/behavior">Behavior</a></li>
-                <li><a class="nav-link active" href="/reports/engagement">Engagement</a></li>
+                <li><a class="nav-link" href="/reports/engagement">Engagement</a></li>
                 <li><a class="nav-link" href="#">Saved Reports</a></li>
+                <li><a class="nav-link" href="/admin/users">User Management</a></li>
             </ul>
         </nav>
 
         <details class="user-menu">
-            <summary class="role-pill">Super Admin</summary>
-
+            <summary class="role-pill"><?= htmlspecialchars($_SESSION['role']) ?></summary>
             <ul class="dropdown">
                 <li><a class="logout" href="/logout">Logout</a></li>
             </ul>
